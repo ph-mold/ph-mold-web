@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
-:root {
-  --pm-background: #ffffff;
-  --pm-foreground: #171717;
-  --pm-signature: #7bd3ff;
-  --pm-signature2: #ff7bd5;
-  --pm-signature3: #ffca7b;
-  --pm-signature4: #aeff7b;
+@layer base {
+  :root {
+    --pm-background: #ffffff;
+    --pm-foreground: #171717;
+    --pm-signature: #7bd3ff;
+    --pm-signature2: #ff7bd5;
+    --pm-signature3: #ffca7b;
+    --pm-signature4: #aeff7b;
+  }
 }
 
-@theme inline {
+@theme {
   --color-background: var(--pm-background);
   --color-foreground: var(--pm-foreground);
-  --font-sans: var(--noto_sans_kr);
-}
-body {
-  background: var(--pm-background);
+  --color-signature: var(--pm-signature);
+  --color-signature2: var(--pm-signature2);
+  --color-signature3: var(--pm-signature3);
+  --color-signature4: var(--pm-signature4);
 }
