@@ -3,7 +3,9 @@
 @layer base {
   :root {
     --pm-background: #ffffff;
+    --pm-background2: #f8fafc;
     --pm-foreground: #171717;
+    --pm-foreground2: #6d6d6d;
     --pm-signature: #7bd3ff;
     --pm-signature2: #ff7bd5;
     --pm-signature3: #ffca7b;
@@ -13,9 +15,69 @@
 
 @theme {
   --color-background: var(--pm-background);
+  --color-background2: var(--pm-background2);
   --color-foreground: var(--pm-foreground);
+  --color-foreground2: var(--pm-foreground2);
   --color-signature: var(--pm-signature);
   --color-signature2: var(--pm-signature2);
   --color-signature3: var(--pm-signature3);
   --color-signature4: var(--pm-signature4);
+}
+
+@keyframes mist {
+  0% {
+    transform: translateX(-50%) translateY(-40%) scale(1.2);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(20%) translateY(30%) scale(1.4);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(50%) translateY(40%) scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+.animate-mist {
+  animation: mist 12s infinite alternate ease-in-out;
+  filter: blur(50px);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+/* Tailwind에서 사용할 클래스 */
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out both;
+}
+
+.animate-fade-out {
+  animation: fadeOut 1s ease-in-out both;
 }

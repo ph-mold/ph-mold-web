@@ -23,7 +23,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-16 sticky top-0 bg-background">
+    <header className="w-full h-16 sticky top-0 z-10 bg-white/30 backdrop-blur-md overflow-hidden">
       <nav className="w-full h-full flex justify-center items-center">
         <ul className="flex space-x-6">
           {menuItems.map((item, index) => (
