@@ -13,13 +13,13 @@ interface StickyNavProps {
 
 // 설정값 관리
 const config = {
-  maxOffset: 500,
-  speedMultiplier: 6,
+  maxOffset: 200,
+  speedMultiplier: 10,
   minReturnTime: 50,
   maxReturnTime: 300,
   spring: {
-    stiffness: 400,
-    damping: 20,
+    stiffness: 500,
+    damping: 30,
   },
 };
 
@@ -103,22 +103,24 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
   return (
     <motion.div
       style={{ y: smoothYOffset }}
-      className="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-4 transition-all"
+      className="fixed right-5 top-1/2 -translate-y-1/2 transition-all h-fit"
     >
-      {sections.map(({ id }) => (
-        <button
-          key={id}
-          onClick={() => handleClick(id)}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-all cursor-pointer
-            ${
-              activeSection === id
-                ? "bg-signature text-reverseForground font-bold"
-                : "bg-background2 text-gray-700 hover:bg-gray-300"
-            }`}
-        >
-          {id}
-        </button>
-      ))}
+      <div className="flex flex-col gap-2 bg-background2 shadow-sm rounded-md p-1">
+        {sections.map(({ id }) => (
+          <button
+            key={id}
+            onClick={() => handleClick(id)}
+            className={`px-6 py-2 text-sm font-medium rounded-md transition-all cursor-pointer
+          ${
+            activeSection === id
+              ? "bg-signature text-reverseForground font-bold"
+              : "text-gray-700 hover:bg-gray-300"
+          }`}
+          >
+            {id}
+          </button>
+        ))}
+      </div>
     </motion.div>
   );
 };
