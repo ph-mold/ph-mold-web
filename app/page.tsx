@@ -1,5 +1,6 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import StickyNav from "@/components/StickyNav";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 interface ButtonWithArrowProps {
   children: ReactNode;
@@ -41,6 +42,8 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const parentRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true); // 애니메이션 시작
@@ -58,41 +61,48 @@ export default function Home() {
 
   return (
     <main>
-      <div className="w-full h-svh flex items-center justify-center relative overflow-hidden top-[-64px]">
-        <div className="absolute w-full max-w-[1080px] text-center">
-          <div className="relative w-full flex items-center justify-center transition-all duration-500 lg:h-[80px] h-[52px]">
-            {texts.map((text, index) => (
-              <p
-                key={index}
-                className={`absolute w-full lg:text-5xl md:text-4xl text-2xl font-semibold transition-opacity duration-1000 ${
-                  currentIndex === index
-                    ? isAnimating
-                      ? "opacity-0 animate-fade-out"
-                      : "opacity-100 animate-fade-in"
-                    : "opacity-0"
-                }`}
-              >
-                {text}
-              </p>
-            ))}
+      <div ref={parentRef}>
+        <div
+          id="메인"
+          className="w-full h-svh flex items-center justify-center relative overflow-hidden top-[-64px]"
+        >
+          <div className="absolute w-full max-w-[1080px] text-center">
+            <div className="relative w-full flex items-center justify-center transition-all duration-500 lg:h-[80px] h-[52px]">
+              {texts.map((text, index) => (
+                <p
+                  key={index}
+                  className={`absolute w-full lg:text-5xl md:text-4xl text-2xl font-semibold transition-opacity duration-1000 ${
+                    currentIndex === index
+                      ? isAnimating
+                        ? "opacity-0 animate-fade-out"
+                        : "opacity-100 animate-fade-in"
+                      : "opacity-0"
+                  }`}
+                >
+                  {text}
+                </p>
+              ))}
+            </div>
+
+            <p className="text-base md:text-lg text-foreground2">
+              Cosmetics container subsidiary material
+            </p>
+            <div className="flex flex-row space-x-3 mt-4 justify-center">
+              <ButtonWithArrow>제품 보기</ButtonWithArrow>
+              <ButtonWithArrow>문의하기</ButtonWithArrow>
+            </div>
           </div>
 
-          <p className="text-base md:text-lg text-foreground2">
-            Cosmetics container subsidiary material
-          </p>
-          <div className="flex flex-row space-x-3 mt-4 justify-center">
-            <ButtonWithArrow>제품 보기</ButtonWithArrow>
-            <ButtonWithArrow>문의하기</ButtonWithArrow>
+          {/* 블루 연무 효과 */}
+          <div className="absolute inset-0 pointer-events-none z-[-1]">
+            <div className="absolute w-[200%] h-[200%] bg-[#E0F7FA] opacity-30 animate-mist rounded-full"></div>
+            <div className="absolute w-[170%] h-[170%] bg-[#BBDEFB] opacity-25 animate-mist rounded-full"></div>
           </div>
         </div>
-
-        {/* 블루 연무 효과 */}
-        <div className="absolute inset-0 pointer-events-none z-[-1]">
-          <div className="absolute w-[200%] h-[200%] bg-[#E0F7FA] opacity-30 animate-mist rounded-full"></div>
-          <div className="absolute w-[170%] h-[170%] bg-[#BBDEFB] opacity-25 animate-mist rounded-full"></div>
-        </div>
+        <div id="제품" className="h-svh " />
+        <div id="문의" className="h-svh " />
       </div>
-      <div className="h-svh " />
+      {parentRef && <StickyNav sectionsContainerRef={parentRef} />}
     </main>
   );
 }
