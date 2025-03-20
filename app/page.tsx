@@ -1,7 +1,15 @@
 "use client";
 import ButtonWithArrow from "@/components/ButtonWithArrow";
+import ProductGrid from "@/components/ProductGrid";
 import StickyNav from "@/components/StickyNav";
 import { useEffect, useRef, useState } from "react";
+
+const products = [
+  { id: "1", name: "주사기", image: "/sample1.png" },
+  { id: "2", name: "앰플", image: "/sample1.png" },
+  { id: "3", name: "바이알", image: "/sample1.png" },
+  { id: "4", name: "청결제주사기", image: "/sample1.png" },
+];
 
 export default function Home() {
   const texts = ["Premium cosmetics packaging", "프리미엄 화장품 패키징"];
@@ -30,7 +38,7 @@ export default function Home() {
       <div ref={parentRef}>
         <div
           id="메인"
-          className="w-full h-svh flex items-center justify-center relative overflow-hidden top-[-64px]"
+          className="w-full h-svh flex items-center justify-center relative overflow-hidden"
         >
           <div className="absolute w-full max-w-[1080px] text-center">
             <div className="relative w-full flex items-center justify-center transition-all duration-500 lg:h-[80px] h-[52px]">
@@ -65,8 +73,14 @@ export default function Home() {
             <div className="absolute w-[170%] h-[170%] bg-[#BBDEFB] opacity-25 animate-mist rounded-full"></div>
           </div>
         </div>
-        <div id="제품" className="h-svh " />
-        <div id="문의" className="h-svh " />
+        <div id="제품" className="h-fit min-h-svh">
+          <p className="text-3xl text-center pt-[70px] mb-8">제품</p>
+          <ProductGrid products={products} />
+          <div className="mx-auto w-fit my-10">
+            <ButtonWithArrow>더보기</ButtonWithArrow>
+          </div>
+        </div>
+        <div id="문의" className="h-svh bg-[#ebf4fa]" />
       </div>
       {parentRef && (
         <div className="hidden md:block">
