@@ -6,6 +6,7 @@
     --pm-background2: #f8fafc;
     --pm-foreground: #171717;
     --pm-foreground2: #6d6d6d;
+    --pm-reverseForground: #ffffff;
     --pm-signature: #7bd3ff;
     --pm-signature2: #ff7bd5;
     --pm-signature3: #ffca7b;
@@ -18,6 +19,7 @@
   --color-background2: var(--pm-background2);
   --color-foreground: var(--pm-foreground);
   --color-foreground2: var(--pm-foreground2);
+  --color-reverseForground: var(--pm-reverseForground);
   --color-signature: var(--pm-signature);
   --color-signature2: var(--pm-signature2);
   --color-signature3: var(--pm-signature3);
