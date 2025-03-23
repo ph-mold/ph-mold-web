@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
@@ -25,6 +26,7 @@ export default function Header() {
   return (
     <header className="w-full h-16 fixed top-0 z-10 bg-white/30 backdrop-blur-md overflow-hidden">
       <nav className="w-full h-full flex justify-center items-center">
+        <Image src="/logo.png" alt="" width={40} height={40} className="mr-6" />
         <ul className="flex space-x-6">
           {menuItems.map((item, index) => (
             <li
