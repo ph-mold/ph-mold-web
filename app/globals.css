@@ -2,8 +2,8 @@
 
 @layer base {
   :root {
-    --pm-background: #ffffff;
-    --pm-background2: #f8fafc;
+    --pm-background: #f8f8f8;
+    --pm-background2: #f1f1f1;
     --pm-foreground: #171717;
     --pm-foreground2: #6d6d6d;
     --pm-reverseForground: #ffffff;
@@ -24,6 +24,10 @@
   --color-signature2: var(--pm-signature2);
   --color-signature3: var(--pm-signature3);
   --color-signature4: var(--pm-signature4);
+}
+
+html {
+  @apply text-foreground bg-background;
 }
 
 @keyframes mist {
