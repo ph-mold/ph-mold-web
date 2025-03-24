@@ -1,7 +1,7 @@
 "use client";
-import ButtonWithArrow from "@/components/ButtonWithArrow";
-import ProductGrid from "@/components/ProductGrid";
-import StickyNav from "@/components/StickyNav";
+import ButtonWithArrow from "@/components/home/ButtonWithArrow";
+import ProductGrid from "@/components/home/ProductGrid";
+import StickyNav from "@/components/home/StickyNav";
 import { useEffect, useRef, useState } from "react";
 
 const products = [
