@@ -35,7 +35,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
     if (!sectionsContainerRef.current) return;
 
     const detectedSections = Array.from(
-      sectionsContainerRef.current.querySelectorAll("div")
+      sectionsContainerRef.current.querySelectorAll("section")
     ).filter((el) => el.id) as HTMLElement[];
 
     setSections(detectedSections);
