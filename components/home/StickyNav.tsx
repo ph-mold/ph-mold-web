@@ -103,7 +103,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
   return (
     <motion.div
       style={{ y: smoothYOffset }}
-      className="fixed right-5 top-1/2 -translate-y-1/2 transition-all h-fit"
+      className="fixed right-5 top-1/2 -translate-y-1/2 transition-all h-fit z-10"
     >
       <div className="flex flex-col gap-2 bg-background shadow-sm rounded-md p-1">
         {sections.map(({ id }) => (
