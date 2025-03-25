@@ -4,7 +4,7 @@ import {
   useScroll,
   useSpring,
   useMotionValueEvent,
-  useMotionValue,
+  useMotionValue
 } from "framer-motion";
 
 interface StickyNavProps {
@@ -19,8 +19,8 @@ const config = {
   maxReturnTime: 300,
   spring: {
     stiffness: 500,
-    damping: 30,
-  },
+    damping: 30
+  }
 };
 
 const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
@@ -35,7 +35,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
     if (!sectionsContainerRef.current) return;
 
     const detectedSections = Array.from(
-      sectionsContainerRef.current.querySelectorAll("div")
+      sectionsContainerRef.current.querySelectorAll("section")
     ).filter((el) => el.id) as HTMLElement[];
 
     setSections(detectedSections);
@@ -95,27 +95,29 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
 
     yOffset.set(delta > 0 ? -moveDistance : moveDistance);
 
-    setTimeout(() => {
-      yOffset.set(0);
-    }, Math.max(config.minReturnTime, config.maxReturnTime - speed * 2));
+    setTimeout(
+      () => {
+        yOffset.set(0);
+      },
+      Math.max(config.minReturnTime, config.maxReturnTime - speed * 2)
+    );
   });
 
   return (
     <motion.div
       style={{ y: smoothYOffset }}
-      className="fixed right-5 top-1/2 -translate-y-1/2 transition-all h-fit"
+      className="fixed top-1/2 right-5 z-10 h-fit -translate-y-1/2 transition-all"
     >
-      <div className="flex flex-col gap-2 bg-background shadow-sm rounded-md p-1">
+      <div className="bg-background flex flex-col gap-2 rounded-md p-1 shadow-sm">
         {sections.map(({ id }) => (
           <button
             key={id}
             onClick={() => handleClick(id)}
-            className={`px-6 py-2 text-sm font-medium rounded-md transition-all cursor-pointer
-          ${
-            activeSection === id
-              ? "bg-signature text-reverseForground font-bold"
-              : "text-gray-700 hover:bg-gray-300"
-          }`}
+            className={`cursor-pointer rounded-md px-6 py-2 text-sm font-medium transition-all ${
+              activeSection === id
+                ? "bg-signature text-reverseForground font-bold"
+                : "text-gray-700 hover:bg-gray-300"
+            }`}
           >
             {id}
           </button>
