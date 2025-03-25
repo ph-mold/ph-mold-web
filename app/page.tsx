@@ -1,7 +1,7 @@
 "use client";
 
 import HeroSection from "@/components/home/HeroSection";
-import ProductSection from "@/components/home/ProductSection";
+import ProductCategorySection from "@/components/home/ProductSection";
 import StickyNav from "@/components/home/StickyNav";
 import { useRef } from "react";
 
@@ -11,7 +11,7 @@ export default function Home() {
     <main>
       <div ref={parentRef}>
         <HeroSection />
-        <ProductSection />
+        <ProductCategorySection />
         <section id="문의" className="h-svh bg-[#ebf4fa]" />
       </div>
       {parentRef && (

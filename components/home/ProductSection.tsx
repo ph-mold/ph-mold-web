@@ -1,9 +1,9 @@
 import SectionTitle from "../common/SectionTitle";
 import ButtonWithArrow from "./ButtonWithArrow";
-import { IProductCard } from "@/types/product";
-import ProductCard from "./ProductCard";
+import { IProductCategory } from "@/types/product";
+import ProductCategoryCard from "./ProductCategoryCard";
 
-const products: IProductCard[] = [
+const productCategoryList: IProductCategory[] = [
   {
     name: "주사기",
     desc: "#투명시린지 #주사기 #앰플주사기 #주사기충진 #시린지충진 #의료기기",
@@ -26,13 +26,13 @@ const products: IProductCard[] = [
   },
 ];
 
-export default function ProductSection() {
+export default function ProductCategorySection() {
   return (
     <section id="제품" className="h-fit py-20 flex flex-col gap-8">
       <SectionTitle>제품</SectionTitle>
       <div className="flex flex-col md:grid md:grid-cols-2 max-w-[1080px] mx-4 lg:mx-auto">
-        {products.map((product) => (
-          <ProductCard key={product.name} {...product} />
+        {productCategoryList.map((product) => (
+          <ProductCategoryCard key={product.name} {...product} />
         ))}
       </div>
       <ButtonWithArrow className="mx-auto mt-4">제품 전체보기</ButtonWithArrow>

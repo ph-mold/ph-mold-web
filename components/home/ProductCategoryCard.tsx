@@ -1,10 +1,14 @@
-import { IProductCard } from "@/types/product";
+import { IProductCategory } from "@/types/product";
 import { RightArrowIcon } from "@/utils/svgr";
 import Image from "next/image";
 
-type ProductCardProps = IProductCard;
+type ProductCategoryCardProps = IProductCategory;
 
-export default function ProductCard({ name, desc, image }: ProductCardProps) {
+export default function ProductCategoryCard({
+  name,
+  desc,
+  image,
+}: ProductCategoryCardProps) {
   return (
     <div className="relative flex flex-col sm:flex-row gap-6 p-6 items-center group cursor-pointer md:max-h-[208px]">
       <div className="absolute size-full z-[-1] bg-black/10 top-0 left-0 transition-all duration-100 group-hover:opacity-100 group-hover:z-1 opacity-0 rounded-lg">
