@@ -10,15 +10,14 @@ export default function ButtonWithArrow({ children }: ButtonWithArrowProps) {
 
   return (
     <button
-      className="px-8 py-3 bg-signature text-white font-medium rounded-full flex items-center justify-center relative overflow-hidden cursor-pointer"
+      className="px-5 py-2 bg-signature text-reverseForground rounded-xl flex relative overflow-hidden cursor-pointer shadow-md"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <span className="transition-all duration-300">{children}</span>
-
+      {children}
       <RightArrowIcon
-        className={`absolute size-4 left-full top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out ${
-          hovered ? "opacity-100 -translate-x-6" : "opacity-0"
+        className={`absolute size-3 left-full top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out ${
+          hovered ? "opacity-100 -translate-x-4" : "opacity-0"
         }`}
       />
     </button>

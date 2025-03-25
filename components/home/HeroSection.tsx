@@ -5,7 +5,7 @@ import ButtonWithArrow from "./ButtonWithArrow";
 
 const TITLES = ["Premium cosmetics packaging", "프리미엄 화장품 패키징"];
 
-// ⏱️ 애니메이션 타이밍 상수
+// 애니메이션 타이밍 상수
 const FADE_DURATION = 1000; // ms (1초 동안 페이드 인/아웃)
 const SWITCH_INTERVAL = 4000; // ms (4초마다 교체)
 
