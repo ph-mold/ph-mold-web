@@ -1,5 +1,6 @@
 "use client";
 
+import ContactSection from "@/components/home/ContactSection";
 import HeroSection from "@/components/home/HeroSection";
 import ProductCategorySection from "@/components/home/ProductCategorySection";
 import StickyNav from "@/components/home/StickyNav";
@@ -14,7 +15,7 @@ export default function Home() {
         <HeroSection />
         <ProductCategorySection />
         <WhyPMSection />
-        <section id="문의" className="h-svh bg-[#ebf4fa]" />
+        <ContactSection />
       </div>
       {parentRef && (
         <div className="hidden md:block">
