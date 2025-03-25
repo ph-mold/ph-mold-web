@@ -30,11 +30,11 @@ export default function HeroSection() {
   return (
     <section
       id="메인"
-      className="relative flex items-center justify-center min-h-svh overflow-hidden"
+      className="relative flex min-h-svh items-center justify-center overflow-hidden"
     >
       <div className="w-full text-center">
         {/* 타이틀 */}
-        <div className="relative flex justify-center items-center h-[52px] lg:h-[80px]">
+        <div className="relative flex h-[52px] items-center justify-center lg:h-[80px]">
           {TITLES.map((text, index) => {
             const isActive = currentIndex === index;
             const shouldAnimateOut = isActive && isAnimating;
@@ -42,14 +42,13 @@ export default function HeroSection() {
             return (
               <p
                 key={index}
-                className={`absolute w-full font-semibold text-2xl md:text-4xl lg:text-5xl transition-opacity duration-1000
-                  ${
-                    isActive
-                      ? shouldAnimateOut
-                        ? "opacity-0 animate-fade-out"
-                        : "opacity-100 animate-fade-in"
-                      : "opacity-0"
-                  }`}
+                className={`absolute w-full text-2xl font-semibold transition-opacity duration-1000 md:text-4xl lg:text-5xl ${
+                  isActive
+                    ? shouldAnimateOut
+                      ? "animate-fade-out opacity-0"
+                      : "animate-fade-in opacity-100"
+                    : "opacity-0"
+                }`}
               >
                 {text}
               </p>
@@ -58,7 +57,7 @@ export default function HeroSection() {
         </div>
 
         {/* 서브 텍스트 */}
-        <p className="mt-2 text-sm md:text-lg text-foreground2">
+        <p className="text-foreground2 mt-2 text-sm md:text-lg">
           Cosmetics container subsidiary material
         </p>
 
@@ -70,9 +69,9 @@ export default function HeroSection() {
       </div>
 
       {/* 연무 효과 */}
-      <div className="absolute inset-0 z-[-1] pointer-events-none">
-        <div className="absolute w-[200%] h-[200%] bg-[#E0F7FA] opacity-30 rounded-full animate-mist" />
-        <div className="absolute w-[170%] h-[170%] bg-[#BBDEFB] opacity-25 rounded-full animate-mist" />
+      <div className="pointer-events-none absolute inset-0 z-[-1]">
+        <div className="animate-mist absolute h-[200%] w-[200%] rounded-full bg-[#E0F7FA] opacity-30" />
+        <div className="animate-mist absolute h-[170%] w-[170%] rounded-full bg-[#BBDEFB] opacity-25" />
       </div>
     </section>
   );

@@ -9,14 +9,14 @@ interface ButtonWithArrowProps {
 
 export default function ButtonWithArrow({
   children,
-  className = "",
+  className = ""
 }: ButtonWithArrowProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <button
       className={clsx(
-        "px-4 py-2 bg-signature/80 text-reverseForground rounded-lg flex relative overflow-hidden cursor-pointer w-fit",
+        "bg-signature/80 text-reverseForground relative flex w-fit cursor-pointer overflow-hidden rounded-lg px-4 py-2",
         className
       )}
       onMouseEnter={() => setHovered(true)}
@@ -25,8 +25,8 @@ export default function ButtonWithArrow({
       {children}
       <RightArrowIcon
         className={clsx(
-          "absolute size-3 left-full top-1/2 transform -translate-y-1/2 transition-all duration-300 ease-in-out",
-          hovered ? "opacity-100 -translate-x-4" : "opacity-0"
+          "absolute top-1/2 left-full size-3 -translate-y-1/2 transform transition-all duration-300 ease-in-out",
+          hovered ? "-translate-x-4 opacity-100" : "opacity-0"
         )}
       />
     </button>

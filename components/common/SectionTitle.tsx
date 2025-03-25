@@ -5,5 +5,5 @@ interface SectionTitleProps {
 }
 
 export default function SectionTitle({ children }: SectionTitleProps) {
-  return <p className="text-4xl font-semibold text-center">{children}</p>;
+  return <p className="text-center text-4xl font-semibold">{children}</p>;
 }

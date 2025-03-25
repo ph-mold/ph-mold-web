@@ -7,24 +7,24 @@ type ProductCategoryCardProps = IProductCategory;
 export default function ProductCategoryCard({
   name,
   desc,
-  image,
+  image
 }: ProductCategoryCardProps) {
   return (
-    <div className="relative flex flex-col sm:flex-row gap-6 p-6 items-center group cursor-pointer md:max-h-[208px]">
-      <div className="absolute size-full z-[-1] bg-black/5 top-0 left-0 transition-all duration-100 group-hover:opacity-100 opacity-0 rounded-lg">
-        <RightArrowIcon className="fill-foreground2 absolute size-5 left-full top-10 transform transition-all duration-100 group-hover:opacity-100 group-hover:-translate-x-10 opacity-0" />
+    <div className="group relative flex cursor-pointer flex-col items-center gap-6 p-6 sm:flex-row md:max-h-[208px]">
+      <div className="absolute top-0 left-0 z-[-1] size-full rounded-lg bg-black/5 opacity-0 transition-all duration-100 group-hover:opacity-100">
+        <RightArrowIcon className="fill-foreground2 absolute top-10 left-full size-5 transform opacity-0 transition-all duration-100 group-hover:-translate-x-10 group-hover:opacity-100" />
       </div>
-      <div className="w-full sm:size-40 bg-background2 rounded-lg flex-none">
+      <div className="bg-background2 w-full flex-none rounded-lg sm:size-40">
         <Image
           src={image}
           alt={name}
           width={240}
           height={240}
-          className="transition-all duration-200 group-hover:scale-110 mx-auto"
+          className="mx-auto transition-all duration-200 group-hover:scale-110"
         />
       </div>
-      <div className="flex flex-col gap-2 justify-center flex-auto h-full">
-        <p className="text-xl font-semibold flex-none">{name}</p>
+      <div className="flex h-full flex-auto flex-col justify-center gap-2">
+        <p className="flex-none text-xl font-semibold">{name}</p>
         <p className="text-foreground2 flex-initial overflow-y-hidden">
           {desc}
         </p>
