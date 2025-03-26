@@ -1,6 +1,6 @@
-import { RightArrowIcon } from "@/utils/svgr";
 import { ReactNode, useState } from "react";
 import clsx from "clsx";
+import { ChevronRight } from "lucide-react";
 
 interface ButtonWithArrowProps {
   children: ReactNode;
@@ -23,10 +23,10 @@ export default function ButtonWithArrow({
       onMouseLeave={() => setHovered(false)}
     >
       {children}
-      <RightArrowIcon
+      <ChevronRight
         className={clsx(
-          "absolute top-1/2 left-full size-3 -translate-y-1/2 transform transition-all duration-300 ease-in-out",
-          hovered ? "-translate-x-4 opacity-100" : "opacity-0"
+          "absolute top-1/2 left-full size-5 -translate-y-1/2 transform transition-all duration-300 ease-in-out",
+          hovered ? "-translate-x-5 opacity-100" : "opacity-0"
         )}
       />
     </button>

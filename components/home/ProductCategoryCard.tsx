@@ -1,5 +1,5 @@
 import { IProductCategory } from "@/types/product";
-import { RightArrowIcon } from "@/utils/svgr";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 type ProductCategoryCardProps = IProductCategory;
@@ -12,7 +12,7 @@ export default function ProductCategoryCard({
   return (
     <div className="group relative flex cursor-pointer flex-col items-center gap-6 p-6 sm:flex-row md:max-h-[208px]">
       <div className="absolute top-0 left-0 z-[-1] size-full rounded-lg bg-black/5 opacity-0 transition-all duration-100 group-hover:opacity-100">
-        <RightArrowIcon className="fill-foreground2 absolute top-10 left-full size-5 transform opacity-0 transition-all duration-100 group-hover:-translate-x-10 group-hover:opacity-100" />
+        <ArrowRight className="strock-foreground2 absolute top-10 left-full size-5 transform opacity-0 transition-all duration-100 group-hover:-translate-x-10 group-hover:opacity-100" />
       </div>
       <div className="bg-background2 w-full flex-none rounded-lg sm:size-40">
         <Image
