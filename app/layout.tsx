@@ -7,16 +7,16 @@ import { SWRProvider } from "./swr-provider";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--noto_sans_kr",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
   title: "(주)팜앤몰드",
-  description: "화장품 용기 전문 판매 업체",
+  description: "화장품 용기 전문 판매 업체"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

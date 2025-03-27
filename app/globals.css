@@ -24,6 +24,15 @@ html {
   @apply text-foreground bg-background;
 }
 
+body,
+main {
+  @apply max-w-full overflow-x-hidden font-sans antialiased;
+}
+
+a {
+  @apply text-inherit no-underline;
+}
+
 @keyframes mist {
   0% {
     transform: translateX(-50%) translateY(-40%) scale(1.2);
