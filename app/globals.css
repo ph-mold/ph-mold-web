@@ -37,7 +37,7 @@ html {
 
 body,
 main {
-  @apply max-w-full overflow-x-hidden font-sans antialiased;
+  @apply max-w-full font-sans antialiased;
 }
 
 * {
