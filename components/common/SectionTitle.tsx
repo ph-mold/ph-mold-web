@@ -1,9 +1,18 @@
+import clsx from "clsx";
 import { ReactNode } from "react";
 
 interface SectionTitleProps {
+  className?: string;
   children: ReactNode;
 }
 
-export default function SectionTitle({ children }: SectionTitleProps) {
-  return <p className="text-center text-4xl font-semibold">{children}</p>;
+export default function SectionTitle({
+  children,
+  className
+}: SectionTitleProps) {
+  return (
+    <p className={clsx("text-center text-4xl font-semibold", className)}>
+      {children}
+    </p>
+  );
 }
