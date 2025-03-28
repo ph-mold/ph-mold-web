@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
 @layer base {
   :root {
     --pm-background: #ffffff;
@@ -27,6 +38,10 @@ html {
 body,
 main {
   @apply max-w-full overflow-x-hidden font-sans antialiased;
+}
+
+* {
+  @apply box-border;
 }
 
 a {
