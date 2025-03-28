@@ -22,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.variable} font-sans`}>
+      <body
+        className={`${notoSansKr.variable} flex min-h-screen flex-col font-sans`}
+      >
         <SWRProvider>
           <Header />
-          <main className="min-h-svh">{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </SWRProvider>
       </body>
