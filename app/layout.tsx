@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${notoSansKr.variable} font-sans`}>
         <SWRProvider>
           <Header />
-          {children}
+          <main className="min-h-svh">{children}</main>
           <Footer />
         </SWRProvider>
       </body>
