@@ -45,7 +45,7 @@ main {
 }
 
 a {
-  @apply text-inherit no-underline;
+  @apply no-underline;
 }
 
 @keyframes mist {
