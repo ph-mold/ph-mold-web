@@ -4,6 +4,7 @@ import { useMemo, useCallback } from "react";
 import SectionTitle from "@/components/common/SectionTitle";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 const MENU_ITEMS = {
   all: "전체",
@@ -53,6 +54,48 @@ export default function Products() {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="mx-auto max-w-[1280px]">
+        <div className="border-background2 scrollbar-hide h-fit overflow-x-scroll border-b-2 py-2 sm:py-4">
+          <ul className="flex h-fit flex-row px-4 md:px-10">
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+            <li className="flex h-fit w-fit flex-col text-center">
+              <div className="size-24 flex-none sm:size-36">
+                <Image src={"/sample1.png"} alt={""} width={240} height={240} />
+              </div>
+              <p className="text-sm">PP 주사기</p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="h-[2000px]"> </div>
     </div>
