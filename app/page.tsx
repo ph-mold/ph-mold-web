@@ -10,7 +10,7 @@ import { useRef } from "react";
 export default function Home() {
   const parentRef = useRef<HTMLDivElement | null>(null);
   return (
-    <main>
+    <>
       <div ref={parentRef}>
         <HeroSection />
         <ProductCategorySection />
@@ -22,6 +22,6 @@ export default function Home() {
           <StickyNav sectionsContainerRef={parentRef} />
         </div>
       )}
-    </main>
+    </>
   );
 }
