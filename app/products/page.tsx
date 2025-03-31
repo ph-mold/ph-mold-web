@@ -40,12 +40,14 @@ export default function Products() {
       >
         제품
       </Typography>
-      <div className="border-background2 scrollbar-hide sticky top-16 z-9 h-12 w-full overflow-x-scroll overflow-y-hidden border-b-2 bg-white/60 backdrop-blur-md">
-        <Tab
-          className="mx-auto w-full max-w-[1280px] px-4 md:px-10"
-          onChange={handleTabSelect}
-          tabs={TAB_ITEMS}
-        />
+      <div className="border-background2 sticky top-16 z-9 h-12 w-full border-b-2 bg-white/60 backdrop-blur-md">
+        <div className="scrollbar-hide mx-auto max-w-[1280px] overflow-x-scroll">
+          <Tab
+            className="w-fit px-4 md:px-10"
+            onChange={handleTabSelect}
+            tabs={TAB_ITEMS}
+          />
+        </div>
       </div>
       <div className="border-background2 scrollbar-hide mx-auto w-full max-w-[1280px] overflow-x-scroll overflow-y-hidden border-b-2 px-4 md:px-10">
         <Tab
