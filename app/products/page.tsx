@@ -1,18 +1,18 @@
 "use client";
 
 import { useMemo, useCallback } from "react";
-import SectionTitle from "@/components/common/SectionTitle";
-import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import Tab from "@/components/common/Tab";
+import { Typography } from "@/components/common/Typography";
 
-const MENU_ITEMS = {
-  all: "전체",
-  syringe: "주사기",
-  ampoule: "앰플",
-  vial: "바이알",
-  others: "기타"
-};
+const TAB_ITEMS = [
+  { label: "전체", value: "all" },
+  { label: "주사기", value: "syringe" },
+  { label: "앰플", value: "ampoule" },
+  { label: "바이알", value: "vial" },
+  { label: "기타", value: "others" }
+];
 
 export default function Products() {
   const searchParams = useSearchParams();
@@ -22,8 +22,6 @@ export default function Products() {
     () => new URLSearchParams(searchParams),
     [searchParams]
   );
-
-  const selectedTab = params.get("tab") ?? "all"; // ← 기본값 처리
 
   const handleTabSelect = useCallback(
     (tab: string) => {
@@ -35,25 +33,19 @@ export default function Products() {
 
   return (
     <div className="relative h-fit w-full">
-      <SectionTitle className="hidden py-8 md:block">제품</SectionTitle>
-      <div className="border-background2 scrollbar-hide sticky top-16 z-9 h-12 w-full overflow-x-scroll border-b-2 bg-white/60 backdrop-blur-md">
-        <ul className="w mx-auto flex h-full max-w-[1280px] flex-row gap-3 px-4 md:px-10">
-          {Object.entries(MENU_ITEMS).map(([key, value]) => (
-            <li
-              key={key}
-              className={clsx(
-                "text-foreground2 cursor-pointer px-3 py-3 font-semibold text-nowrap",
-                selectedTab === key &&
-                  "border-signature text-signature border-b-2 font-bold"
-              )}
-              onClick={() => {
-                handleTabSelect(key);
-              }}
-            >
-              {value}
-            </li>
-          ))}
-        </ul>
+      <Typography
+        variant={"h1"}
+        textAlign={"center"}
+        className="hidden py-8 font-semibold md:block"
+      >
+        제품
+      </Typography>
+      <div className="border-background2 scrollbar-hide sticky top-16 z-9 h-12 w-full overflow-x-scroll overflow-y-hidden border-b-2 bg-white/60 backdrop-blur-md">
+        <Tab
+          className="px-4 md:px-10"
+          onChange={handleTabSelect}
+          tabs={TAB_ITEMS}
+        />
       </div>
       <div className="mx-auto max-w-[1280px]">
         <div className="border-background2 scrollbar-hide h-fit overflow-x-scroll border-b-2 py-2 sm:py-4">
