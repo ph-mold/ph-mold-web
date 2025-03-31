@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 const sampleItems = Array.from({ length: 20 }).map((_, i) => ({
