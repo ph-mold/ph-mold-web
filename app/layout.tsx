@@ -6,7 +6,7 @@ import Footer from "@/components/common/Footer";
 import { SWRProvider } from "./swr-provider";
 
 const notoSansKr = Noto_Sans_KR({
-  variable: "--noto_sans_kr",
+  variable: "--font-sans",
   subsets: ["latin"]
 });
 

@@ -18,7 +18,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="m-h-16 border-background2 fixed top-0 z-10 w-full border-b-2 bg-white/60 backdrop-blur-md">
+    <header className="border-background2 fixed top-0 z-10 min-h-16 w-full border-b-2 bg-white/80 backdrop-blur-md">
       <nav className="flex h-full w-full items-center justify-between px-4 py-3 md:justify-center">
         <Link href={"/"}>
           <Image
