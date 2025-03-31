@@ -64,7 +64,7 @@ export default function Tab({
     };
   }, [activeTab, showIndicator, tabs]);
   return (
-    <div className={clsx("relative w-fit", className)}>
+    <div className={clsx("relative", className)}>
       <ul className="flex gap-3">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.value;
