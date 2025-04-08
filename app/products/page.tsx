@@ -2,6 +2,7 @@ import { Typography } from "@/components/common/Typography";
 import ProductSubCategorySection from "@/components/products/ProductSubCategorySection";
 import ProductGrid from "@/components/products/ProductGrid";
 import ProductTab from "@/components/products/ProductTab";
+import { Suspense } from "react";
 
 export default function Products() {
   return (
@@ -13,7 +14,11 @@ export default function Products() {
       >
         제품
       </Typography>
-      <ProductTab />
+
+      <Suspense fallback={null}>
+        <ProductTab />
+      </Suspense>
+
       <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
         <ProductSubCategorySection />
         <ProductGrid />
