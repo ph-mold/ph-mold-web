@@ -2,8 +2,8 @@
 
 import { useTabNavigation } from "@/hooks/useTabNavigation";
 import Tab from "../common/Tab";
-import { IGetRootCategory } from "@/types/category";
-import { mapCategoriesToTabItems } from "@/app/lib/mapper/categoryToTabItem";
+import { IGetRootCategory } from "@/types/api/category";
+import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 
 interface ProductTabProps {
   tabs: IGetRootCategory[];

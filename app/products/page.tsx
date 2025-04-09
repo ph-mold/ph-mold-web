@@ -2,8 +2,8 @@ import { Typography } from "@/components/common/Typography";
 import ProductSubCategorySection from "@/components/products/ProductSubCategorySection";
 import ProductGrid from "@/components/products/ProductGrid";
 import ProductTab from "@/components/products/ProductTab";
+import { getRootCategory } from "@/lib/api/categories";
 import { Suspense } from "react";
-import { getRootCategory } from "../lib/api/categories";
 
 interface ProductsProps {
   searchParams: Promise<{

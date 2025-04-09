@@ -1,4 +1,4 @@
-import { IProductCategory } from "@/types/product";
+import { IProductCategory } from "@/types/api/product";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 

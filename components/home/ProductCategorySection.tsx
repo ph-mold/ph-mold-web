@@ -1,9 +1,9 @@
 import SectionTitle from "../common/SectionTitle";
 import ButtonWithArrow from "./ButtonWithArrow";
-import { IProductCategory } from "@/types/product";
+import { IProductCategory } from "@/types/api/product";
 import ProductCategoryCard from "./ProductCategoryCard";
 import useSWR from "swr";
-import { API } from "@/constants/api";
+import { API } from "@/lib/constants/api";
 
 export default function ProductCategorySection() {
   const { data } = useSWR<IProductCategory[]>(API.PRODUCT_CATEGORIES.GET);

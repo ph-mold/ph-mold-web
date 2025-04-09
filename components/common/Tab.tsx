@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-
-export interface TabItem {
-  label: string;
-  value: string;
-  icon?: React.ReactNode;
-}
+import { TabItem } from "@/types/ui/tab";
 
 interface TabProps {
   tabs: TabItem[];

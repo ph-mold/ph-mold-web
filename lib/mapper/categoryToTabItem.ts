@@ -1,5 +1,5 @@
-import { TabItem } from "@/components/common/Tab";
-import type { IGetRootCategory } from "@/types/category";
+import type { IGetRootCategory } from "@/types/api/category";
+import { TabItem } from "@/types/ui/tab";
 
 export function mapCategoriesToTabItems(
   categories: IGetRootCategory[]
