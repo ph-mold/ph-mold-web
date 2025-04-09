@@ -3,8 +3,26 @@ import ProductSubCategorySection from "@/components/products/ProductSubCategoryS
 import ProductGrid from "@/components/products/ProductGrid";
 import ProductTab from "@/components/products/ProductTab";
 import { Suspense } from "react";
+import { getRootCategory } from "../lib/api/categories";
 
-export default function Products() {
+interface ProductsProps {
+  searchParams: Promise<{
+    tab?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: ProductsProps) {
+  const tabs = await getRootCategory();
+  const tab = (await searchParams).tab ?? "all";
+  const tabName = tabs.find((t) => t.key === tab)?.name ?? "전체";
+  return {
+    title: `제품 - ${tabName}`,
+    description: `${tabName} 제품을 확인해보세요.`
+  };
+}
+
+export default async function Products() {
+  const tabs = await getRootCategory();
   return (
     <div className="relative h-fit w-full">
       <Typography
@@ -16,7 +34,7 @@ export default function Products() {
       </Typography>
 
       <Suspense fallback={null}>
-        <ProductTab />
+        <ProductTab tabs={tabs} />
       </Suspense>
 
       <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
