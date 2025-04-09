@@ -11,7 +11,10 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "(주)팜앤몰드",
+  title: {
+    template: `%s | (주)팜앤몰드`,
+    default: "팜앤몰드"
+  },
   description: "화장품 용기 전문 판매 업체"
 };
 

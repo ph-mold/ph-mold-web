@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-interface TabItem {
+export interface TabItem {
   label: string;
   value: string;
   icon?: React.ReactNode;
