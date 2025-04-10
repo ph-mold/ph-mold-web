@@ -34,7 +34,7 @@ export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
   return (
     <div className="border-background2 scrollbar-hide w-full overflow-x-scroll overflow-y-hidden border-b-2">
       <Tab
-        className="py-2"
+        className="pt-2 pb-3"
         showIndicator={false}
         tabClassName="flex-col !text-sm !p-0"
         activeTabClassName="!font-medium !text-foreground2"
