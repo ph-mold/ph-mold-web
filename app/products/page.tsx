@@ -1,7 +1,7 @@
 import { Typography } from "@/components/common/Typography";
-import ProductSubCategorySection from "@/components/products/ProductSubCategorySection";
+import SubCategoryTab from "@/components/products/SubCategoryTab";
 import ProductGrid from "@/components/products/ProductGrid";
-import ProductTab from "@/components/products/ProductTab";
+import MainCategoryTab from "@/components/products/MainCategoryTab";
 import { getCategoryByParentKey, getRootCategory } from "@/lib/api/categories";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -37,10 +37,12 @@ export default async function Products({ searchParams }: ProductsProps) {
         제품
       </Typography>
 
-      <Suspense fallback={null}>{tabs && <ProductTab tabs={tabs} />}</Suspense>
+      <Suspense fallback={null}>
+        {tabs && <MainCategoryTab tabs={tabs} />}
+      </Suspense>
 
       <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
-        {subTabs && <ProductSubCategorySection subTabs={subTabs} />}
+        {subTabs && <SubCategoryTab subTabs={subTabs} />}
         <ProductGrid />
       </div>
     </div>

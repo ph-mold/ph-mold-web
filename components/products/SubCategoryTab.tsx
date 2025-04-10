@@ -5,13 +5,11 @@ import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToSubTabItems } from "@/lib/mapper/categoryToTabItem";
 
-interface ProductSubCategorySectionProps {
+interface SubCategoryTabProps {
   subTabs: IGetCategory[];
 }
 
-export default function ProductSubCategorySection({
-  subTabs
-}: ProductSubCategorySectionProps) {
+export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
   const tabItems = mapCategoriesToSubTabItems(subTabs, (url) => (
     <div className="size-24 flex-none sm:size-32">
       {url && (

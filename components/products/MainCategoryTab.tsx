@@ -5,11 +5,11 @@ import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 
-interface ProductTabProps {
+interface MainCategoryTabProps {
   tabs: IGetCategory[];
 }
 
-export default function ProductTab({ tabs }: ProductTabProps) {
+export default function MainCategoryTab({ tabs }: MainCategoryTabProps) {
   const tabItems = mapCategoriesToTabItems(tabs);
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
