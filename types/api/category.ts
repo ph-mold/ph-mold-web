@@ -1,4 +1,4 @@
-export interface IGetRootCategory {
+export interface IGetCategory {
   id: number;
   key: string;
   name: string;

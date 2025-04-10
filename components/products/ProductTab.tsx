@@ -2,11 +2,11 @@
 
 import { useTabNavigation } from "@/hooks/useTabNavigation";
 import Tab from "../common/Tab";
-import { IGetRootCategory } from "@/types/api/category";
+import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 
 interface ProductTabProps {
-  tabs: IGetRootCategory[];
+  tabs: IGetCategory[];
 }
 
 export default function ProductTab({ tabs }: ProductTabProps) {
