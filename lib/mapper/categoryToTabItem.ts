@@ -14,14 +14,17 @@ export function mapCategoriesToTabItems(categories: IGetCategory[]): TabItem[] {
 
 export function mapCategoriesToSubTabItems(
   categories: IGetCategory[],
-  iconCallBackFn: (image_url?: string) => ReactNode
+  iconCallBackFn: {
+    default: (image_url?: string) => ReactNode;
+    all: () => ReactNode;
+  }
 ): TabItem[] {
   return [
-    { label: "전체", value: "all", icon: iconCallBackFn() },
+    { label: "전체", value: "all", icon: iconCallBackFn.all() },
     ...categories.map((c) => ({
       label: c.name,
       value: c.key,
-      icon: iconCallBackFn(c.imageUrl)
+      icon: iconCallBackFn.default(c.imageUrl)
     }))
   ];
 }
