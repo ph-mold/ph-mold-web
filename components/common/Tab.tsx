@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-
-interface TabItem {
-  label: string;
-  value: string;
-  icon?: React.ReactNode;
-}
+import { TabItem } from "@/types/ui/tab";
 
 interface TabProps {
   tabs: TabItem[];
@@ -77,13 +72,13 @@ export default function Tab({
               }}
               onClick={() => handleTabClick(tab.value)}
               className={clsx(
-                "text-foreground2 relative flex cursor-pointer items-center px-3 py-3 text-nowrap transition hover:opacity-60",
+                "text-foreground2 relative flex cursor-pointer items-center space-x-2 px-3 py-3 text-nowrap transition hover:opacity-60",
                 tabClassName,
                 isActive && "text-signature font-semibold",
                 isActive && activeTabClassName
               )}
             >
-              {tab.icon && <span className="mr-2">{tab.icon}</span>}
+              {tab.icon && tab.icon}
               {tab.label}
             </li>
           );

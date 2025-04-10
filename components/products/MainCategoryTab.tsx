@@ -2,18 +2,17 @@
 
 import { useTabNavigation } from "@/hooks/useTabNavigation";
 import Tab from "../common/Tab";
+import { IGetCategory } from "@/types/api/category";
+import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 
-const TAB_ITEMS = [
-  { label: "전체", value: "all" },
-  { label: "주사기", value: "syringe" },
-  { label: "앰플", value: "ampoule" },
-  { label: "바이알", value: "vial" },
-  { label: "기타", value: "others" }
-];
+interface MainCategoryTabProps {
+  tabs: IGetCategory[];
+}
 
-export default function ProductTab() {
+export default function MainCategoryTab({ tabs }: MainCategoryTabProps) {
+  const tabItems = mapCategoriesToTabItems(tabs);
   const { activeTab, handleTabClick } = useTabNavigation({
-    tabs: TAB_ITEMS,
+    tabs: tabItems,
     mode: "query"
   });
   return (
@@ -23,7 +22,7 @@ export default function ProductTab() {
           className="w-fit px-4 md:px-10"
           activeTab={activeTab}
           onChange={handleTabClick}
-          tabs={TAB_ITEMS}
+          tabs={tabItems}
         />
       </div>
     </div>
