@@ -4,6 +4,7 @@ import Image from "next/image";
 import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToSubTabItems } from "@/lib/mapper/categoryToTabItem";
+import { imageLoader } from "@/lib/imageLoader";
 
 interface SubCategoryTabProps {
   subTabs: IGetCategory[];
@@ -22,7 +23,8 @@ export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
       <div className="size-24 flex-none sm:size-32">
         {url && (
           <Image
-            src={`http://localhost:3001${url}`}
+            loader={imageLoader}
+            src={url}
             alt={""}
             width={240}
             height={240}

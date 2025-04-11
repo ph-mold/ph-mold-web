@@ -1,25 +1,8 @@
 import type { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV !== "production";
-
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: isDev
-      ? [
-          {
-            protocol: "http",
-            hostname: "localhost",
-            port: "3001",
-            pathname: "/**"
-          }
-        ]
-      : [
-          {
-            protocol: "https",
-            hostname: "files.mycompany.com",
-            pathname: "/**"
-          }
-        ]
+    loader: "custom"
   },
   webpack(config) {
     config.module.rules.push({
@@ -33,7 +16,6 @@ const nextConfig: NextConfig = {
         }
       ]
     });
-
     return config;
   }
 };
