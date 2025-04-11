@@ -1,3 +1,4 @@
+import { imageLoader } from "@/lib/imageLoader";
 import { IProductCategory } from "@/types/api/product";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -16,6 +17,7 @@ export default function ProductCategoryCard({
       </div>
       <div className="bg-background2 w-full flex-none rounded-lg sm:size-40">
         <Image
+          loader={imageLoader}
           src={image}
           alt={name}
           width={240}

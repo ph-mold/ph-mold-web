@@ -1,5 +1,6 @@
 "use client";
 
+import { imageLoader } from "@/lib/imageLoader";
 import Image from "next/image";
 
 const sampleItems = Array.from({ length: 20 }).map((_, i) => ({
@@ -16,6 +17,7 @@ export default function ProductGrid() {
         <div key={item.id} className="flex flex-col gap-2">
           <div className="bg-background2 flex aspect-square items-center justify-center overflow-hidden rounded-lg">
             <Image
+              loader={imageLoader}
               src={item.imageUrl}
               alt={item.id}
               width={240}

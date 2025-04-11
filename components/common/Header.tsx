@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { imageLoader } from "@/lib/imageLoader";
 
 const MENU_ITEMS = [
   { ko: "회사소개", link: "/about" },
@@ -22,6 +23,7 @@ export default function Header() {
       <nav className="flex h-full w-full items-center justify-between px-4 py-3 md:justify-center">
         <Link href={"/"}>
           <Image
+            loader={imageLoader}
             src="/logo.png"
             alt=""
             width={40}

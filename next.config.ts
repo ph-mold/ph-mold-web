@@ -1,18 +1,8 @@
 import type { NextConfig } from "next";
 
-const protocol =
-  process.env.API_PROTOCOL === "https" ? "https" : ("http" as const);
-
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol,
-        hostname: process.env.API_HOST_NAME as string,
-        port: process.env.API_PORT,
-        pathname: "/**"
-      }
-    ]
+    loader: "custom"
   },
   webpack(config) {
     config.module.rules.push({
@@ -26,7 +16,6 @@ const nextConfig: NextConfig = {
         }
       ]
     });
-
     return config;
   }
 };
