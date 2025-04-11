@@ -1,25 +1,18 @@
 import type { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV !== "production";
+const protocol =
+  process.env.API_PROTOCOL === "https" ? "https" : ("http" as const);
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: isDev
-      ? [
-          {
-            protocol: "http",
-            hostname: "localhost",
-            port: "3001",
-            pathname: "/**"
-          }
-        ]
-      : [
-          {
-            protocol: "https",
-            hostname: "files.mycompany.com",
-            pathname: "/**"
-          }
-        ]
+    remotePatterns: [
+      {
+        protocol,
+        hostname: process.env.API_HOST_NAME as string,
+        port: process.env.API_PORT,
+        pathname: "/**"
+      }
+    ]
   },
   webpack(config) {
     config.module.rules.push({
