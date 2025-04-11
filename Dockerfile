@@ -6,14 +6,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-ARG API_PROTOCOL
-ARG API_HOST_NAME
-ARG API_PORT
-
-ENV API_PROTOCOL=$API_PROTOCOL
-ENV API_HOST_NAME=$API_HOST_NAME
-ENV API_PORT=$API_PORT
-
 RUN npm run build
 
 # 2단계: 런타임 스테이지
