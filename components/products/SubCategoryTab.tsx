@@ -22,7 +22,7 @@ export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
       <div className="size-24 flex-none sm:size-32">
         {url && (
           <Image
-            src={`http://localhost:3001${url}`}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`}
             alt={""}
             width={240}
             height={240}
