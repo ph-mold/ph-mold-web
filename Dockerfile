@@ -6,6 +6,9 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
+ARG NEXT_PUBLIC_FILE_SERVER_BASE_URL
+ENV NEXT_PUBLIC_FILE_SERVER_BASE_URL=$NEXT_PUBLIC_FILE_SERVER_BASE_URL
+
 RUN npm run build
 
 # 2단계: 런타임 스테이지
