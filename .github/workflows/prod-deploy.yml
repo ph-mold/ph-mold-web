@@ -34,6 +34,7 @@ jobs:
             port: ${{ secrets.SERVER_SSH_PORT }}
             script: |
               cd ~/apps/ph-mold-infra
+              git pull
               export IMAGE_TAG=${{ env.IMAGE_TAG }}
               docker pull ghcr.io/ph-mold/ph-mold-web:$IMAGE_TAG
               IMAGE_TAG=${{ env.IMAGE_TAG }} docker compose up -d web
