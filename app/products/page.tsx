@@ -1,14 +1,13 @@
 import { Typography } from "@/components/common/Typography";
-import SubCategoryTab from "@/components/products/SubCategoryTab";
-import ProductGrid from "@/components/products/ProductGrid";
 import MainCategoryTab from "@/components/products/MainCategoryTab";
-import { getCategoryByParentKey, getRootCategory } from "@/lib/api/categories";
+import { getRootCategory } from "@/lib/api/categories";
 import { Suspense } from "react";
-import { notFound } from "next/navigation";
+import SubTabSection from "@/components/products/SubTabSection";
 
 interface ProductsProps {
   searchParams: Promise<{
     tab?: string;
+    sub?: string;
   }>;
 }
 
@@ -25,8 +24,7 @@ export async function generateMetadata({ searchParams }: ProductsProps) {
 export default async function Products({ searchParams }: ProductsProps) {
   const tabs = await getRootCategory();
   const currentTab = (await searchParams).tab ?? "all";
-  const subTabs = await getCategoryByParentKey(currentTab);
-  if (!subTabs) notFound();
+  const currentSubTab = (await searchParams).sub ?? "all";
   return (
     <div className="relative h-fit w-full">
       <Typography
@@ -42,8 +40,7 @@ export default async function Products({ searchParams }: ProductsProps) {
       </Suspense>
 
       <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
-        {subTabs && <SubCategoryTab subTabs={subTabs} />}
-        <ProductGrid />
+        <SubTabSection currentTab={currentTab} currentSubTab={currentSubTab} />
       </div>
     </div>
   );
