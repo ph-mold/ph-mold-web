@@ -14,6 +14,7 @@ interface UseTabNavigationProps {
   queryKey?: string; // query 모드에서 사용되는 쿼리 키
   mode?: "query" | "path" | "state"; // ✅ 동작 방식 선택
   syncParams?: string[]; // query 모드에서 유지할 파라미터 목록
+  removeParams?: string[]; // 제거할 파라미터
   onTabChange?: (tab: string) => void;
 }
 
@@ -26,6 +27,7 @@ export const useTabNavigation = ({
   queryKey = "tab",
   mode = "path",
   syncParams = [],
+  removeParams = [],
   onTabChange
 }: UseTabNavigationProps) => {
   const searchParams = useSearchParams();
@@ -69,6 +71,10 @@ export const useTabNavigation = ({
         const params = new URLSearchParams(searchParams);
         params.set(queryKey, tab);
 
+        removeParams.forEach((key) => {
+          params.delete(key);
+        });
+
         syncParams.forEach((key) => {
           const value = searchParams.get(key);
           if (value) params.set(key, value);
@@ -83,7 +89,16 @@ export const useTabNavigation = ({
         onTabChange?.(tab);
       }
     },
-    [activeTab, mode, searchParams, router, queryKey, syncParams, onTabChange]
+    [
+      activeTab,
+      mode,
+      searchParams,
+      router,
+      queryKey,
+      syncParams,
+      removeParams,
+      onTabChange
+    ]
   );
 
   return { activeTab, handleTabClick };
