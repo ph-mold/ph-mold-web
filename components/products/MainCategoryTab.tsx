@@ -13,7 +13,8 @@ export default function MainCategoryTab({ tabs }: MainCategoryTabProps) {
   const tabItems = mapCategoriesToTabItems(tabs);
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
-    mode: "query"
+    mode: "query",
+    removeParams: ["sub"]
   });
   return (
     <div className="border-background2 sticky top-16 z-9 h-12 w-full border-b-2 bg-white/80 backdrop-blur-md">
