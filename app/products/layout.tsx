@@ -1,7 +1,33 @@
-export default function ProductsLayout({
+import { Typography } from "@/components/common/Typography";
+import CategoryTabs from "@/components/products/CategoryTabs";
+import { getRootCategory } from "@/lib/api/categories";
+import { Suspense } from "react";
+
+export default async function ProductsLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="mt-16 md:py-4">{children}</div>;
+  const tabs = await getRootCategory();
+  return (
+    <div className="mt-16 md:py-4">
+      <div className="relative h-fit w-full">
+        <Typography
+          variant={"h1"}
+          textAlign={"center"}
+          className="hidden py-8 font-semibold md:block"
+        >
+          제품
+        </Typography>
+
+        <Suspense fallback={null}>
+          <CategoryTabs tabs={tabs} />
+        </Suspense>
+
+        <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
 }

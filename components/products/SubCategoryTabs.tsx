@@ -7,11 +7,12 @@ import { mapCategoriesToSubTabItems } from "@/lib/mapper/categoryToTabItem";
 import { imageLoader } from "@/lib/imageLoader";
 import { useTabNavigation } from "@/hooks/useTabNavigation";
 
-interface SubCategoryTabProps {
+interface Props {
+  currentTab: string;
   subTabs: IGetCategory[];
 }
 
-export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
+export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
   const tabItems = mapCategoriesToSubTabItems(subTabs, {
     all: () => (
       <div className="size-24 flex-none p-4 sm:size-32">
@@ -37,9 +38,8 @@ export default function SubCategoryTab({ subTabs }: SubCategoryTabProps) {
 
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
-    queryKey: "sub",
-    mode: "query",
-    syncParams: ["tab"]
+    mode: "path",
+    basePath: `/products/${currentTab}`
   });
 
   return (

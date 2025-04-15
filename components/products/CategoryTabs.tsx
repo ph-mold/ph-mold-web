@@ -5,16 +5,16 @@ import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 
-interface MainCategoryTabProps {
-  tabs: IGetCategory[];
+interface Props {
+  tabs?: IGetCategory[];
 }
 
-export default function MainCategoryTab({ tabs }: MainCategoryTabProps) {
-  const tabItems = mapCategoriesToTabItems(tabs);
+export default function CategoryTabs({ tabs }: Props) {
+  const tabItems = tabs && mapCategoriesToTabItems(tabs);
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
-    mode: "query",
-    removeParams: ["sub"]
+    mode: "path",
+    basePath: "/products"
   });
   return (
     <div className="border-background2 sticky top-16 z-9 h-12 w-full border-b-2 bg-white/80 backdrop-blur-md">
