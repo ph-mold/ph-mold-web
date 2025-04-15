@@ -15,6 +15,8 @@ import {
 } from "@/lib/api/products";
 import SubCategoryTabsSkeleton from "./SubCategoryTabs.skeleton";
 import ProductGridSkeleton from "./ProductGrid.skeleton";
+import { notFound } from "next/navigation";
+import WithSkeleton from "../common/WithSkeleton";
 
 interface Props {
   currentTab: string;
@@ -43,20 +45,25 @@ export default function ProductListSection({
     getProductsByCategory(categoryKey)
   );
 
-  if (subTabsError || productsError) return;
+  if (subTabsError || productsError) {
+    notFound();
+  }
 
   return (
     <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
-      {isSubTabsLoading ? (
-        <SubCategoryTabsSkeleton />
-      ) : (
-        subTabs && <SubCategoryTabs currentTab={currentTab} subTabs={subTabs} />
-      )}
-      {isProductsLoading ? (
-        <ProductGridSkeleton />
-      ) : (
+      <WithSkeleton
+        isLoading={isSubTabsLoading}
+        skeleton={<SubCategoryTabsSkeleton />}
+      >
+        <SubCategoryTabs currentTab={currentTab} subTabs={subTabs} />
+      </WithSkeleton>
+
+      <WithSkeleton
+        isLoading={isProductsLoading}
+        skeleton={<ProductGridSkeleton />}
+      >
         <ProductGrid products={products ?? []} />
-      )}
+      </WithSkeleton>
     </div>
   );
 }
