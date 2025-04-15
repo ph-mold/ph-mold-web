@@ -24,9 +24,7 @@ export default async function ProductsLayout({
           <CategoryTabs tabs={tabs} />
         </Suspense>
 
-        <div className="mx-auto w-full max-w-[1280px] px-4 md:px-10">
-          {children}
-        </div>
+        {children}
       </div>
     </div>
   );
