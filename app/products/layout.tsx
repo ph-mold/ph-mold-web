@@ -1,7 +1,6 @@
 import { Typography } from "@/components/common/Typography";
 import CategoryTabs from "@/components/products/CategoryTabs";
 import { getRootCategory } from "@/lib/api/categories";
-import { Suspense } from "react";
 
 export default async function ProductsLayout({
   children
@@ -20,10 +19,7 @@ export default async function ProductsLayout({
           제품
         </Typography>
 
-        <Suspense fallback={null}>
-          <CategoryTabs tabs={tabs} />
-        </Suspense>
-
+        <CategoryTabs tabs={tabs} />
         {children}
       </div>
     </div>
