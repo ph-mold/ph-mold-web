@@ -52,7 +52,7 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
         onChange={handleTabClick}
         showIndicator={false}
         tabClassName="flex-col !text-sm !p-0"
-        activeTabClassName="!font-medium !text-foreground2"
+        activeTabClassName="!text-signature"
         tabs={tabItems}
       />
     </div>
