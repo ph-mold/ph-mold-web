@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { TabItem } from "@/types/ui/tab";
 
 interface TabProps {
-  tabs: TabItem[];
+  tabs?: TabItem[];
   activeTab?: string | null;
   onChange?: (value: string) => void;
   className?: string;
@@ -13,7 +13,7 @@ interface TabProps {
 }
 
 export default function Tab({
-  tabs,
+  tabs = [],
   activeTab: controlledActiveTab,
   onChange,
   className,
