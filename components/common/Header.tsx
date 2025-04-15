@@ -8,10 +8,10 @@ import { usePathname } from "next/navigation";
 import { imageLoader } from "@/lib/imageLoader";
 
 const MENU_ITEMS = [
-  { ko: "회사소개", link: "/about" },
-  { ko: "생산제품", link: "/products" },
-  { ko: "생산설비", link: "/facilities" },
-  { ko: "문의", link: "/contact" }
+  { ko: "회사소개", link: ["/about"] },
+  { ko: "생산제품", link: ["/products", "/product"] },
+  { ko: "생산설비", link: ["/facilities"] },
+  { ko: "문의", link: ["/contact"] }
 ];
 
 export default function Header() {
@@ -33,18 +33,24 @@ export default function Header() {
         </Link>
         {/* Desktop 메뉴 */}
         <ul className="hidden space-x-6 md:flex">
-          {MENU_ITEMS.map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item.link}
-                className={`text-foreground block text-center text-base whitespace-nowrap transition-all duration-200 ${
-                  pathname === item.link ? "text-signature" : ""
-                }`}
-              >
-                {item.ko}
-              </Link>
-            </li>
-          ))}
+          {MENU_ITEMS.map((item, index) => {
+            const [href, ...highlightPaths] = item.link;
+            const isActive = highlightPaths.some((hl) =>
+              pathname.startsWith(hl)
+            );
+            return (
+              <li key={index}>
+                <Link
+                  href={href}
+                  className={`text-foreground block text-center text-base whitespace-nowrap transition-all duration-200 ${
+                    isActive ? "text-signature" : ""
+                  }`}
+                >
+                  {item.ko}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         {/* Hamburger (Mobile) */}
         <button
@@ -62,22 +68,26 @@ export default function Header() {
         }`}
       >
         <ul className="flex flex-col">
-          {MENU_ITEMS.map((item, index) => (
-            <li
-              key={index}
-              className="text-foreground w-full text-center text-base"
-            >
-              <Link
-                href={item.link}
-                onClick={() => setMenuOpen(false)}
-                className={`block py-2 ${
-                  pathname === item.link ? "text-signature" : ""
-                }`}
+          {MENU_ITEMS.map((item, index) => {
+            const [href, ...highlightPaths] = item.link;
+            const isActive = highlightPaths.some((hl) =>
+              pathname.startsWith(hl)
+            );
+            return (
+              <li
+                key={index}
+                className="text-foreground w-full text-center text-base"
               >
-                {item.ko}
-              </Link>
-            </li>
-          ))}
+                <Link
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block py-2 ${isActive ? "text-signature" : ""}`}
+                >
+                  {item.ko}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

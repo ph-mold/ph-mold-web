@@ -9,32 +9,34 @@ import { useTabNavigation } from "@/hooks/useTabNavigation";
 
 interface Props {
   currentTab: string;
-  subTabs: IGetCategory[];
+  subTabs?: IGetCategory[];
 }
 
 export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
-  const tabItems = mapCategoriesToSubTabItems(subTabs, {
-    all: () => (
-      <div className="size-24 flex-none p-4 sm:size-32">
-        <div className="bg-background2 flex size-full items-center justify-center rounded-full">
-          <span className="text-signature">ALL</span>
+  const tabItems =
+    subTabs &&
+    mapCategoriesToSubTabItems(subTabs, {
+      all: () => (
+        <div className="size-20 flex-none p-4 sm:size-28">
+          <div className="bg-background2 flex size-full items-center justify-center rounded-full">
+            <span className="text-signature">ALL</span>
+          </div>
         </div>
-      </div>
-    ),
-    default: (url) => (
-      <div className="size-24 flex-none sm:size-32">
-        {url && (
-          <Image
-            loader={imageLoader}
-            src={url}
-            alt={""}
-            width={240}
-            height={240}
-          />
-        )}
-      </div>
-    )
-  });
+      ),
+      default: (url) => (
+        <div className="size-20 flex-none sm:size-28">
+          {url && (
+            <Image
+              loader={imageLoader}
+              src={url}
+              alt={""}
+              width={240}
+              height={240}
+            />
+          )}
+        </div>
+      )
+    });
 
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
@@ -50,7 +52,7 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
         onChange={handleTabClick}
         showIndicator={false}
         tabClassName="flex-col !text-sm !p-0"
-        activeTabClassName="!font-medium !text-foreground2"
+        activeTabClassName="!text-signature"
         tabs={tabItems}
       />
     </div>

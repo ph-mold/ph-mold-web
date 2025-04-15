@@ -1,5 +1,5 @@
 import ProductListSection from "@/components/products/ProductListSection";
-import { getRootCategory } from "@/lib/api/categories";
+import { getCategoryByParentKey, getRootCategory } from "@/lib/api/categories";
 
 interface Props {
   params: Promise<{
@@ -9,20 +9,20 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
+  const { tab, sub } = await params;
   const tabs = await getRootCategory();
-  const tab = (await params).tab;
-  const tabName = tabs?.find((t) => t.key === tab)?.name ?? "전체";
+  const subTabs = await getCategoryByParentKey(tab);
+  const tabName =
+    subTabs?.find((t) => t.key === sub)?.name ??
+    tabs?.find((t) => t.key === tab)?.name ??
+    "전체";
   return {
-    title: `제품 - ${tabName}`,
+    title: `${tabName}`,
     description: `${tabName} 제품을 확인해보세요.`
   };
 }
 
 export default async function Products({ params }: Props) {
-  return (
-    <ProductListSection
-      currentTab={(await params).tab}
-      currentSubTab={(await params).sub}
-    />
-  );
+  const { tab, sub } = await params;
+  return <ProductListSection currentTab={tab} currentSubTab={sub} />;
 }
