@@ -14,7 +14,7 @@ export default function ProductGrid({ products }: Props) {
     <div className="my-8 grid grid-cols-2 gap-3 space-y-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {products?.map((item) => (
         <div key={item.id} className="relative flex flex-col gap-2">
-          <div className="text-foreground2 absolute top-1 left-2 text-xs font-semibold">
+          <div className="text-foreground2 absolute top-[6px] left-2 text-xs font-semibold">
             {item.material}
           </div>
           <div className="bg-background2 flex aspect-square items-center justify-center overflow-hidden rounded-lg">
