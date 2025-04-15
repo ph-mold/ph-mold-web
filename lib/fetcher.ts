@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 export const fetcher = async <T>(
   url: string,
   options?: RequestInit & { cacheType?: "no-store" | "force-cache" | "default" }
@@ -6,7 +8,7 @@ export const fetcher = async <T>(
   const res = await fetch(url, { ...options, cache });
 
   if (!res.ok) {
-    return;
+    notFound();
   }
 
   return res.json();
