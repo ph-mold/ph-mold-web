@@ -58,12 +58,14 @@ export default function ProductListSection({
         <SubCategoryTabs currentTab={currentTab} subTabs={subTabs} />
       </WithSkeleton>
 
-      <WithSkeleton
-        isLoading={isProductsLoading}
-        skeleton={<ProductGridSkeleton />}
-      >
-        <ProductGrid products={products ?? []} />
-      </WithSkeleton>
+      <div className="my-4">
+        <WithSkeleton
+          isLoading={isProductsLoading}
+          skeleton={<ProductGridSkeleton />}
+        >
+          <ProductGrid products={products ?? []} />
+        </WithSkeleton>
+      </div>
     </div>
   );
 }

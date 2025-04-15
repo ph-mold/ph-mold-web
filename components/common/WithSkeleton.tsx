@@ -13,7 +13,7 @@ export default function WithSkeleton({
   isLoading,
   skeleton,
   children,
-  delay = 200,
+  delay = 100,
   minDuration = 500
 }: Props) {
   const showSkeleton = useDelayedRender(isLoading, { delay, minDuration });
@@ -27,8 +27,8 @@ export default function WithSkeleton({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 z-10"
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 z-1"
           >
             {skeleton}
           </motion.div>
@@ -38,7 +38,7 @@ export default function WithSkeleton({
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: showSkeleton ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2 }}
         className="relative z-0"
       >
         {children}
