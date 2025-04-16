@@ -11,9 +11,6 @@ RUN npm install
 # 4. 전체 소스 복사
 COPY . .
 
-ARG NEXT_PUBLIC_FILE_SERVER_BASE_URL
-ENV NEXT_PUBLIC_FILE_SERVER_BASE_URL=$NEXT_PUBLIC_FILE_SERVER_BASE_URL
-
 # 5. 개발 서버 실행 (hot reload)
 CMD ["npm", "run", "dev"]
 
