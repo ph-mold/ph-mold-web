@@ -30,7 +30,7 @@ export default function HeroSection() {
   return (
     <section
       id="메인"
-      className="relative flex min-h-svh items-center justify-center overflow-hidden"
+      className="relative -top-16 flex min-h-svh items-center justify-center overflow-hidden"
     >
       <div className="w-full text-center">
         {/* 타이틀 */}
