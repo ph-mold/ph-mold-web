@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "../common/Button";
+import { useStickyButtonRef } from "@/context/StickyButtonContext";
 
 const DETAIL_ITEMS = [
   { label: "용량", value: "65ml" },
@@ -11,6 +12,8 @@ const DETAIL_ITEMS = [
 ];
 
 export default function ProductInfoPanel() {
+  const ref = useStickyButtonRef();
+
   return (
     <div className="flex flex-col gap-3">
       <div>
@@ -35,9 +38,11 @@ export default function ProductInfoPanel() {
           </div>
         ))}
       </div>
-      <Button size="medium" fullWidth>
-        샘플 요청
-      </Button>
+      <div ref={ref}>
+        <Button size="medium" fullWidth>
+          샘플 요청
+        </Button>
+      </div>
     </div>
   );
 }

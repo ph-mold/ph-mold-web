@@ -1,4 +1,5 @@
 import ProductStickyBar from "@/components/product/ProductStickyBar";
+import { StickyButtonProvider } from "@/context/StickyButtonContext";
 
 export default async function ProductsLayout({
   children
@@ -7,8 +8,10 @@ export default async function ProductsLayout({
 }>) {
   return (
     <>
-      <ProductStickyBar />
-      {children}
+      <StickyButtonProvider>
+        <ProductStickyBar />
+        {children}
+      </StickyButtonProvider>
     </>
   );
 }
