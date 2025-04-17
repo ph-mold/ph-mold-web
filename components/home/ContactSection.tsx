@@ -83,7 +83,6 @@ export default function ContactSection() {
           <Button
             type="submit"
             fullWidth
-            size="small"
             className="!font-semibold"
             endIcon={<SendHorizonal className="size-4" />}
           >
