@@ -20,6 +20,7 @@
     --pm-foreground2: #6d6d6d;
     --pm-reverseForground: #ffffff;
     --pm-signature: #0fafff;
+    --pm-error: #ff3f2d;
   }
 }
 
@@ -31,6 +32,7 @@
   --color-foreground2: var(--pm-foreground2);
   --color-reverseForground: var(--pm-reverseForground);
   --color-signature: var(--pm-signature);
+  --color-error: var(--pm-error);
 }
 
 html {
