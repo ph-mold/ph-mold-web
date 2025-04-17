@@ -1,4 +1,4 @@
-import ProductImageGallery from "@/components/Product/ProductImageGallery";
+import ProductImageGallery from "@/components/product/ProductImageGallery";
 
 interface Props {
   params: Promise<{ productKey: string }>;

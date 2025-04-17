@@ -1,4 +1,4 @@
-import ProductStickyBar from "@/components/Product/ProductStickyBar";
+import ProductStickyBar from "@/components/product/ProductStickyBar";
 
 export default async function ProductsLayout({
   children
