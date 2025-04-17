@@ -1,6 +1,7 @@
 import { ReactNode, ElementType } from "react";
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 type Variant = "contained" | "outlined" | "text";
 type Color = "primary" | "secondary" | "error";
@@ -24,7 +25,7 @@ interface ButtonProps {
 }
 
 const baseStyles =
-  "cursor-pointer inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
+  "cursor-pointer inline-flex items-center select-none justify-center gap-2 rounded-md font-semibold duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variantStyles: Record<Variant, string> = {
   contained: "text-white",
@@ -91,14 +92,16 @@ export default function Button({
 
   if (Component === "button") {
     return (
-      <button
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
         type={type}
         className={classes}
         onClick={onClick}
         disabled={disabled || loading}
       >
         {content}
-      </button>
+      </motion.button>
     );
   }
 
