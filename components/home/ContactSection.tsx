@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import SectionTitle from "../common/SectionTitle";
+import Button from "../common/Button";
+import { SendHorizonal } from "lucide-react";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -78,12 +80,15 @@ export default function ContactSection() {
           </div>
 
           {/* 전송 버튼 */}
-          <button
+          <Button
             type="submit"
-            className="bg-signature text-reverseForground w-full rounded-md px-4 py-2 transition"
+            fullWidth
+            size="small"
+            className="!font-semibold"
+            endIcon={<SendHorizonal className="size-4" />}
           >
             문의하기
-          </button>
+          </Button>
         </form>
       </div>
     </section>

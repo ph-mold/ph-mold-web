@@ -6,6 +6,7 @@ import {
   useMotionValueEvent,
   useMotionValue
 } from "framer-motion";
+import Button from "../common/Button";
 
 interface StickyNavProps {
   sectionsContainerRef: React.RefObject<HTMLElement | null>;
@@ -110,17 +111,15 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
     >
       <div className="bg-background flex flex-col gap-2 rounded-md p-1 shadow-sm">
         {sections.map(({ id }) => (
-          <button
+          <Button
             key={id}
             onClick={() => handleClick(id)}
-            className={`cursor-pointer rounded-md px-6 py-2 text-sm font-medium transition-all ${
-              activeSection === id
-                ? "bg-signature text-reverseForground font-bold"
-                : "text-gray-700 hover:bg-gray-300"
-            }`}
+            variant={activeSection === id ? "contained" : "text"}
+            color={activeSection === id ? "primary" : "secondary"}
+            className="px-6 py-2 text-sm"
           >
             {id}
-          </button>
+          </Button>
         ))}
       </div>
     </motion.div>

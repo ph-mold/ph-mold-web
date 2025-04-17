@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ButtonWithArrow from "./ButtonWithArrow";
+import Button from "../common/Button";
 
 const TITLES = ["Premium cosmetics packaging", "프리미엄 화장품 패키징"];
 
@@ -63,8 +63,8 @@ export default function HeroSection() {
 
         {/* 버튼 */}
         <div className="mt-4 flex justify-center space-x-3">
-          <ButtonWithArrow>제품 보기</ButtonWithArrow>
-          <ButtonWithArrow>문의하기</ButtonWithArrow>
+          <Button size="small">제품 보기</Button>
+          <Button size="small">문의하기</Button>
         </div>
       </div>
 

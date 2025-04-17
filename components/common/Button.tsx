@@ -25,7 +25,7 @@ interface ButtonProps {
 }
 
 const baseStyles =
-  "cursor-pointer inline-flex items-center select-none justify-center gap-2 rounded-md font-semibold duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
+  "flex cursor-pointer inline-flex items-center select-none justify-center gap-1 rounded-md duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variantStyles: Record<Variant, string> = {
   contained: "text-white",
@@ -34,9 +34,9 @@ const variantStyles: Record<Variant, string> = {
 };
 
 const sizeStyles: Record<Size, string> = {
-  small: "text-sm px-3 py-1.5",
-  medium: "text-base px-4 py-2",
-  large: "text-lg px-5 py-3"
+  small: "text-sm font-base px-3 py-1.5",
+  medium: "text-base font-medium px-4 py-2",
+  large: "text-lg font-semibold px-5 py-3"
 };
 
 const colorStyles: Record<Color, Record<Variant, string>> = {
@@ -46,9 +46,9 @@ const colorStyles: Record<Color, Record<Variant, string>> = {
     text: "text-signature hover:bg-signature/10"
   },
   secondary: {
-    contained: "bg-foreground2 hover:bg-foreground2/80",
-    outlined: "border-foreground text-foreground hover:bg-foreground2/10",
-    text: "text-foreground hover:bg-foreground2/20"
+    contained: "bg-foreground hover:bg-foreground/80",
+    outlined: "border-foreground text-foreground hover:bg-foreground/10",
+    text: "text-foreground hover:bg-foreground/5"
   },
   error: {
     contained: "bg-error hover:bg-error/80",
@@ -74,12 +74,12 @@ export default function Button({
   href
 }: ButtonProps) {
   const classes = clsx(
+    className,
     baseStyles,
     variantStyles[variant],
     sizeStyles[size],
     colorStyles[color][variant],
-    fullWidth && "w-full",
-    className
+    fullWidth && "w-full"
   );
 
   const content = (
@@ -93,7 +93,7 @@ export default function Button({
   if (Component === "button") {
     return (
       <motion.button
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 400, damping: 20 }}
         type={type}
         className={classes}
