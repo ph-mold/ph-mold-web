@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ButtonWithArrow from "./ButtonWithArrow";
+import Button from "../common/Button";
+import Link from "next/link";
 
 const TITLES = ["Premium cosmetics packaging", "프리미엄 화장품 패키징"];
 
@@ -30,7 +31,7 @@ export default function HeroSection() {
   return (
     <section
       id="메인"
-      className="relative flex min-h-svh items-center justify-center overflow-hidden"
+      className="relative -top-16 flex min-h-svh items-center justify-center overflow-hidden"
     >
       <div className="w-full text-center">
         {/* 타이틀 */}
@@ -63,8 +64,10 @@ export default function HeroSection() {
 
         {/* 버튼 */}
         <div className="mt-4 flex justify-center space-x-3">
-          <ButtonWithArrow>제품 보기</ButtonWithArrow>
-          <ButtonWithArrow>문의하기</ButtonWithArrow>
+          <Link href={"/products"}>
+            <Button>제품 보기</Button>
+          </Link>
+          <Button>문의하기</Button>
         </div>
       </div>
 

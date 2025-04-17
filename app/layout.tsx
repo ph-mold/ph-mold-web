@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <SWRProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="mt-16 flex-1">{children}</main>
           <Footer />
         </SWRProvider>
       </body>

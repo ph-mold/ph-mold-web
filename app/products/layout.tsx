@@ -9,7 +9,7 @@ export default async function ProductsLayout({
 }>) {
   const tabs = await getRootCategory();
   return (
-    <div className="mt-16 md:py-4">
+    <div className="md:py-4">
       <div className="relative h-fit w-full">
         <Typography
           variant={"h1"}

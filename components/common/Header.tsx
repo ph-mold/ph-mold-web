@@ -6,12 +6,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { imageLoader } from "@/lib/imageLoader";
+import Button from "./Button";
 
 const MENU_ITEMS = [
-  { ko: "회사소개", link: ["/about"] },
-  { ko: "생산제품", link: ["/products", "/product"] },
-  { ko: "생산설비", link: ["/facilities"] },
-  { ko: "문의", link: ["/contact"] }
+  { ko: "회사소개", link: ["/about"], isDisabled: true },
+  { ko: "생산제품", link: ["/products", "/product"], isDisabled: false },
+  { ko: "생산설비", link: ["/facilities"], isDisabled: true },
+  { ko: "문의", link: ["/contact"], isDisabled: true }
 ];
 
 export default function Header() {
@@ -32,7 +33,7 @@ export default function Header() {
           />
         </Link>
         {/* Desktop 메뉴 */}
-        <ul className="hidden space-x-6 md:flex">
+        <ul className="hidden space-x-2 md:flex">
           {MENU_ITEMS.map((item, index) => {
             const [href, ...highlightPaths] = item.link;
             const isActive = highlightPaths.some((hl) =>
@@ -40,25 +41,31 @@ export default function Header() {
             );
             return (
               <li key={index}>
-                <Link
-                  href={href}
-                  className={`text-foreground block text-center text-base whitespace-nowrap transition-all duration-200 ${
-                    isActive ? "text-signature" : ""
-                  }`}
-                >
-                  {item.ko}
+                <Link href={href}>
+                  <Button
+                    size="small"
+                    variant="text"
+                    color="secondary"
+                    className={`${isActive && "!text-signature !font-medium"}`}
+                    disabled={item.isDisabled}
+                  >
+                    {item.ko}
+                  </Button>
                 </Link>
               </li>
             );
           })}
         </ul>
         {/* Hamburger (Mobile) */}
-        <button
-          className="md:hidden"
+        <Button
+          size="small"
+          variant="text"
+          color="secondary"
+          className="!p-2 md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        </Button>
       </nav>
 
       {/* Mobile 메뉴 */}
@@ -78,12 +85,17 @@ export default function Header() {
                 key={index}
                 className="text-foreground w-full text-center text-base"
               >
-                <Link
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`block py-2 ${isActive ? "text-signature" : ""}`}
-                >
-                  {item.ko}
+                <Link href={href} onClick={() => setMenuOpen(false)}>
+                  <Button
+                    fullWidth
+                    variant="text"
+                    size="small"
+                    color="secondary"
+                    className={`py-2 ${isActive && "!text-signature !font-medium"}`}
+                    disabled={item.isDisabled}
+                  >
+                    {item.ko}
+                  </Button>
                 </Link>
               </li>
             );
