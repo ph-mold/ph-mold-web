@@ -10,6 +10,7 @@ import useSWR from "swr";
 import ProductImageGallery from "./ProductImageGallery";
 import ProductInfoPanel from "./ProductInfoPanel";
 import WithSkeleton from "../common/WithSkeleton";
+import ProductInfoPanelSkeleton from "./ProductInfoPanel.skeleton";
 
 interface Props {
   productKey: string;
@@ -32,7 +33,10 @@ export default function ProductDetailSection({ productKey }: Props) {
     <div className="mx-auto w-full max-w-[1080px] px-4 md:px-10">
       <div className="my-4 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:gap-12">
         <ProductImageGallery />
-        <WithSkeleton isLoading={isInfoLoading} skeleton={<>로딩중</>}>
+        <WithSkeleton
+          isLoading={isInfoLoading}
+          skeleton={<ProductInfoPanelSkeleton />}
+        >
           <ProductInfoPanel info={info ?? {}} />
         </WithSkeleton>
       </div>
