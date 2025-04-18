@@ -7,10 +7,10 @@ export default async function ProductsLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ productKey: string }>;
+  params: Promise<{ key: string }>;
 }>) {
-  const { productKey } = await params;
-  const summary = await getProductSummaryByKey(productKey);
+  const { key } = await params;
+  const summary = await getProductSummaryByKey(key);
   return (
     <>
       <StickyButtonProvider>
