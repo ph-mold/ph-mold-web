@@ -46,7 +46,7 @@ export default function ProductImageGallery() {
           onClick={() => swiperRef.current?.slidePrev()}
           variant="text"
           size="large"
-          className="absolute top-1/2 left-2 z-10 -translate-y-1/2 !p-3"
+          className="absolute top-1/2 left-2 z-1 -translate-y-1/2 !p-3"
         >
           <ChevronLeft />
         </Button>
@@ -54,7 +54,7 @@ export default function ProductImageGallery() {
           onClick={() => swiperRef.current?.slideNext()}
           variant="text"
           size="large"
-          className="absolute top-1/2 right-2 z-10 -translate-y-1/2 !p-3"
+          className="absolute top-1/2 right-2 z-1 -translate-y-1/2 !p-3"
         >
           <ChevronRight />
         </Button>
