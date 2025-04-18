@@ -14,7 +14,7 @@ export default async function ProductsLayout({
   return (
     <>
       <StickyButtonProvider>
-        <ProductStickyBar summary={summary} />
+        {summary && <ProductStickyBar summary={summary} />}
         {children}
       </StickyButtonProvider>
     </>

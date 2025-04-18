@@ -21,8 +21,9 @@ export default function ProductDetailSection({ productKey }: Props) {
     data: info,
     isLoading: isInfoLoading,
     error: infoError
-  } = useSWR<IGetProductInfo>([GET_PRODUCT_INFO_BY_KEY, productKey], () =>
-    getProductInfoByKey(productKey)
+  } = useSWR<IGetProductInfo | undefined>(
+    [GET_PRODUCT_INFO_BY_KEY, productKey],
+    () => getProductInfoByKey(productKey)
   );
 
   if (infoError) {
@@ -37,7 +38,7 @@ export default function ProductDetailSection({ productKey }: Props) {
           isLoading={isInfoLoading}
           skeleton={<ProductInfoPanelSkeleton />}
         >
-          <ProductInfoPanel info={info ?? {}} />
+          {info && <ProductInfoPanel info={info} />}
         </WithSkeleton>
       </div>
       <div className="h-[2000px]">{productKey}</div>

@@ -8,7 +8,8 @@ interface Props {
 export async function generateMetadata({ params }: Props) {
   const { key } = await params;
   const summary = await getProductSummaryByKey(key);
-  const originalImageUrl = `${process.env.NEXT_PUBLIC_FILE_SERVER_BASE_URL}${summary.thumbnailImageUrl}`;
+  if (!summary) return;
+  const originalImageUrl = `${process.env.NEXT_PUBLIC_FILE_SERVER_BASE_URL}${summary?.thumbnailImageUrl}`;
   return {
     title: summary.name,
     description: `${summary.name} 제품의 상세 정보`,
