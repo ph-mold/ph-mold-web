@@ -2,15 +2,12 @@
 
 import { IGetProductInfo } from "@/types/api/product";
 import Button from "../common/Button";
-import { useStickyButtonRef } from "@/context/StickyButtonContext";
 import { useMemo } from "react";
 
 interface Props {
   info: IGetProductInfo;
 }
 export default function ProductInfoPanel({ info }: Props) {
-  const ref = useStickyButtonRef();
-
   const detailItems = useMemo(() => {
     const specDetails =
       info.specs?.map((spec) => ({
@@ -55,11 +52,9 @@ export default function ProductInfoPanel({ info }: Props) {
           </div>
         ))}
       </div>
-      <div ref={ref}>
-        <Button size="medium" fullWidth>
-          샘플 요청
-        </Button>
-      </div>
+      <Button size="medium" fullWidth>
+        샘플 요청
+      </Button>
     </div>
   );
 }

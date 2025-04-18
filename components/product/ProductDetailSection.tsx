@@ -11,6 +11,7 @@ import ProductImageGallery from "./ProductImageGallery";
 import ProductInfoPanel from "./ProductInfoPanel";
 import WithSkeleton from "../common/WithSkeleton";
 import ProductInfoPanelSkeleton from "./ProductInfoPanel.skeleton";
+import { useStickyButtonRef } from "@/context/StickyButtonContext";
 
 interface Props {
   productKey: string;
@@ -29,17 +30,21 @@ export default function ProductDetailSection({ productKey }: Props) {
   if (infoError) {
     notFound();
   }
+  const ref = useStickyButtonRef();
 
   return (
     <div className="mx-auto w-full max-w-[1080px] px-4 md:px-10">
       <div className="my-4 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:gap-12">
         <ProductImageGallery />
-        <WithSkeleton
-          isLoading={isInfoLoading}
-          skeleton={<ProductInfoPanelSkeleton />}
-        >
-          {info && <ProductInfoPanel info={info} />}
-        </WithSkeleton>
+        <div className="h-fit">
+          <WithSkeleton
+            isLoading={isInfoLoading}
+            skeleton={<ProductInfoPanelSkeleton />}
+          >
+            {info && <ProductInfoPanel info={info} />}
+          </WithSkeleton>
+          <span ref={ref} />
+        </div>
       </div>
       <div className="h-[2000px]">{productKey}</div>
     </div>
