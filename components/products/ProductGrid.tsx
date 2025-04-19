@@ -35,7 +35,7 @@ export default function ProductGrid({ products }: Props) {
                   className="h-full w-full object-contain"
                 />
               ) : (
-                <ImageOff className="stroke-signature/30 size-[30%] stroke-[1.5] object-contain" />
+                <ImageOff className="stroke-signature size-[30%] stroke-[1.5] object-contain opacity-30" />
               )}
             </div>
             <div className="space-y-1">

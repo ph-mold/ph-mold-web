@@ -1,6 +1,5 @@
 import { useDelayedRender } from "@/hooks/useDelayedRender";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef } from "react";
 
 interface Props {
   isLoading: boolean;
@@ -19,10 +18,6 @@ export default function WithSkeleton({
 }: Props) {
   const showSkeleton = useDelayedRender(isLoading, { delay, minDuration });
 
-  // 최초 마운트를 판단
-  const hasMounted = useRef(false);
-  if (!hasMounted.current) hasMounted.current = true;
-
   return (
     <div className="relative w-full">
       <AnimatePresence>
@@ -33,21 +28,20 @@ export default function WithSkeleton({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 z-1"
+            className="absolute inset-0 z-2"
           >
             {skeleton}
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={false}
-        animate={{ opacity: showSkeleton ? 0 : 1 }}
-        transition={{ duration: 0.2 }}
-        className="relative z-0"
+      <div
+        className={`transition-opacity duration-200 ${
+          showSkeleton ? "opacity-0" : "opacity-100"
+        }`}
       >
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }
