@@ -36,14 +36,14 @@ export default function ProductImageGallery({ images }: Props) {
               className="h-full w-full"
             >
               {images.map((image, idx) => (
-                <SwiperSlide key={idx}>
+                <SwiperSlide key={idx} className="relative size-full">
                   <Image
                     loader={imageLoader}
                     src={image.url}
                     alt={`image-${image.id}`}
-                    width={600}
-                    height={600}
-                    className="h-full w-full object-contain"
+                    fill
+                    style={{ objectFit: "contain" }}
+                    loading="eager"
                   />
                 </SwiperSlide>
               ))}
@@ -75,18 +75,20 @@ export default function ProductImageGallery({ images }: Props) {
             key={idx}
             onClick={() => swiperRef.current?.slideToLoop(idx)}
             variant="text"
-            className={`!bg-background2 border-2 !p-0 ${
+            className={`!bg-background2 aspect-square border-2 !p-0 ${
               idx === currentIndex ? "border-signature" : "border-transparent"
             }`}
           >
-            <Image
-              loader={imageLoader}
-              src={image.url}
-              alt={`thumb-${image.id}`}
-              width={120}
-              height={120}
-              className="h-full w-full object-contain"
-            />
+            <div className="relative h-full w-full">
+              <Image
+                loader={imageLoader}
+                src={image.url}
+                alt={`thumb-${image.id}`}
+                fill
+                style={{ objectFit: "contain" }}
+                loading="eager"
+              />
+            </div>
           </Button>
         ))}
       </div>
