@@ -10,7 +10,9 @@ export const API = {
     GET_SUMMARY_BY_KEY: (key: string) =>
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/${key}/summary`,
     GET_INFO_BY_KEY: (key: string) =>
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/${key}/info`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/${key}/info`,
+    GET_IMAGES_BY_KEY: (key: string) =>
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/${key}/images`
   },
   PRODUCT_CATEGORIES: {
     GET: `${MOCK_URL}/product-categories`

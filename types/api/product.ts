@@ -49,6 +49,14 @@ export interface IGetProductInfo {
   specs: ISpec[];
 }
 
+export interface IGetProductImage {
+  id: number;
+  url: string;
+  isThumbnail: number;
+  sortOrder: number;
+  createdAt: Date;
+}
+
 export interface ISpec {
   id: number;
   value: string;
