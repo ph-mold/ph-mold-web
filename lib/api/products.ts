@@ -1,4 +1,9 @@
-import { IGetProduct } from "@/types/api/product";
+import {
+  IGetProduct,
+  IGetProductImage,
+  IGetProductInfo,
+  IGetProductSummary
+} from "@/types/api/product";
 import { fetcher } from "../fetcher";
 import { API } from "../constants/api";
 
@@ -11,4 +16,25 @@ export async function getProductsByCategory(
       API.PRODUCTS.GET_BY_CATEGORY + `?category=${categoryKey}`
     )) ?? []
   );
+}
+
+export const GET_PRODUCT_SUMMARY_BY_KEY = "getProductSummaryByKey";
+export async function getProductSummaryByKey(
+  key: string
+): Promise<IGetProductSummary | undefined> {
+  return await fetcher(API.PRODUCTS.GET_SUMMARY_BY_KEY(key));
+}
+
+export const GET_PRODUCT_INFO_BY_KEY = "getProductInfoByKey";
+export async function getProductInfoByKey(
+  key: string
+): Promise<IGetProductInfo | undefined> {
+  return await fetcher(API.PRODUCTS.GET_INFO_BY_KEY(key));
+}
+
+export const GET_PRODUCT_IMAGES_BY_KEY = "getProductImagesByKey";
+export async function getProductImagesByKey(
+  key: string
+): Promise<IGetProductImage[] | undefined> {
+  return await fetcher(API.PRODUCTS.GET_IMAGES_BY_KEY(key));
 }

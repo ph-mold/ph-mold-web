@@ -23,16 +23,19 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
           </div>
         </div>
       ),
-      default: (url) => (
+      default: (category) => (
         <div className="size-20 flex-none sm:size-28">
-          {url && (
-            <Image
-              loader={imageLoader}
-              src={url}
-              alt={""}
-              width={240}
-              height={240}
-            />
+          {category && (
+            <div className="relative h-full w-full">
+              <Image
+                loader={imageLoader}
+                src={category.imageUrl}
+                alt={category.name}
+                fill
+                style={{ objectFit: "cover" }}
+                loading="eager"
+              />
+            </div>
           )}
         </div>
       )

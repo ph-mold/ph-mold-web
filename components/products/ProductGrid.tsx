@@ -14,7 +14,7 @@ interface Props {
 export default function ProductGrid({ products }: Props) {
   return (
     <div className="grid grid-cols-2 gap-3 space-y-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-      {products?.map((item) => (
+      {products?.map((item, idx) => (
         <Link key={item.id} href={`/product/${item.key}`}>
           <motion.div
             whileTap={{ scale: 0.95 }}
@@ -26,16 +26,17 @@ export default function ProductGrid({ products }: Props) {
             </div>
             <div className="bg-background2 flex aspect-square items-center justify-center overflow-hidden rounded-lg">
               {item.thumbnailImageUrl ? (
-                <Image
-                  loader={imageLoader}
-                  src={item.thumbnailImageUrl}
-                  alt={item.name}
-                  width={240}
-                  height={240}
-                  className="h-full w-full object-contain"
-                />
+                <div className="relative size-full">
+                  <Image
+                    loader={imageLoader}
+                    src={item.thumbnailImageUrl}
+                    alt={item.name}
+                    fill
+                    loading={idx < 5 ? "eager" : "lazy"}
+                  />
+                </div>
               ) : (
-                <ImageOff className="stroke-signature/30 size-[30%] stroke-[1.5] object-contain" />
+                <ImageOff className="stroke-signature size-[30%] stroke-[1.5] object-contain opacity-30" />
               )}
             </div>
             <div className="space-y-1">

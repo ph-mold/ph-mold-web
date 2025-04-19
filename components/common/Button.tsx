@@ -85,7 +85,9 @@ export default function Button({
   const content = (
     <>
       {loading ? <Loader2 className="size-4 animate-spin" /> : startIcon}
-      <span className={clsx(loading && "opacity-0")}>{children}</span>
+      <span className={clsx("size-full", loading && "opacity-0")}>
+        {children}
+      </span>
       {endIcon && !loading && endIcon}
     </>
   );

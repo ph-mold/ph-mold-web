@@ -15,7 +15,7 @@ export function mapCategoriesToTabItems(categories: IGetCategory[]): TabItem[] {
 export function mapCategoriesToSubTabItems(
   categories: IGetCategory[],
   iconCallBackFn: {
-    default: (image_url?: string) => ReactNode;
+    default: (category?: IGetCategory) => ReactNode;
     all: () => ReactNode;
   }
 ): TabItem[] {
@@ -24,7 +24,7 @@ export function mapCategoriesToSubTabItems(
     ...categories.map((c) => ({
       label: c.name,
       value: c.key,
-      icon: iconCallBackFn.default(c.imageUrl)
+      icon: iconCallBackFn.default(c)
     }))
   ];
 }

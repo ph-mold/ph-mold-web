@@ -4,13 +4,16 @@ import { useTabNavigation } from "@/hooks/useTabNavigation";
 import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
+import { useMemo } from "react";
 
 interface Props {
   tabs?: IGetCategory[];
 }
 
 export default function CategoryTabs({ tabs }: Props) {
-  const tabItems = tabs && mapCategoriesToTabItems(tabs);
+  const tabItems = useMemo(() => {
+    return tabs ? mapCategoriesToTabItems(tabs) : [];
+  }, [tabs]);
   const { activeTab, handleTabClick } = useTabNavigation({
     tabs: tabItems,
     mode: "path",

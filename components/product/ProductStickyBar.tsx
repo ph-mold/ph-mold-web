@@ -2,10 +2,15 @@
 
 import Button from "../common/Button";
 import { useStickyButtonRef } from "@/context/StickyButtonContext";
+import { IGetProductSummary } from "@/types/api/product";
 import { useInView, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function ProductStickyBar() {
+interface Props {
+  summary: IGetProductSummary;
+}
+
+export default function ProductStickyBar({ summary }: Props) {
   const [visible, setVisible] = useState(false);
   const ref = useStickyButtonRef();
   const isInView = useInView(ref);
@@ -34,8 +39,8 @@ export default function ProductStickyBar() {
       {visible && (
         <div className="mx-auto flex h-[52px] max-w-[1080px] items-center justify-between px-4 py-2 md:px-10">
           <div className="flex flex-col">
-            <p className="text-foreground2 text-xs">SYRPP001001</p>
-            <p className="text-sm font-bold">1ml PP 주사기</p>
+            <p className="text-foreground2 text-xs">{summary.code}</p>
+            <p className="text-sm font-bold">{summary.name}</p>
           </div>
           <Button className="w-24" size="small">
             샘플요청

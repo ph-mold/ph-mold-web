@@ -67,7 +67,7 @@ export default function HeroSection() {
           <Link href={"/products"}>
             <Button>제품 보기</Button>
           </Link>
-          <Button>문의하기</Button>
+          <Button disabled>문의하기</Button>
         </div>
       </div>
 
