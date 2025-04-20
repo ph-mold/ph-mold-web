@@ -28,21 +28,20 @@ export default function WithSkeleton({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 z-1"
+            className="absolute inset-0 z-2"
           >
             {skeleton}
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showSkeleton ? 0 : 1 }}
-        transition={{ duration: 0.2 }}
-        className="relative z-0"
+      <div
+        className={`transition-opacity duration-200 ${
+          showSkeleton ? "opacity-0" : "opacity-100"
+        }`}
       >
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

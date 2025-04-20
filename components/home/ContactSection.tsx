@@ -81,6 +81,7 @@ export default function ContactSection() {
 
           {/* 전송 버튼 */}
           <Button
+            disabled
             type="submit"
             fullWidth
             className="!font-semibold"
