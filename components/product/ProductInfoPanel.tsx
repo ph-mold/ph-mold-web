@@ -17,6 +17,7 @@ export default function ProductInfoPanel({ info }: Props) {
       })) ?? [];
 
     const basicDetails = [
+      { key: "material", label: "재질", value: info.material || "" },
       { key: "origin", label: "제조국", value: info.origin || "" },
       {
         key: "moq",

@@ -2,6 +2,7 @@ export interface IProductCategory {
   name: string;
   desc: string;
   image: string;
+  link: string;
 }
 
 export interface IGetProduct {
