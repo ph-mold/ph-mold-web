@@ -19,29 +19,28 @@ export default function WithSkeleton({
   const showSkeleton = useDelayedRender(isLoading, { delay, minDuration });
 
   return (
-    <div className="relative w-full">
-      <AnimatePresence>
-        {showSkeleton && (
-          <motion.div
-            key="skeleton"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute inset-0 z-2"
-          >
-            {skeleton}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div
-        className={`transition-opacity duration-200 ${
-          showSkeleton ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        {children}
-      </div>
-    </div>
+    <AnimatePresence mode="wait">
+      {showSkeleton ? (
+        <motion.div
+          key="skeleton"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {skeleton}
+        </motion.div>
+      ) : (
+        <motion.div
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

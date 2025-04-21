@@ -2,6 +2,7 @@ export interface IProductCategory {
   name: string;
   desc: string;
   image: string;
+  link: string;
 }
 
 export interface IGetProduct {
@@ -66,6 +67,9 @@ export interface ISpec {
     label: string;
     unit: string;
   };
+}
+export interface IGetProductDetail {
+  detail: string;
 }
 
 export interface ITag {
