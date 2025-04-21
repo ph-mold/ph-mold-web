@@ -45,7 +45,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+  }, [sections, sectionsContainerRef]);
 
   const handleClick = useCallback((id: string) => {
     document
