@@ -11,11 +11,7 @@ export const GET_PRODUCTS_BY_CATEGORY = "getProductsByCategory";
 export async function getProductsByCategory(
   categoryKey: string
 ): Promise<IGetProduct[]> {
-  return (
-    (await fetcher(
-      API.PRODUCTS.GET_BY_CATEGORY + `?category=${categoryKey}`
-    )) ?? []
-  );
+  return (await fetcher(API.PRODUCTS.GET_BY_CATEGORY(categoryKey))) ?? [];
 }
 
 export const GET_PRODUCT_SUMMARY_BY_KEY = "getProductSummaryByKey";

@@ -11,7 +11,7 @@ export async function getCategoryByParentKey(
   parentKey: string
 ): Promise<IGetCategory[]> {
   return (
-    (await fetcher(`${API.CATEGORIES.GET_BY_PARENT_KEY}/${parentKey}`, {
+    (await fetcher(API.CATEGORIES.GET_BY_PARENT_KEY(parentKey), {
       cache: "force-cache"
     })) ?? []
   );
