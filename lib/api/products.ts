@@ -1,5 +1,6 @@
 import {
   IGetProduct,
+  IGetProductDetail,
   IGetProductImage,
   IGetProductInfo,
   IGetProductSummary
@@ -33,4 +34,11 @@ export async function getProductImagesByKey(
   key: string
 ): Promise<IGetProductImage[] | undefined> {
   return await fetcher(API.PRODUCTS.GET_IMAGES_BY_KEY(key));
+}
+
+export const GET_PRODUCT_DETAIL_BY_KEY = "getProductDetailByKey";
+export async function getProductDetailByKey(
+  key: string
+): Promise<IGetProductDetail | undefined> {
+  return await fetcher(API.PRODUCTS.GET_DETAIL_BY_KEY(key));
 }

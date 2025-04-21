@@ -68,6 +68,9 @@ export interface ISpec {
     unit: string;
   };
 }
+export interface IGetProductDetail {
+  detail: string;
+}
 
 export interface ITag {
   id: number;
