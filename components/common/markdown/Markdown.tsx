@@ -28,7 +28,13 @@ export default function Markdown({ data }: Props) {
           strong: ({ children }) => (
             <strong className="text-signature font-semibold">{children}</strong>
           ),
-          img: (props) => <MarkdownImage {...props} />,
+          img: ({ src, alt, title }) => (
+            <MarkdownImage
+              src={typeof src === "string" ? src : ""}
+              alt={alt}
+              title={title}
+            />
+          ),
           hr: () => <hr className="border-background2 my-3 border-1" />,
           ul: ({ children }) => (
             <ul className="m-2 flex flex-col gap-2">{children}</ul>

@@ -1,15 +1,31 @@
 "use client";
 
-import { Button } from "@ph-mold/ph-ui";
 import { useEffect, useState, useCallback } from "react";
+import { Button } from "@ph-mold/ph-ui";
 
-interface StickyNavProps {
+interface Props {
   sectionsContainerRef: React.RefObject<HTMLElement | null>;
 }
 
-const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
+export default function StickyNav({ sectionsContainerRef }: Props) {
   const [sections, setSections] = useState<HTMLElement[]>([]);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  const getCurrentSection = (detectedSections: HTMLElement[]) => {
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    for (const section of detectedSections) {
+      const { offsetTop, offsetHeight } = section;
+      if (
+        scrollPosition >= offsetTop &&
+        scrollPosition < offsetTop + offsetHeight
+      ) {
+        return section.id;
+      }
+    }
+
+    return null;
+  };
 
   const initializeSections = useCallback(() => {
     if (!sectionsContainerRef.current) return;
@@ -19,6 +35,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
     ).filter((el) => el.id) as HTMLElement[];
 
     setSections(detectedSections);
+    setActiveSection(getCurrentSection(detectedSections));
   }, [sectionsContainerRef]);
 
   useEffect(() => {
@@ -28,19 +45,8 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionsContainerRef.current || sections.length === 0) return;
-
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-      for (const section of sections) {
-        const { offsetTop, offsetHeight } = section;
-        if (
-          scrollPosition >= offsetTop &&
-          scrollPosition < offsetTop + offsetHeight
-        ) {
-          setActiveSection(section.id);
-          break;
-        }
-      }
+      const current = getCurrentSection(sections);
+      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -70,6 +76,4 @@ const StickyNav: React.FC<StickyNavProps> = ({ sectionsContainerRef }) => {
       </div>
     </div>
   );
-};
-
-export default StickyNav;
+}
