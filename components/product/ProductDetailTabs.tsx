@@ -1,8 +1,7 @@
 "use client";
 
+import { Tab, TabItem } from "@ph-mold/ph-ui";
 import { useRouter } from "next/navigation";
-import Tab from "../common/Tab";
-import { TabItem } from "@/types/ui/tab";
 
 const DETAIL_TABS: TabItem[] = [
   { label: "상세 정보", value: "detail" },

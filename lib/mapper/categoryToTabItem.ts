@@ -1,5 +1,5 @@
 import type { IGetCategory } from "@/types/api/category";
-import { TabItem } from "@/types/ui/tab";
+import { TabItem } from "@ph-mold/ph-ui";
 import { ReactNode } from "react";
 
 export function mapCategoriesToTabItems(categories: IGetCategory[]): TabItem[] {

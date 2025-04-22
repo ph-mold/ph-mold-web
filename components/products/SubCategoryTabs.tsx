@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToSubTabItems } from "@/lib/mapper/categoryToTabItem";
 import { imageLoader } from "@/lib/imageLoader";
 import { useTabNavigation } from "@/hooks/useTabNavigation";
+import { Tab } from "@ph-mold/ph-ui";
 
 interface Props {
   currentTab: string;
