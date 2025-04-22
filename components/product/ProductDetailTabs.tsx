@@ -1,6 +1,7 @@
 "use client";
 
-import { Tab, TabItem } from "@ph-mold/ph-ui";
+import { Tab } from "@ph-mold/ph-ui";
+import { TabItem } from "@ph-mold/ph-ui/types";
 import { useRouter } from "next/navigation";
 
 const DETAIL_TABS: TabItem[] = [
