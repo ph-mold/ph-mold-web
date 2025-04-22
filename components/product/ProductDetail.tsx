@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import WithSkeleton from "../common/WithSkeleton";
 import Markdown from "../common/markdown/Markdown";
 import ProductDetailSkeleton from "./ProductDetail.skeleton";
+import ProductDetailTabs from "./ProductDetailTabs";
 
 interface Props {
   productKey: string;
@@ -23,8 +24,11 @@ export default function ProductDetail({ productKey }: Props) {
   }
 
   return (
-    <WithSkeleton isLoading={isLoading} skeleton={<ProductDetailSkeleton />}>
-      {data && <Markdown data={data.detail} />}
-    </WithSkeleton>
+    <section id="detail">
+      <ProductDetailTabs activeTab="detail" />
+      <WithSkeleton isLoading={isLoading} skeleton={<ProductDetailSkeleton />}>
+        {data && <Markdown data={data.detail} />}
+      </WithSkeleton>
+    </section>
   );
 }
