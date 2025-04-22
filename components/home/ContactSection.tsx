@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import SectionTitle from "../common/SectionTitle";
-import Button from "../common/Button";
 import { SendHorizonal } from "lucide-react";
+import { Button } from "@ph-mold/ph-ui";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });

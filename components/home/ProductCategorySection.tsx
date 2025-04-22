@@ -3,9 +3,9 @@ import { IProductCategory } from "@/types/api/product";
 import ProductCategoryCard from "./ProductCategoryCard";
 import useSWR from "swr";
 import { API } from "@/lib/constants/api";
-import Button from "../common/Button";
 import { PackageSearch } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@ph-mold/ph-ui";
 
 export default function ProductCategorySection() {
   const { data } = useSWR<IProductCategory[]>(API.PRODUCT_CATEGORIES.GET);

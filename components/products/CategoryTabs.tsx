@@ -1,10 +1,10 @@
 "use client";
 
 import { useTabNavigation } from "@/hooks/useTabNavigation";
-import Tab from "../common/Tab";
 import { IGetCategory } from "@/types/api/category";
 import { mapCategoriesToTabItems } from "@/lib/mapper/categoryToTabItem";
 import { useMemo } from "react";
+import { Tab } from "@ph-mold/ph-ui";
 
 interface Props {
   tabs?: IGetCategory[];
