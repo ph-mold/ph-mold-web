@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { imageLoader } from "@/lib/imageLoader";
-import Button from "./Button";
+import { Button } from "@ph-mold/ph-ui";
 
 const MENU_ITEMS = [
   { ko: "회사소개", link: ["/about"], isDisabled: true },

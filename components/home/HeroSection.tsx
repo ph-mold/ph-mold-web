@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Button from "../common/Button";
 import Link from "next/link";
+import { Button } from "@ph-mold/ph-ui";
 
 const TITLES = ["Premium cosmetics packaging", "프리미엄 화장품 패키징"];
 

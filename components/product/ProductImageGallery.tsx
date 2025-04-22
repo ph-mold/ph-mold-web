@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper/types";
 import Image from "next/image";
-import Button from "@/components/common/Button";
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 import { imageLoader } from "@/lib/imageLoader";
 import "swiper/css";
@@ -17,6 +16,7 @@ import {
 import ProductImageGallerySkeleton from "./ProductImageGallery.skeleton";
 import WithSkeleton from "../common/WithSkeleton";
 import { notFound } from "next/navigation";
+import { Button } from "@ph-mold/ph-ui";
 
 interface Props {
   productKey: string;

@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "../common/Button";
 import { useStickyButtonRef } from "@/context/StickyButtonContext";
 import { IGetProductSummary } from "@/types/api/product";
+import { Button } from "@ph-mold/ph-ui";
 import { useInView, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 

@@ -1,7 +1,7 @@
 "use client";
 
+import { Button } from "@ph-mold/ph-ui";
 import { useEffect, useState, useCallback } from "react";
-import Button from "../common/Button";
 
 interface StickyNavProps {
   sectionsContainerRef: React.RefObject<HTMLElement | null>;

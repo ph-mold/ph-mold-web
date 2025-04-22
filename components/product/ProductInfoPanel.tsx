@@ -1,7 +1,6 @@
 "use client";
 
 import { IGetProductInfo } from "@/types/api/product";
-import Button from "../common/Button";
 import { useMemo } from "react";
 import useSWR from "swr";
 import {
@@ -11,6 +10,7 @@ import {
 import WithSkeleton from "../common/WithSkeleton";
 import ProductInfoPanelSkeleton from "./ProductInfoPanel.skeleton";
 import { notFound } from "next/navigation";
+import { Button } from "@ph-mold/ph-ui";
 
 interface Props {
   productKey: string;
