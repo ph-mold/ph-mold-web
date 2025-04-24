@@ -5,18 +5,7 @@ export interface IProductCategory {
   link: string;
 }
 
-export interface IGetProduct {
-  id: number;
-  key: string;
-  code: string;
-  name: string;
-  mainCategory: string;
-  subCategory: string;
-  material: string;
-  createdAt: Date;
-  thumbnailImageUrl: string;
-  origin: string;
-  moq: number;
+export interface IGetProduct extends IGetProductSummary {
   tags: ITag[];
 }
 
@@ -34,19 +23,7 @@ export interface IGetProductSummary {
   moq: number;
 }
 
-export interface IGetProductInfo {
-  id: number;
-  key: string;
-  code: string;
-  name: string;
-  mainCategory: string;
-  subCategory: string;
-  material: string;
-  createdAt: Date;
-  thumbnailImageUrl: string;
-  origin: string;
-  moq: number;
-  tags: ITag[];
+export interface IGetProductInfo extends IGetProduct {
   specs: ISpec[];
 }
 
