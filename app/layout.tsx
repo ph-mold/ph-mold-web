@@ -33,6 +33,7 @@ export default function RootLayout({
           <main className="mt-16 flex-1">{children}</main>
           <Footer />
         </SWRProvider>
+        <div id="modal-root" />
       </body>
     </html>
   );
