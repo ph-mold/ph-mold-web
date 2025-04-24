@@ -7,10 +7,9 @@ import {
   GET_PRODUCT_INFO_BY_KEY,
   getProductInfoByKey
 } from "@/lib/api/products";
-import WithSkeleton from "../common/WithSkeleton";
 import ProductInfoPanelSkeleton from "./ProductInfoPanel.skeleton";
 import { notFound } from "next/navigation";
-import { Button } from "@ph-mold/ph-ui";
+import { Button, WithSkeleton } from "@ph-mold/ph-ui";
 import RequestSampleModal from "./RequestSampleModal";
 
 interface Props {

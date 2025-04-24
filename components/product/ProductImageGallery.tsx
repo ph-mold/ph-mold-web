@@ -14,9 +14,8 @@ import {
   getProductImagesByKey
 } from "@/lib/api/products";
 import ProductImageGallerySkeleton from "./ProductImageGallery.skeleton";
-import WithSkeleton from "../common/WithSkeleton";
 import { notFound } from "next/navigation";
-import { Button } from "@ph-mold/ph-ui";
+import { Button, WithSkeleton } from "@ph-mold/ph-ui";
 
 interface Props {
   productKey: string;
