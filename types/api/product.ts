@@ -54,3 +54,16 @@ export interface ITag {
   key: string;
   name: string;
 }
+
+export interface IRequestSampleFormValues {
+  productKey: string;
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  address: string;
+  detailedAddress: string;
+  quantity: string;
+  remarks: string;
+  agree: boolean;
+}

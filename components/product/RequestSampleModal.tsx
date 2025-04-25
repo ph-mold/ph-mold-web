@@ -1,7 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
 import Modal from "../common/Modal";
 import Input from "../common/Input";
-import { IGetProductSummary } from "@/types/api/product";
+import {
+  IGetProductSummary,
+  IRequestSampleFormValues
+} from "@/types/api/product";
 import AddressSearchButton from "../common/AddressSearchButton";
 import { Button } from "@ph-mold/ph-ui";
 import {
@@ -9,23 +12,12 @@ import {
   validateEmail,
   validatePhoneNumber
 } from "@/lib/validators/input";
+import TextArea from "../common/TextArea";
 
 interface Props {
   info: IGetProductSummary;
   open: boolean;
   setOpen: (isOpen: boolean) => void;
-}
-
-interface FormValues {
-  productKey: string;
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  address: string;
-  detailAddress: string;
-  quantity: string;
-  agree: boolean;
 }
 
 export default function RequestSampleModal({ info, open, setOpen }: Props) {
@@ -34,7 +26,7 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<FormValues>({
+  } = useForm<IRequestSampleFormValues>({
     defaultValues: {
       productKey: info.key,
       name: "",
@@ -42,14 +34,15 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
       email: "",
       phone: "",
       address: "",
-      detailAddress: "",
+      detailedAddress: "",
       quantity: "",
+      remarks: "",
       agree: false
     },
     mode: "onChange"
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: IRequestSampleFormValues) => {
     console.log("제출된 샘플 요청 정보:", data);
   };
 
@@ -89,7 +82,6 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
           error={!!errors.name}
           helperText={errors.name?.message}
         />
-
         <Input
           required
           label="회사명"
@@ -98,7 +90,6 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
           error={!!errors.company}
           helperText={errors.company?.message}
         />
-
         <Input
           required
           label="이메일"
@@ -110,7 +101,6 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
           error={!!errors.email}
           helperText={errors.email?.message}
         />
-
         <Controller
           name="phone"
           control={control}
@@ -133,7 +123,6 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
             />
           )}
         />
-
         <div className="flex gap-2">
           <Controller
             name="address"
@@ -160,13 +149,35 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
             )}
           />
         </div>
-
         <Input
           label="상세 주소"
           placeholder="건물, 층수 등"
-          {...register("detailAddress")}
-          error={!!errors.detailAddress}
-          helperText={errors.detailAddress?.message}
+          {...register("detailedAddress")}
+          error={!!errors.detailedAddress}
+          helperText={errors.detailedAddress?.message}
+        />
+
+        <Controller
+          name="remarks"
+          control={control}
+          defaultValue=""
+          rules={{
+            maxLength: {
+              value: 300,
+              message: `최대 300자까지 입력할 수 있습니다.`
+            }
+          }}
+          render={({ field }) => (
+            <TextArea
+              {...field}
+              rows={5}
+              label="비고"
+              placeholder="요청사항을 입력해주세요."
+              error={!!errors.remarks}
+              helperText={errors.remarks?.message}
+              maxLength={300}
+            />
+          )}
         />
         <div>
           <label className="flex cursor-pointer items-start space-x-2 select-none">
@@ -185,11 +196,9 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
             </p>
           )}
         </div>
-
         <Button fullWidth type="submit">
           요청
         </Button>
-
         <div>
           <p className="text-foreground2 mt-2 text-sm">
             당사는 귀하의 샘플 요청 및 문의사항에 대응하기 위해 아래와 같이
