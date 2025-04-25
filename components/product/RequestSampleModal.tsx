@@ -1,19 +1,16 @@
 import { useForm, Controller } from "react-hook-form";
-import Modal from "../common/Modal";
-import Input from "../common/Input";
 import {
   IGetProductSummary,
   IRequestSampleFormValues
 } from "@/types/api/product";
 import AddressSearchButton from "../common/AddressSearchButton";
-import { Button } from "@ph-mold/ph-ui";
 import {
   formatPhoneNumber,
   validateEmail,
   validatePhoneNumber
 } from "@/lib/validators/input";
-import TextArea from "../common/TextArea";
 import { createSampleRequest } from "@/lib/api/products";
+import { Button, Input, Modal, TextArea } from "@ph-mold/ph-ui";
 
 interface Props {
   info: IGetProductSummary;
