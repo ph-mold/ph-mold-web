@@ -13,6 +13,7 @@ import {
   validatePhoneNumber
 } from "@/lib/validators/input";
 import TextArea from "../common/TextArea";
+import { createSampleRequest } from "@/lib/api/products";
 
 interface Props {
   info: IGetProductSummary;
@@ -25,10 +26,11 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors }
   } = useForm<IRequestSampleFormValues>({
     defaultValues: {
-      productKey: info.key,
+      productId: info.id,
       name: "",
       company: "",
       email: "",
@@ -42,8 +44,16 @@ export default function RequestSampleModal({ info, open, setOpen }: Props) {
     mode: "onChange"
   });
 
-  const onSubmit = (data: IRequestSampleFormValues) => {
-    console.log("제출된 샘플 요청 정보:", data);
+  const onSubmit = async (data: IRequestSampleFormValues) => {
+    try {
+      await createSampleRequest(data);
+      alert("샘플 요청이 성공적으로 접수되었습니다.");
+      reset();
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+      alert("요청 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (
