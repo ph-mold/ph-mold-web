@@ -1,6 +1,6 @@
 "use client";
 
-import { Skeleton } from "../common/Skeleton";
+import { Skeleton } from "@ph-mold/ph-ui";
 
 export default function CategoryTabsSkeleton() {
   return (

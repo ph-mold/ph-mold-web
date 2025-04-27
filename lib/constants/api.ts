@@ -14,6 +14,9 @@ export const API = {
     GET_IMAGES_BY_KEY: (key: string) => `${API_BASE}/products/${key}/images`,
     GET_DETAIL_BY_KEY: (key: string) => `${API_BASE}/products/${key}/detail`
   },
+  SAMPLE_REQUESTS: {
+    CREATE: `${API_BASE}/sample-requests`
+  },
   PRODUCT_CATEGORIES: {
     GET: `${MOCK_URL}/product-categories`
   }

@@ -13,7 +13,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import useSWR from "swr";
 import ProductGridSkeleton from "./ProductGrid.skeleton";
-import WithSkeleton from "../common/WithSkeleton";
+import { WithSkeleton } from "@ph-mold/ph-ui";
 
 interface Props {
   categoryKey: string;

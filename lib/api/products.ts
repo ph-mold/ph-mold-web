@@ -3,7 +3,8 @@ import {
   IGetProductDetail,
   IGetProductImage,
   IGetProductInfo,
-  IGetProductSummary
+  IGetProductSummary,
+  IRequestSampleFormValues
 } from "@/types/api/product";
 import { fetcher } from "../fetcher";
 import { API } from "../constants/api";
@@ -41,4 +42,17 @@ export async function getProductDetailByKey(
   key: string
 ): Promise<IGetProductDetail | undefined> {
   return await fetcher(API.PRODUCTS.GET_DETAIL_BY_KEY(key));
+}
+
+export const CREATE_SAMPLE_REQUEST = "createSampleRequest";
+export async function createSampleRequest(
+  data: IRequestSampleFormValues
+): Promise<void> {
+  await fetcher(API.SAMPLE_REQUESTS.CREATE, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
 }

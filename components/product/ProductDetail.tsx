@@ -5,10 +5,10 @@ import {
   getProductDetailByKey
 } from "@/lib/api/products";
 import { notFound } from "next/navigation";
-import WithSkeleton from "../common/WithSkeleton";
 import Markdown from "../common/markdown/Markdown";
 import ProductDetailSkeleton from "./ProductDetail.skeleton";
 import ProductDetailTabs from "./ProductDetailTabs";
+import { WithSkeleton } from "@ph-mold/ph-ui";
 
 interface Props {
   productKey: string;
