@@ -49,7 +49,6 @@ export default function AlertModal({
 
   const handleAccept = () => {
     onAccept?.();
-    onClose?.();
   };
 
   const handleCancel = () => {
