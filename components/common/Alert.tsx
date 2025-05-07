@@ -72,7 +72,7 @@ export default function AlertModal({
           {title && <h2 className="mr-auto ml-2 font-semibold">{title}</h2>}
 
           {/* Description */}
-          <div className="ml-3 text-sm">{description}</div>
+          <div className="text-md mt-2 ml-3">{description}</div>
 
           {/* Buttons */}
           <div className="mt-1 flex flex-row gap-2 md:justify-center">
@@ -81,7 +81,7 @@ export default function AlertModal({
                 type="button"
                 variant="text"
                 color="secondary"
-                size="small"
+                size="medium"
                 fullWidth
                 onClick={handleCancel}
               >
@@ -92,7 +92,7 @@ export default function AlertModal({
               type="button"
               variant="contained"
               color="primary"
-              size="small"
+              size="medium"
               fullWidth
               onClick={handleAccept}
               loading={loading}
