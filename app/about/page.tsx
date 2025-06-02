@@ -147,10 +147,7 @@ export default function About() {
               </div>
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
-                >
+                <motion.div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
                       <Building2 className="h-6 w-6 text-blue-600" />
@@ -186,10 +183,7 @@ export default function About() {
                   </div>
                 </motion.div>
 
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
-                >
+                <motion.div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
                       <Briefcase className="h-6 w-6 text-orange-600" />
@@ -253,12 +247,11 @@ export default function About() {
                 {CORE_VALUES.map((value, index) => (
                   <motion.div
                     key={value.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 * index }}
-                    whileHover={{ y: -10 }}
-                    className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
+                    transition={{ duration: 0.3, delay: 0.1 * index }}
+                    className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
                   >
                     <div className="relative z-10">
                       <div
@@ -300,10 +293,10 @@ export default function About() {
                 {COMPANY_HISTORY.map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 * index }}
+                    transition={{ duration: 0.3, delay: 0.1 * index }}
                     className="relative mb-16 flex w-full flex-col md:flex-row md:items-center"
                   >
                     {/* 모바일: 타임라인 점 */}
@@ -336,10 +329,7 @@ export default function About() {
                           : "md:ml-auto md:pl-16 md:text-left"
                       }`}
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        className="border-background2 w-full overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]"
-                      >
+                      <motion.div className="border-background2 w-full overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
                         <div
                           className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${item.gradient} p-3 text-white`}
                         >

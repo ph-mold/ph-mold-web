@@ -22,13 +22,13 @@ export default function ProductCategorySection() {
         {data?.map((product, index) => (
           <motion.div
             key={product.name}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 * index }}
+            transition={{ duration: 0.3, delay: 0.1 * index }}
           >
             <Link href={product.link}>
-              <div className="group border-background2 relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:flex-row">
+              <div className="group border-background2 relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl sm:flex-row">
                 <div className="bg-background2 w-full flex-none rounded-lg sm:h-40 sm:w-40">
                   <Image
                     loader={imageLoader}
@@ -36,7 +36,7 @@ export default function ProductCategorySection() {
                     alt={product.name}
                     width={240}
                     height={240}
-                    className="mx-auto transition-all duration-200 group-hover:scale-110"
+                    className="mx-auto transition-all duration-150 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex h-full flex-auto flex-col justify-center gap-2">

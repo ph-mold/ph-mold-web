@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Button } from "@ph-mold/ph-ui";
+import clsx from "clsx";
 
 interface Props {
   sectionsContainerRef: React.RefObject<HTMLElement | null>;
@@ -68,7 +69,10 @@ export default function StickyNav({ sectionsContainerRef }: Props) {
             onClick={() => handleClick(id)}
             variant={activeSection === id ? "contained" : "text"}
             color={activeSection === id ? "primary" : "secondary"}
-            className="px-6 py-2 text-sm"
+            className={clsx("px-6 py-2 text-sm", {
+              "to-signature bg-gradient-to-r from-blue-500":
+                activeSection === id
+            })}
           >
             {id}
           </Button>

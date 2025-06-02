@@ -39,12 +39,11 @@ export default function WhyPMSection() {
         {WHY_PM_CARDS.map((card, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 * index }}
-            whileHover={{ y: -10 }}
-            className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
+            transition={{ duration: 0.3, delay: 0.1 * index }}
+            className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             <div className="relative z-10">
               <div
