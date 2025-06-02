@@ -1,25 +1,66 @@
-import SectionTitle from "../common/SectionTitle";
+import { motion } from "framer-motion";
 import { IProductCategory } from "@/types/api/product";
-import ProductCategoryCard from "./ProductCategoryCard";
 import useSWR from "swr";
 import { API } from "@/lib/constants/api";
 import { PackageSearch } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@ph-mold/ph-ui";
+import Image from "next/image";
+import { imageLoader } from "@/lib/imageLoader";
 
 export default function ProductCategorySection() {
   const { data } = useSWR<IProductCategory[]>(API.PRODUCT_CATEGORIES.GET);
 
   return (
     <section id="제품" className="flex h-fit flex-col gap-8 py-20">
-      <SectionTitle>제품</SectionTitle>
-      <div className="mx-4 flex max-w-[1080px] flex-col md:grid md:grid-cols-2 lg:mx-auto">
-        {data?.map((product) => (
-          <ProductCategoryCard key={product.name} {...product} />
+      <div className="mb-16 text-center">
+        <h2 className="mb-4 text-4xl font-bold md:text-5xl">제품</h2>
+        <p className="text-foreground2 text-lg">우리의 제품을 소개합니다</p>
+      </div>
+
+      <div className="mx-4 grid max-w-[1080px] grid-cols-1 gap-6 md:mx-auto md:grid-cols-2">
+        {data?.map((product, index) => (
+          <motion.div
+            key={product.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 * index }}
+          >
+            <Link href={product.link}>
+              <div className="group border-background2 relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:flex-row">
+                <div className="bg-background2 w-full flex-none rounded-lg sm:h-40 sm:w-40">
+                  <Image
+                    loader={imageLoader}
+                    src={product.image}
+                    alt={product.name}
+                    width={240}
+                    height={240}
+                    className="mx-auto transition-all duration-200 group-hover:scale-110"
+                  />
+                </div>
+                <div className="flex h-full flex-auto flex-col justify-center gap-2">
+                  <p className="flex-none text-xl font-semibold">
+                    {product.name}
+                  </p>
+                  <p className="text-foreground2 flex-initial overflow-y-hidden">
+                    {product.desc}
+                  </p>
+                </div>
+                <div className="absolute top-0 left-0 z-1 size-full overflow-x-hidden rounded-lg bg-black/5 opacity-0 transition-all duration-100 group-hover:opacity-100">
+                  <PackageSearch className="strock-foreground2 absolute top-10 left-full size-5 transform opacity-0 transition-all duration-100 group-hover:-translate-x-10 group-hover:opacity-100" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
-      <Link href={"/products"} className="mx-auto mt-4">
-        <Button variant="text" startIcon={<PackageSearch className="size-5" />}>
+
+      <Link href="/products" className="mx-auto mt-8">
+        <Button
+          variant="outlined"
+          startIcon={<PackageSearch className="size-5" />}
+        >
           제품 전체보기
         </Button>
       </Link>
