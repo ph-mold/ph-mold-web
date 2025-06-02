@@ -29,20 +29,30 @@ export default function WhyPMSection() {
       className="border-background2 flex h-fit flex-col gap-8 border-t-2 py-20"
     >
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+        <motion.h2
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-4 text-4xl font-bold md:text-5xl"
+        >
           Why <span className="text-signature">P&M</span>
-        </h2>
-        <p className="text-foreground2 text-lg">우리가 추구하는 가치입니다</p>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-foreground2 text-lg"
+        >
+          우리가 추구하는 가치입니다
+        </motion.p>
       </div>
 
       <div className="mx-4 grid max-w-[1080px] grid-cols-1 gap-8 md:mx-auto md:grid-cols-3">
-        {WHY_PM_CARDS.map((card, index) => (
+        {WHY_PM_CARDS.map((card, i) => (
           <motion.div
-            key={index}
+            key={i}
             initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.1 * index }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: i * 0.1 }}
             className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             <div className="relative z-10">

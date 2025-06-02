@@ -14,18 +14,30 @@ export default function ProductCategorySection() {
   return (
     <section id="제품" className="flex h-fit flex-col gap-8 py-20">
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold md:text-5xl">제품</h2>
-        <p className="text-foreground2 text-lg">우리의 제품을 소개합니다</p>
+        <motion.h2
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-4 text-4xl font-bold md:text-5xl"
+        >
+          제품
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-foreground2 text-lg"
+        >
+          우리의 제품을 소개합니다
+        </motion.p>
       </div>
 
       <div className="mx-4 grid max-w-[1080px] grid-cols-1 gap-6 md:mx-auto md:grid-cols-2">
-        {data?.map((product, index) => (
+        {data?.map((product, i) => (
           <motion.div
             key={product.name}
             initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.1 * index }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: i * 0.1 }}
           >
             <Link href={product.link}>
               <div className="group border-background2 relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl sm:flex-row">

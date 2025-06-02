@@ -77,12 +77,6 @@ export default function About() {
 
   const bannerScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const bannerOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
-
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   return (
     <div
@@ -124,30 +118,29 @@ export default function About() {
         </motion.section>
 
         <div className="mx-auto max-w-[1200px] px-4 py-16 md:px-10">
-          <motion.div
-            style={{ opacity: contentOpacity }}
-            className="space-y-32"
-          >
+          <div className="space-y-32">
             {/* 회사 개요 */}
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              variants={fadeInUpVariants}
-              className="relative"
-            >
+            <section className="relative">
               <div className="mb-16 text-center">
-                <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+                <motion.h2
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 text-4xl font-bold md:text-5xl"
+                >
                   회사 개요
-                </h2>
-                <p className="text-foreground2 text-lg">
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-foreground2 text-lg"
+                >
                   혁신적인 기술로 미래를 선도합니다
-                </p>
+                </motion.p>
               </div>
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <motion.div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
                       <Building2 className="h-6 w-6 text-blue-600" />
@@ -181,9 +174,9 @@ export default function About() {
                       <p className="text-xl font-bold">이건영</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
                       <Briefcase className="h-6 w-6 text-orange-600" />
@@ -221,36 +214,37 @@ export default function About() {
                       <p className="text-xl font-bold">010-5254-5147</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
-            </motion.section>
+            </section>
 
             {/* 핵심 가치 */}
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              variants={fadeInUpVariants}
-              className="relative"
-            >
+            <section className="relative">
               <div className="mb-16 text-center">
-                <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+                <motion.h2
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 text-4xl font-bold md:text-5xl"
+                >
                   핵심 가치
-                </h2>
-                <p className="text-foreground2 text-lg">
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-foreground2 text-lg"
+                >
                   우리가 추구하는 가치입니다
-                </p>
+                </motion.p>
               </div>
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                {CORE_VALUES.map((value, index) => (
+                {CORE_VALUES.map((value, i) => (
                   <motion.div
                     key={value.title}
                     initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2, delay: i * 0.1 }}
                     className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
                   >
                     <div className="relative z-10">
@@ -270,17 +264,10 @@ export default function About() {
                   </motion.div>
                 ))}
               </div>
-            </motion.section>
+            </section>
 
             {/* 연혁 */}
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              variants={fadeInUpVariants}
-              className="relative"
-            >
+            <section className="relative">
               <div className="mb-16 text-center">
                 <h2 className="mb-4 text-4xl font-bold md:text-5xl">연혁</h2>
                 <p className="text-foreground2 text-lg">우리의 발자취입니다</p>
@@ -291,12 +278,8 @@ export default function About() {
                 <div className="to-signature absolute left-4 h-full w-0.5 bg-gradient-to-b from-blue-600 md:left-1/2 md:-translate-x-1/2" />
 
                 {COMPANY_HISTORY.map((item, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
                     className="relative mb-16 flex w-full flex-col md:flex-row md:items-center"
                   >
                     {/* 모바일: 타임라인 점 */}
@@ -329,7 +312,7 @@ export default function About() {
                           : "md:ml-auto md:pl-16 md:text-left"
                       }`}
                     >
-                      <motion.div className="border-background2 w-full overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
+                      <div className="border-background2 w-full overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
                         <div
                           className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${item.gradient} p-3 text-white`}
                         >
@@ -340,13 +323,13 @@ export default function About() {
                         </div>
                         <h3 className="mb-2 text-xl font-bold">{item.title}</h3>
                         <p className="text-foreground2">{item.description}</p>
-                      </motion.div>
+                      </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.section>
-          </motion.div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
