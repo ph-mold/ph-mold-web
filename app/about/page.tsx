@@ -10,6 +10,7 @@ import {
   COMPANY_INFO,
   CORE_VALUES
 } from "@/components/about/constants";
+import StickyNav from "@/components/common/StickyNav";
 
 export default function About() {
   const containerRef = useRef(null);
@@ -26,9 +27,11 @@ export default function About() {
       ref={containerRef}
       className="flex h-full flex-col overflow-x-hidden overflow-y-auto"
     >
+      <StickyNav sectionsContainerRef={containerRef} />
       <div className="mx-auto w-full">
         {/* 회사 소개 배너 */}
         <motion.section
+          id="소개"
           style={{
             scale: bannerScale,
             opacity: bannerOpacity
@@ -62,7 +65,7 @@ export default function About() {
         <div className="mx-auto max-w-[1200px] px-4 py-16 md:px-10">
           <div className="space-y-32">
             {/* 회사 개요 */}
-            <section className="relative">
+            <section id="개요" className="relative">
               <SectionTitle
                 title="회사 개요"
                 subtitle="혁신적인 기술로 미래를 선도합니다"
@@ -98,7 +101,7 @@ export default function About() {
             </section>
 
             {/* 핵심 가치 */}
-            <section>
+            <section id="가치">
               <SectionTitle title="핵심 가치" subtitle="우리가 추구하는 가치" />
               <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                 {CORE_VALUES.map((value, index) => (
@@ -108,7 +111,7 @@ export default function About() {
             </section>
 
             {/* 연혁 */}
-            <section className="relative">
+            <section id="연혁" className="relative">
               <SectionTitle title="연혁" subtitle="우리의 발자취입니다" />
               <div className="relative">
                 {/* 타임라인 라인 */}

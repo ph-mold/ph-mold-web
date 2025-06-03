@@ -55,13 +55,18 @@ export default function StickyNav({ sectionsContainerRef }: Props) {
   }, [sections, sectionsContainerRef]);
 
   const handleClick = useCallback((id: string) => {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const offset = section.offsetTop;
+    window.scrollTo({
+      top: offset,
+      behavior: "smooth"
+    });
   }, []);
 
   return (
-    <div className="fixed top-1/2 right-5 z-10 -translate-y-1/2">
+    <div className="fixed top-1/2 right-5 z-12 hidden -translate-y-1/2 md:block">
       <div className="bg-background flex flex-col gap-2 rounded-md p-1 shadow-md">
         {sections.map(({ id }) => (
           <Button
