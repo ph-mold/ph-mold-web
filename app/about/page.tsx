@@ -22,28 +22,28 @@ const COMPANY_HISTORY = [
     title: "P&M Mold 설립",
     description: "화장품 용기 제조 사업 시작",
     icon: <Rocket />,
-    gradient: "from-blue-600 to-signature"
+    gradient: "from-sky-300 to-blue-400"
   },
   {
     year: "2024",
     title: "생산 시설 구축",
     description: "최신 설비 도입 및 생산라인 구축",
     icon: <Building2 />,
-    gradient: "from-purple-600 to-pink-600"
+    gradient: "from-violet-300 to-purple-400"
   },
   {
     year: "2023",
     title: "사업 계획 수립",
     description: "시장 조사 및 연구",
     icon: <Target />,
-    gradient: "from-orange-500 to-red-600"
+    gradient: "from-rose-300 to-pink-400"
   },
   {
     year: "2023",
     title: "기술 연구소 설립",
     description: "연구개발 인프라 구축",
     icon: <Lightbulb />,
-    gradient: "from-green-500 to-emerald-600"
+    gradient: "from-emerald-300 to-teal-400"
   }
 ];
 
@@ -52,19 +52,19 @@ const CORE_VALUES = [
     icon: <Lightbulb className="h-8 w-8" />,
     title: "혁신",
     description: "끊임없는 연구개발을 통한 혁신적인 제품 개발",
-    gradient: "from-yellow-400 to-orange-500"
+    gradient: "from-amber-300 to-orange-400"
   },
   {
     icon: <HandshakeIcon className="h-8 w-8" />,
     title: "신뢰",
     description: "고객과의 신뢰를 바탕으로 한 장기적인 파트너십",
-    gradient: "from-blue-400 to-blue-600"
+    gradient: "from-sky-300 to-blue-400"
   },
   {
     icon: <Gem className="h-8 w-8" />,
     title: "품질",
     description: "최고의 품질을 위한 철저한 품질 관리",
-    gradient: "from-purple-400 to-purple-600"
+    gradient: "from-violet-300 to-purple-400"
   }
 ];
 
@@ -142,8 +142,8 @@ export default function About() {
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 <div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                      <Building2 className="h-6 w-6 text-blue-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-300">
+                      <Building2 className="h-6 w-6 text-sky-700" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
@@ -153,8 +153,8 @@ export default function About() {
                     </div>
                   </div>
                   <div className="mb-8 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                      <Calendar className="h-6 w-6 text-green-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-300">
+                      <Calendar className="h-6 w-6 text-emerald-700" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
@@ -164,8 +164,8 @@ export default function About() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                      <Users className="h-6 w-6 text-purple-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-300">
+                      <Users className="h-6 w-6 text-purple-800" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
@@ -178,8 +178,8 @@ export default function About() {
 
                 <div className="border-background2 rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   <div className="mb-8 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
-                      <Briefcase className="h-6 w-6 text-orange-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-300">
+                      <Briefcase className="h-6 w-6 text-orange-800" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
@@ -191,8 +191,8 @@ export default function About() {
                     </div>
                   </div>
                   <div className="mb-8 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
-                      <MapPin className="h-6 w-6 text-red-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-300">
+                      <MapPin className="h-6 w-6 text-red-800" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
@@ -204,8 +204,8 @@ export default function About() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100">
-                      <Phone className="h-6 w-6 text-teal-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-300">
+                      <Phone className="h-6 w-6 text-teal-800" />
                     </div>
                     <div>
                       <h3 className="text-foreground2 text-sm font-medium">
