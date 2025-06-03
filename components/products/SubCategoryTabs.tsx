@@ -9,7 +9,7 @@ import { Tab } from "@ph-mold/ph-ui";
 
 interface Props {
   currentTab: string;
-  subTabs?: IGetCategory[];
+  subTabs: IGetCategory[];
 }
 
 export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
@@ -18,15 +18,15 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
     mapCategoriesToSubTabItems(subTabs, {
       all: () => (
         <div className="size-20 flex-none p-4 sm:size-28">
-          <div className="bg-background2 flex size-full items-center justify-center rounded-full">
-            <span className="text-signature">ALL</span>
+          <div className="flex size-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-sky-300 to-blue-400 transition-all duration-200 group-[.active]:bg-gradient-to-r group-[.active]:from-sky-400 group-[.active]:to-blue-500">
+            <span className="font-medium text-white">ALL</span>
           </div>
         </div>
       ),
       default: (category) => (
         <div className="size-20 flex-none sm:size-28">
           {category && (
-            <div className="relative h-full w-full">
+            <div className="relative h-full w-full overflow-hidden transition-all duration-200">
               <Image
                 loader={imageLoader}
                 src={category.imageUrl}
@@ -34,6 +34,7 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
                 fill
                 style={{ objectFit: "cover" }}
                 loading="eager"
+                className="transition-transform duration-200 group-hover:scale-105"
               />
             </div>
           )}
@@ -48,14 +49,14 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
   });
 
   return (
-    <div className="border-background2 scrollbar-hide w-full overflow-x-scroll overflow-y-hidden border-b-2">
+    <div className="border-background2 w-full overflow-x-scroll overflow-y-hidden border-b-2">
       <Tab
         className="pt-2 pb-3"
         activeTab={activeTab}
         onChange={handleTabClick}
         showIndicator={false}
-        tabClassName="flex-col !text-sm !p-0"
-        activeTabClassName="!text-signature"
+        tabClassName="flex-col !text-sm !p-0 group transition-transform duration-200 hover:scale-105"
+        activeTabClassName="!text-signature active"
         tabs={tabItems}
       />
     </div>

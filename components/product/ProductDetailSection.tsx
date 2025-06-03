@@ -1,6 +1,6 @@
 "use client";
 
-import ProductDetail from "./ProductDetail";
+// import ProductDetail from "./ProductDetail";
 import ProductImageGallery from "./ProductImageGallery";
 import ProductInfoPanel from "./ProductInfoPanel";
 import { useStickyButtonRef } from "@/context/StickyButtonContext";
@@ -21,7 +21,7 @@ export default function ProductDetailSection({ productKey }: Props) {
         <ProductImageGallery productKey={productKey} />
         <ProductInfoPanel productKey={productKey} />
       </div>
-      <ProductDetail productKey={productKey} />
+      {/* <ProductDetail productKey={productKey} /> */}
     </div>
   );
 }

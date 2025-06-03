@@ -37,40 +37,49 @@ export default function ProductGrid({ categoryKey }: Props) {
       isLoading={isProductsLoading}
       skeleton={<ProductGridSkeleton />}
     >
-      <div className="grid grid-cols-2 gap-3 space-y-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {products?.map((item, idx) => (
           <Link key={item.id} href={`/product/${item.key}`}>
             <motion.div
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="relative flex flex-col gap-2 select-none"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: idx * 0.05 }}
+              whileHover={{ y: -4 }}
+              className="group relative flex flex-col gap-3"
             >
-              <div className="text-foreground2 absolute top-[6px] left-2 text-xs font-semibold">
-                {item.material}
+              <div className="absolute top-2 left-2 z-5 rounded-md bg-white/80 px-2 py-1 text-xs font-medium backdrop-blur-sm">
+                <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
+                  {item.material}
+                </span>
               </div>
-              <div className="bg-background2 flex aspect-square items-center justify-center overflow-hidden rounded-lg">
+              <div className="bg-background2 relative flex aspect-square items-center justify-center overflow-hidden rounded-lg">
                 {item.thumbnailImageUrl ? (
-                  <div className="relative size-full">
+                  <div className="relative size-full transition-transform duration-200 group-hover:scale-105">
                     <Image
                       loader={imageLoader}
                       src={item.thumbnailImageUrl}
                       alt={item.name}
                       fill
                       loading={idx < 5 ? "eager" : "lazy"}
+                      className="object-cover"
                     />
                   </div>
                 ) : (
                   <ImageOff className="stroke-signature size-[30%] stroke-[1.5] object-contain opacity-30" />
                 )}
               </div>
-              <div className="space-y-1">
-                <p className="text-foreground2 text-xs">{item.code}</p>
-                <p className="text-sm font-bold">{item.name}</p>
-                <div className="flex flex-wrap space-y-1 space-x-1 py-1">
+              <div className="flex flex-1 flex-col justify-between gap-2">
+                <div className="space-y-1">
+                  <p className="text-foreground2 text-xs font-medium">
+                    {item.code}
+                  </p>
+                  <p className="line-clamp-2 text-sm font-bold">{item.name}</p>
+                </div>
+                <div className="flex flex-wrap gap-1">
                   {item.tags.map((tag) => (
                     <p
                       key={tag.key}
-                      className="bg-background2 text-signature h-6 rounded-md px-1 py-[1px] text-sm text-nowrap"
+                      className="bg-background2 text-signature rounded-md px-2 py-1 text-xs font-medium"
                     >
                       {tag.name}
                     </p>
