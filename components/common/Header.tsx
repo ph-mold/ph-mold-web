@@ -9,8 +9,8 @@ import { imageLoader } from "@/lib/imageLoader";
 import { Button } from "@ph-mold/ph-ui";
 
 const MENU_ITEMS = [
-  { ko: "회사소개", link: ["/about"], isDisabled: true },
-  { ko: "생산제품", link: ["/products", "/product"], isDisabled: false },
+  { ko: "회사소개", link: ["/about", "/about"] },
+  { ko: "생산제품", link: ["/products", "/product"] },
   { ko: "생산설비", link: ["/facilities"], isDisabled: true },
   { ko: "문의", link: ["/contact"], isDisabled: true }
 ];
@@ -20,7 +20,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="border-background2 fixed top-0 z-10 min-h-16 w-full border-b-2 bg-white/80 backdrop-blur-md">
+    <header className="border-background2 fixed top-0 z-20 min-h-16 w-full border-b-2 bg-white/80 backdrop-blur-md">
       <nav className="flex h-full w-full items-center justify-between px-4 py-3 md:justify-center">
         <Link href={"/"}>
           <Image

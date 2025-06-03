@@ -3,7 +3,7 @@
 import ContactSection from "@/components/home/ContactSection";
 import HeroSection from "@/components/home/HeroSection";
 import ProductCategorySection from "@/components/home/ProductCategorySection";
-import StickyNav from "@/components/home/StickyNav";
+import StickyNav from "@/components/common/StickyNav";
 import WhyPMSection from "@/components/home/WhyPMSection";
 import { useRef } from "react";
 
