@@ -44,7 +44,7 @@ export default function ProductCategorySection() {
                 <div className="bg-background2 w-full flex-none rounded-lg sm:h-40 sm:w-40">
                   <Image
                     loader={imageLoader}
-                    src={product.image}
+                    src={`public${product.image}`}
                     alt={product.name}
                     width={240}
                     height={240}

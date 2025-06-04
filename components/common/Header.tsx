@@ -25,7 +25,7 @@ export default function Header() {
         <Link href={"/"}>
           <Image
             loader={imageLoader}
-            src="/logo.png"
+            src="public/logo.png"
             alt=""
             width={40}
             height={40}
