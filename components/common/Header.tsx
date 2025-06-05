@@ -10,8 +10,8 @@ import { Button } from "@ph-mold/ph-ui";
 
 const MENU_ITEMS = [
   { ko: "회사소개", link: ["/about", "/about"] },
-  { ko: "생산제품", link: ["/products", "/product"] },
-  { ko: "생산설비", link: [""], isDisabled: true },
+  { ko: "제품", link: ["/products", "/product"] },
+  { ko: "생산설비", link: ["/facilities"] },
   { ko: "문의", link: [""], isDisabled: true }
 ];
 

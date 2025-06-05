@@ -1,16 +1,12 @@
 import { motion } from "framer-motion";
-import { IProductCategory } from "@/types/api/product";
-import useSWR from "swr";
-import { API } from "@/lib/constants/api";
 import { PackageSearch } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@ph-mold/ph-ui";
 import Image from "next/image";
 import { imageLoader } from "@/lib/imageLoader";
+import { productCategories } from "./contents";
 
 export default function ProductCategorySection() {
-  const { data } = useSWR<IProductCategory[]>(API.PRODUCT_CATEGORIES.GET);
-
   return (
     <section id="제품" className="flex h-fit flex-col gap-8 py-20">
       <div className="mb-16 text-center">
@@ -32,7 +28,7 @@ export default function ProductCategorySection() {
       </div>
 
       <div className="mx-4 grid max-w-[1080px] grid-cols-1 gap-6 md:mx-auto md:grid-cols-2">
-        {data?.map((product, i) => (
+        {productCategories.map((product, i) => (
           <motion.div
             key={product.name}
             initial={{ opacity: 0, y: 10 }}
@@ -44,7 +40,7 @@ export default function ProductCategorySection() {
                 <div className="bg-background2 w-full flex-none rounded-lg sm:h-40 sm:w-40">
                   <Image
                     loader={imageLoader}
-                    src={`public${product.image}`}
+                    src={`public/${product.image}`}
                     alt={product.name}
                     width={240}
                     height={240}
