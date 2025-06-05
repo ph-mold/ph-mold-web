@@ -9,7 +9,7 @@ interface Props {
 
 export function FacilityBanner({ facility }: Props) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-lg">
+    <div className="relative hidden overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-lg md:block">
       <div className="relative w-full">
         <motion.div
           key={facility.id}
