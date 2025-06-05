@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { SWRProvider } from "./swr-provider";
+import GoogleAnalytics from "@/components/common/GoogleAnalytics";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${notoSansKr.variable} flex min-h-screen flex-col font-sans`}
       >
+        <GoogleAnalytics />
         <SWRProvider>
           <Header />
           <main className="mt-16 flex-1">{children}</main>
