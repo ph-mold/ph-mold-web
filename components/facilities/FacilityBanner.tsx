@@ -19,7 +19,7 @@ export function FacilityBanner({ facility }: Props) {
         >
           <Image
             loader={imageLoader}
-            src={facility.image}
+            src={`public/${facility.image}`}
             alt={facility.title}
             width={1200}
             height={800}

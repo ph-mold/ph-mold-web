@@ -19,7 +19,7 @@ export function FacilityCard({ facility, isSelected, onSelect }: Props) {
       <div className="relative h-[240px] w-full">
         <Image
           loader={imageLoader}
-          src={facility.image}
+          src={`public/${facility.image}`}
           alt={facility.title}
           fill
           className="object-cover"

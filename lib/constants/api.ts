@@ -1,5 +1,3 @@
-export const MOCK_URL = "/api";
-
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 export const API = {
@@ -16,8 +14,5 @@ export const API = {
   },
   SAMPLE_REQUESTS: {
     CREATE: `${API_BASE}/sample-requests`
-  },
-  PRODUCT_CATEGORIES: {
-    GET: `${MOCK_URL}/product-categories`
   }
 };
