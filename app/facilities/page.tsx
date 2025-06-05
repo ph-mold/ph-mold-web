@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { SectionTitle } from "@/components/about/SectionTitle";
 import StickyNav from "@/components/common/StickyNav";
+import { imageLoader } from "@/lib/imageLoader";
 
 const FACILITIES = [
   {
@@ -104,10 +106,12 @@ export default function Facilities() {
                     className="border-background2 group h-fit overflow-hidden rounded-2xl border bg-white shadow-lg transition-all duration-200 hover:shadow-xl"
                   >
                     <div className="relative h-[300px] w-full overflow-hidden">
-                      <img
+                      <Image
+                        loader={imageLoader}
                         src={facility.image}
                         alt={facility.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     </div>
                     <div className="p-8">
