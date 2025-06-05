@@ -5,7 +5,6 @@ const baseUrl = process.env.NEXT_PUBLIC_FILE_SERVER_BASE_URL;
 export const imageLoader: ImageLoader = ({ src, width, quality }) => {
   if (src.startsWith("public")) {
     const cleanedSrc = src.replace("public", "");
-    console.log(src);
     return `${cleanedSrc}?w=${width}&q=${quality ?? 75}`;
   }
 
