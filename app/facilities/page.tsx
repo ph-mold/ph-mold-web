@@ -1,13 +1,20 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { SectionTitle } from "@/components/about/SectionTitle";
 import StickyNav from "@/components/common/StickyNav";
 import { imageLoader } from "@/lib/imageLoader";
 
-const FACILITIES = [
+interface Facility {
+  id: string;
+  title: string;
+  image: string;
+  description: string;
+}
+
+const FACILITIES: Facility[] = [
   {
     id: "pp-filling",
     title: "PP 충진기",
@@ -26,7 +33,6 @@ const FACILITIES = [
     image: "/images/facilities/labeler.png",
     description: "자동화된 라벨링 시스템"
   },
-
   {
     id: "ampoule-filling",
     title: "앰플충진기",
@@ -43,6 +49,9 @@ const FACILITIES = [
 
 export default function Facilities() {
   const containerRef = useRef(null);
+  const [selectedFacility, setSelectedFacility] = useState<Facility>(
+    FACILITIES[0]
+  );
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -93,32 +102,78 @@ export default function Facilities() {
 
         <div className="mx-auto max-w-[1200px] px-4 py-16 md:px-10">
           <div className="space-y-32">
-            {/* 설비 목록 */}
-            <section id="설비목록" className="relative">
+            <section id="설비목록" className="relative space-y-16">
               <SectionTitle
                 title="주요 설비"
                 subtitle="최신 기술로 구현하는 완벽한 생산 시스템"
               />
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+
+              {/* 선택된 설비 배너 */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-lg">
+                <div className="relative w-full">
+                  <motion.div
+                    key={selectedFacility.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      loader={imageLoader}
+                      src={selectedFacility.image}
+                      alt={selectedFacility.title}
+                      width={1200}
+                      height={800}
+                      className="w-full"
+                      priority
+                    />
+                  </motion.div>
+                </div>
+                <div className="relative bg-white p-8">
+                  <motion.div
+                    key={selectedFacility.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <h2 className="text-3xl font-bold text-gray-900">
+                      {selectedFacility.title}
+                    </h2>
+                    <p className="mt-4 text-xl text-gray-600">
+                      {selectedFacility.description}
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* 설비 카드 목록 */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {FACILITIES.map((facility) => (
                   <div
                     key={facility.id}
-                    className="border-background2 group h-fit overflow-hidden rounded-2xl border bg-white shadow-lg transition-all duration-200 hover:shadow-xl"
+                    onClick={() => setSelectedFacility(facility)}
+                    className={`group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-sm transition-all duration-200 hover:shadow-md ${
+                      selectedFacility.id === facility.id
+                        ? "ring-2 ring-blue-500"
+                        : ""
+                    }`}
                   >
-                    <div className="relative h-[300px] w-full overflow-hidden">
+                    <div className="relative h-[240px] w-full">
                       <Image
                         loader={imageLoader}
                         src={facility.image}
                         alt={facility.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="object-cover"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                     </div>
-                    <div className="p-8">
-                      <h3 className="mb-4 text-2xl font-bold">
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold tracking-tight text-gray-900 transition-colors duration-200 group-hover:text-blue-600">
                         {facility.title}
                       </h3>
-                      <p className="text-foreground2">{facility.description}</p>
+                      <p className="mt-2 line-clamp-2 text-sm text-gray-600">
+                        {facility.description}
+                      </p>
                     </div>
                   </div>
                 ))}
