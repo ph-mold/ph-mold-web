@@ -5,6 +5,7 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { SWRProvider } from "./swr-provider";
 import GoogleAnalytics from "@/components/common/GoogleAnalytics";
+import Script from "next/script";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-sans",
@@ -36,6 +37,10 @@ export default function RootLayout({
           <Footer />
         </SWRProvider>
         <div id="modal-root" />
+        <Script
+          src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

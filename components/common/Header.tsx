@@ -11,8 +11,8 @@ import { Button } from "@ph-mold/ph-ui";
 const MENU_ITEMS = [
   { ko: "회사소개", link: ["/about", "/about"] },
   { ko: "제품", link: ["/products", "/product"] },
-  { ko: "생산설비", link: ["/facilities"] },
-  { ko: "문의", link: [""], isDisabled: true }
+  { ko: "생산설비", link: ["/facilities", "/facilities"] },
+  { ko: "문의", link: ["/inquiries", "/inquiries"] }
 ];
 
 export default function Header() {
@@ -47,7 +47,6 @@ export default function Header() {
                     variant="text"
                     color="secondary"
                     className={`${isActive && "!text-signature !font-medium"}`}
-                    disabled={item.isDisabled}
                   >
                     {item.ko}
                   </Button>
@@ -92,7 +91,6 @@ export default function Header() {
                     size="small"
                     color="secondary"
                     className={`py-2 ${isActive && "!text-signature !font-medium"}`}
-                    disabled={item.isDisabled}
                   >
                     {item.ko}
                   </Button>
