@@ -16,20 +16,11 @@ declare global {
   }
 }
 
-const AddressSearchButton = ({
-  onAddressSelect
-}: {
-  onAddressSelect: (addr: string) => void;
-}) => {
-  const handleSearch = () => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        const fullAddr = data.roadAddress || data.jibunAddress;
-        onAddressSelect(fullAddr);
-      }
-    }).open();
-  };
+interface Props {
+  onAddressSelect: (address: string) => void;
+}
 
+export default function AddressSearchButton({ onAddressSelect }: Props) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -38,16 +29,18 @@ const AddressSearchButton = ({
     document.body.appendChild(script);
   }, []);
 
+  const handleClick = () => {
+    new window.daum.Postcode({
+      oncomplete: (data) => {
+        const fullAddr = data.roadAddress || data.jibunAddress;
+        onAddressSelect(fullAddr);
+      }
+    }).open();
+  };
+
   return (
-    <Button
-      type="button"
-      variant="outlined"
-      onClick={handleSearch}
-      className="text-nowrap"
-    >
+    <Button variant="outlined" size="small" onClick={handleClick}>
       주소 검색
     </Button>
   );
-};
-
-export default AddressSearchButton;
+}
