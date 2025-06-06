@@ -202,7 +202,7 @@ export default function InquiryForm() {
         </p>
         <ul className="text-foreground2 mt-1 list-inside list-disc space-y-0.5 text-sm">
           <li>수집 항목: 이름, 전화번호, 이메일, 회사명, 주소</li>
-          <li>수집 목적: 샘플 발송, 문의 응답 및 관련 정보 제공</li>
+          <li>수집 목적: 문의, 문의 응답 및 관련 정보 제공</li>
           <li>
             보유 기간: 귀하가 정보 수신 동의를 철회할 때까지 수집된 개인정보를
             보유 및 이용
