@@ -1,5 +1,6 @@
 import {
   IInquiryFormValues,
+  IInquiryWithoutPassword,
   IPaginatedInquiriesResponse
 } from "@/types/api/inquiry";
 import { fetcher } from "../fetcher";
@@ -23,6 +24,24 @@ export const getInquiries = async (
 ): Promise<IPaginatedInquiriesResponse | undefined> => {
   const data = await fetcher<IPaginatedInquiriesResponse>(
     `${API.INQUIRIES.GET}?page=${page}&limit=${limit}`
+  );
+  return data;
+};
+
+export const POST_INQUIRY_DETAIL = "postInquiryDetail";
+export const postInquiryDetail = async (
+  inquiryId: number,
+  password: string
+): Promise<IInquiryWithoutPassword | undefined> => {
+  const data = await fetcher<IInquiryWithoutPassword>(
+    `${API.INQUIRIES.GET_DETAIL(inquiryId)}`,
+    {
+      method: "POST",
+      body: JSON.stringify({ password }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
   );
   return data;
 };

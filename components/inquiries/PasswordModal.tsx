@@ -4,31 +4,42 @@ import { Button, Input, Modal } from "@ph-mold/ph-ui";
 interface PasswordModalProps {
   open: boolean;
   onClose: () => void;
-  onVerify: (password: string) => boolean;
+  onVerify: (password: string) => Promise<boolean>;
 }
 
 export function PasswordModal({ open, onClose, onVerify }: PasswordModalProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (open) {
       setPassword("");
       setError(false);
+      setIsLoading(false);
     }
   }, [open]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const isValid = onVerify(password);
-    if (!isValid) {
+    setIsLoading(true);
+
+    try {
+      const isValid = await onVerify(password);
+      if (!isValid) {
+        setError(true);
+      }
+    } catch {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleClose = () => {
     setPassword("");
     setError(false);
+    setIsLoading(false);
     onClose();
   };
 
@@ -47,12 +58,20 @@ export function PasswordModal({ open, onClose, onVerify }: PasswordModalProps) {
           helperText={error ? "비밀번호가 일치하지 않습니다" : undefined}
           maxLength={4}
           required
+          disabled={isLoading}
         />
         <div className="flex justify-end gap-2">
-          <Button variant="outlined" onClick={handleClose} type="button">
+          <Button
+            variant="outlined"
+            onClick={handleClose}
+            type="button"
+            disabled={isLoading}
+          >
             취소
           </Button>
-          <Button type="submit">확인</Button>
+          <Button type="submit" loading={isLoading}>
+            확인
+          </Button>
         </div>
       </form>
     </Modal>

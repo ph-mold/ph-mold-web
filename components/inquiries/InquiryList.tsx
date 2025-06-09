@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { Button } from "@ph-mold/ph-ui";
 import { PasswordModal } from "./PasswordModal";
 import { Pagination } from "../common/Pagination";
-import { IInquiry } from "@/types/api/inquiry";
+import { IInquiry, IInquiryWithoutPassword } from "@/types/api/inquiry";
 import { maskName, maskCompany, maskPhone } from "./utils";
 import { STATUS_MAP } from "./constants";
-import { getInquiries } from "@/lib/api/inquiry";
+import { getInquiries, postInquiryDetail } from "@/lib/api/inquiry";
 
 export default function InquiryList() {
   const router = useRouter();
@@ -15,12 +15,15 @@ export default function InquiryList() {
   const [expandedInquiryId, setExpandedInquiryId] = useState<string | null>(
     null
   );
-  const [selectedInquiryId, setSelectedInquiryId] = useState<string | null>(
+  const [selectedInquiryId, setSelectedInquiryId] = useState<number | null>(
     null
   );
   const [inquiries, setInquiries] = useState<IInquiry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [detailData, setDetailData] = useState<IInquiryWithoutPassword | null>(
+    null
+  );
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -53,6 +56,23 @@ export default function InquiryList() {
     setCurrentPage(page);
     setExpandedInquiryId(null);
     setSelectedInquiryId(null);
+  };
+
+  const handlePasswordVerify = async (password: string) => {
+    if (!selectedInquiryId) return false;
+
+    try {
+      const data = await postInquiryDetail(selectedInquiryId, password);
+      if (data) {
+        setDetailData(data);
+        setExpandedInquiryId(String(selectedInquiryId));
+        setSelectedInquiryId(null);
+        return true;
+      }
+    } catch (error) {
+      console.error("Failed to verify password:", error);
+    }
+    return false;
   };
 
   return (
@@ -95,20 +115,24 @@ export default function InquiryList() {
                         </p>
                       </>
                     )}
-                    {isExpanded && (
-                      <>
-                        <p className="text-foreground2 text-sm">
-                          이메일: {inquiry.email}
-                        </p>
-                        <p className="text-foreground2 text-sm">
-                          연락처: {inquiry.phone}
-                        </p>
-                        <p className="text-foreground2 text-sm">
-                          문의일:{" "}
-                          {new Date(inquiry.createdAt).toLocaleDateString()}
-                        </p>
-                      </>
-                    )}
+                    {isExpanded &&
+                      detailData &&
+                      detailData.id === inquiry.id && (
+                        <>
+                          <p className="text-foreground2 text-sm">
+                            이메일: {detailData.email}
+                          </p>
+                          <p className="text-foreground2 text-sm">
+                            연락처: {detailData.phone}
+                          </p>
+                          <p className="text-foreground2 text-sm">
+                            문의일:{" "}
+                            {new Date(
+                              detailData.createdAt
+                            ).toLocaleDateString()}
+                          </p>
+                        </>
+                      )}
                   </div>
                 </div>
               </div>
@@ -124,8 +148,9 @@ export default function InquiryList() {
                   onClick={() => {
                     if (isExpanded) {
                       setExpandedInquiryId(null);
+                      setDetailData(null);
                     } else {
-                      setSelectedInquiryId(inquiry.id.toString());
+                      setSelectedInquiryId(inquiry.id);
                     }
                   }}
                 >
@@ -133,19 +158,19 @@ export default function InquiryList() {
                 </Button>
               </div>
             </div>
-            {isExpanded && (
+            {isExpanded && detailData && detailData.id === inquiry.id && (
               <div className="border-background2 mt-3 space-y-1 border-t pt-3">
                 <p className="text-foreground2 text-sm">
-                  주소: {inquiry.address}
+                  주소: {detailData.address}
                 </p>
-                {inquiry.detailedAddress && (
+                {detailData.detailedAddress && (
                   <p className="text-foreground2 text-sm">
-                    상세주소: {inquiry.detailedAddress}
+                    상세주소: {detailData.detailedAddress}
                   </p>
                 )}
-                {inquiry.remarks && (
+                {detailData.remarks && (
                   <p className="text-foreground2 text-sm">
-                    비고: {inquiry.remarks}
+                    비고: {detailData.remarks}
                   </p>
                 )}
               </div>
@@ -161,17 +186,7 @@ export default function InquiryList() {
       <PasswordModal
         open={selectedInquiryId !== null}
         onClose={() => setSelectedInquiryId(null)}
-        onVerify={(password: string) => {
-          const inquiry = inquiries.find(
-            (i) => i.id.toString() === selectedInquiryId
-          );
-          if (inquiry && inquiry.password === password) {
-            setExpandedInquiryId(selectedInquiryId);
-            setSelectedInquiryId(null);
-            return true;
-          }
-          return false;
-        }}
+        onVerify={handlePasswordVerify}
       />
     </div>
   );
