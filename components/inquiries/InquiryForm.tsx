@@ -7,7 +7,8 @@ import {
   validatePhoneNumber
 } from "@/lib/validators/input";
 import { IInquiryFormValues } from "@/types/api/inquiry";
-import { createInquiry } from "@/lib/api/inquiry";
+import { createInquiry, GET_INQUIRIES } from "@/lib/api/inquiry";
+import { mutate } from "swr";
 
 interface FormErrors {
   name?: string;
@@ -27,9 +28,9 @@ const initialFormValues: IInquiryFormValues = {
   phone: "",
   address: "",
   detailedAddress: "",
-  agree: false,
   remarks: "",
-  password: ""
+  password: "",
+  agree: false
 };
 
 interface InquiryFormProps {
@@ -86,12 +87,17 @@ export default function InquiryForm({ onClose }: InquiryFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       setIsSubmitting(true);
       await createInquiry(formValues);
       setFormValues(initialFormValues);
+
+      await mutate((key) => Array.isArray(key) && key[0] === GET_INQUIRIES);
       onClose();
     } catch (error) {
       console.error("문의 등록 실패:", error);

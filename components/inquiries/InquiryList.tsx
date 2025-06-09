@@ -1,12 +1,17 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { IInquiry, IInquiryWithoutPassword } from "@/types/api/inquiry";
-import { getInquiries, postInquiryDetail } from "@/lib/api/inquiry";
+import { IInquiryWithoutPassword } from "@/types/api/inquiry";
+import {
+  getInquiries,
+  postInquiryDetail,
+  GET_INQUIRIES
+} from "@/lib/api/inquiry";
 import { PasswordModal } from "./PasswordModal";
 import { Pagination } from "../common/Pagination";
 import { InquiryItem } from "./InquiryItem";
 import { WithSkeleton } from "@ph-mold/ph-ui";
 import { InquiryListSkeleton } from "./InquiryList.skeleton";
+import useSWR from "swr";
 
 export default function InquiryList() {
   const router = useRouter();
@@ -17,13 +22,10 @@ export default function InquiryList() {
   const [selectedInquiryId, setSelectedInquiryId] = useState<number | null>(
     null
   );
-  const [inquiries, setInquiries] = useState<IInquiry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
   const [detailData, setDetailData] = useState<IInquiryWithoutPassword | null>(
     null
   );
-  const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -33,32 +35,20 @@ export default function InquiryList() {
     }
   }, [searchParams]);
 
-  useEffect(() => {
-    const fetchInquiries = async () => {
-      setIsLoading(true);
-      try {
-        const data = await getInquiries(currentPage, itemsPerPage);
-        setInquiries(data?.items ?? []);
-        setTotalPages(data?.totalPages ?? 0);
-
-        // URL 업데이트
-        const params = new URLSearchParams(searchParams);
-        params.set("page", currentPage.toString());
-        router.push(`/inquiries?${params.toString()}`);
-      } catch (error) {
-        console.error("Failed to fetch inquiries:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchInquiries();
-  }, [currentPage, itemsPerPage]);
+  const { data, isLoading } = useSWR(
+    [GET_INQUIRIES, currentPage, itemsPerPage],
+    () => getInquiries(currentPage, itemsPerPage)
+  );
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     setExpandedInquiryId(null);
     setSelectedInquiryId(null);
+
+    // URL 업데이트
+    const params = new URLSearchParams(searchParams);
+    params.set("page", page.toString());
+    router.push(`/inquiries?${params.toString()}`);
   };
 
   const handlePasswordVerify = async (password: string) => {
@@ -82,7 +72,7 @@ export default function InquiryList() {
     <div className="space-y-2">
       <WithSkeleton isLoading={isLoading} skeleton={<InquiryListSkeleton />}>
         <div className="space-y-2">
-          {inquiries.map((inquiry) => {
+          {(data?.items ?? []).map((inquiry) => {
             const isExpanded = expandedInquiryId === inquiry.id.toString();
 
             return (
@@ -105,7 +95,7 @@ export default function InquiryList() {
 
           <Pagination
             currentPage={currentPage}
-            totalPages={totalPages}
+            totalPages={data?.totalPages ?? 0}
             onPageChange={handlePageChange}
           />
         </div>
