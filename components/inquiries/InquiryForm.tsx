@@ -7,6 +7,7 @@ import {
   validatePhoneNumber
 } from "@/lib/validators/input";
 import { IInquiryFormValues } from "@/types/api/inquiry";
+import { createInquiry } from "@/lib/api/inquiry";
 
 interface FormErrors {
   name?: string;
@@ -16,20 +17,29 @@ interface FormErrors {
   address?: string;
   password?: string;
   agree?: string;
+  submit?: string;
 }
 
-export default function InquiryForm() {
-  const [formValues, setFormValues] = useState<IInquiryFormValues>({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    address: "",
-    detailedAddress: "",
-    agree: false,
-    remarks: "",
-    password: ""
-  });
+const initialFormValues: IInquiryFormValues = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  address: "",
+  detailedAddress: "",
+  agree: false,
+  remarks: "",
+  password: ""
+};
+
+interface InquiryFormProps {
+  onClose: () => void;
+}
+
+export default function InquiryForm({ onClose }: InquiryFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formValues, setFormValues] =
+    useState<IInquiryFormValues>(initialFormValues);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
 
   const handleFormChange = (
@@ -74,11 +84,23 @@ export default function InquiryForm() {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      // TODO: 문의하기 API 연동
-      console.log(formValues);
+    if (!validateForm()) return;
+
+    try {
+      setIsSubmitting(true);
+      await createInquiry(formValues);
+      setFormValues(initialFormValues);
+      onClose();
+    } catch (error) {
+      console.error("문의 등록 실패:", error);
+      setFormErrors((prev) => ({
+        ...prev,
+        submit: "문의 등록에 실패했습니다. 잠시 후 다시 시도해주세요."
+      }));
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -191,8 +213,11 @@ export default function InquiryForm() {
           <p className="text-error ml-1 text-sm">{formErrors.agree}</p>
         )}
       </div>
-      <Button fullWidth type="submit">
-        문의하기
+      {formErrors.submit && (
+        <p className="text-error text-sm">{formErrors.submit}</p>
+      )}
+      <Button fullWidth type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "처리중..." : "문의하기"}
       </Button>
       <div>
         <p className="text-foreground2 mt-2 text-sm">

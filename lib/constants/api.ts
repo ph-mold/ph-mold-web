@@ -14,5 +14,8 @@ export const API = {
   },
   SAMPLE_REQUESTS: {
     CREATE: `${API_BASE}/sample-requests`
+  },
+  INQUIRIES: {
+    CREATE: `${API_BASE}/inquiries`
   }
 } as const;

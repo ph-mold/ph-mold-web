@@ -26,7 +26,7 @@ export default function InquiriesPage() {
         }`}
       >
         <div className="border-background2 bg-background w-full rounded-xl border-[1.5px] p-4 md:p-8">
-          <InquiryForm />
+          <InquiryForm onClose={() => setIsFormOpen(false)} />
         </div>
       </div>
 
