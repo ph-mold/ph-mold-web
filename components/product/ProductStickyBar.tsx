@@ -42,7 +42,7 @@ export default function ProductStickyBar({ summary }: Props) {
           pointerEvents: visible ? "auto" : "none"
         }}
         transition={{ type: "spring", stiffness: 500, damping: 40 }}
-        className="border-background2 sticky top-16 z-9 w-full overflow-hidden border-b-2 bg-white/80 backdrop-blur-md md:h-auto"
+        className="border-background2 bg-background/80 sticky top-16 z-9 w-full overflow-hidden border-b-2 backdrop-blur-md md:h-auto"
       >
         {visible && (
           <div className="mx-auto flex h-[52px] max-w-[1080px] items-center justify-between px-4 py-2 md:px-10">

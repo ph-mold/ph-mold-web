@@ -75,7 +75,7 @@ export default function StickyNav({ sectionsContainerRef }: Props) {
             variant={activeSection === id ? "contained" : "text"}
             color={activeSection === id ? "primary" : "secondary"}
             className={clsx("px-6 py-2 text-sm", {
-              "bg-gradient-to-r from-sky-300 to-blue-400": activeSection === id
+              "bg-gradient-primary bg-gradient-to-r": activeSection === id
             })}
           >
             {id}

@@ -27,8 +27,8 @@ export default function HeroSection() {
     >
       {/* 연무 효과 */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="animate-mist absolute h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E0F7FA] opacity-30" />
-        <div className="animate-mist absolute h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#BBDEFB] opacity-25" />
+        <div className="animate-mist bg-mist-primary absolute h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30" />
+        <div className="animate-mist bg-mist-secondary absolute h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25" />
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4">

@@ -18,8 +18,12 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
     mapCategoriesToSubTabItems(subTabs, {
       all: () => (
         <div className="size-20 flex-none p-4 sm:size-28">
-          <div className="flex size-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-sky-300 to-blue-400 transition-all duration-200 group-[.active]:bg-gradient-to-r group-[.active]:from-sky-400 group-[.active]:to-blue-500">
-            <span className="font-medium text-white">ALL</span>
+          <div className="flex size-full items-center justify-center overflow-hidden rounded-full bg-transparent transition-all duration-200">
+            <div className="flex size-full items-center justify-center bg-transparent bg-none group-[.active]:bg-gradient-to-r group-[.active]:from-sky-300 group-[.active]:to-blue-400">
+              <span className="group-[.active]:text-reverseForeground bg-gradient-primary bg-gradient-to-r bg-clip-text font-medium text-transparent group-[.active]:bg-none">
+                ALL
+              </span>
+            </div>
           </div>
         </div>
       ),
