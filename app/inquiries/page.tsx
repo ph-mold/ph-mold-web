@@ -25,7 +25,7 @@ export default function InquiriesPage() {
             : "my-0 max-h-0 opacity-0"
         }`}
       >
-        <div className="w-full rounded-xl border-[1.5px] border-gray-200 bg-white p-8 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+        <div className="w-full rounded-xl border-[1.5px] border-gray-200 bg-white p-4 shadow-[0_4px_12px_rgba(0,0,0,0.08)] md:p-8">
           <InquiryForm />
         </div>
       </div>
