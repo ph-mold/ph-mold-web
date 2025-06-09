@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@ph-mold/ph-ui";
-import { MOCK_INQUIRIES } from "../../components/inquiries/constants";
 import InquiryForm from "../../components/inquiries/InquiryForm";
 import InquiryList from "../../components/inquiries/InquiryList";
 
@@ -32,7 +31,7 @@ export default function InquiriesPage() {
 
       <div className="mt-12">
         <h2 className="mb-4 text-2xl font-bold md:text-3xl">문의 내역</h2>
-        <InquiryList inquiries={MOCK_INQUIRIES} />
+        <InquiryList />
       </div>
     </div>
   );

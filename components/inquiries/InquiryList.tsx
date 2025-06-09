@@ -1,33 +1,53 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button } from "@ph-mold/ph-ui";
 import { PasswordModal } from "./PasswordModal";
 import { Pagination } from "../common/Pagination";
 import { IInquiry } from "@/types/api/inquiry";
 import { maskName, maskCompany, maskPhone } from "./utils";
 import { STATUS_MAP } from "./constants";
+import { getInquiries } from "@/lib/api/inquiry";
 
-interface Props {
-  inquiries: IInquiry[];
-}
-
-export default function InquiryList({ inquiries }: Props) {
+export default function InquiryList() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [expandedInquiryId, setExpandedInquiryId] = useState<string | null>(
     null
   );
   const [selectedInquiryId, setSelectedInquiryId] = useState<string | null>(
     null
   );
+  const [inquiries, setInquiries] = useState<IInquiry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 5;
 
-  // 페이지네이션된 문의 목록 계산
-  const paginatedInquiries = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return inquiries.slice(startIndex, endIndex);
-  }, [currentPage, inquiries]);
+  useEffect(() => {
+    const page = Number(searchParams.get("page")) || 1;
+    if (page !== currentPage) {
+      setCurrentPage(page);
+    }
+  }, [searchParams]);
 
-  const totalPages = Math.ceil(inquiries.length / itemsPerPage);
+  useEffect(() => {
+    const fetchInquiries = async () => {
+      try {
+        const data = await getInquiries(currentPage, itemsPerPage);
+        setInquiries(data?.items ?? []);
+        setTotalPages(data?.totalPages ?? 0);
+
+        // URL 업데이트
+        const params = new URLSearchParams(searchParams);
+        params.set("page", currentPage.toString());
+        router.push(`/inquiries?${params.toString()}`);
+      } catch (error) {
+        console.error("Failed to fetch inquiries:", error);
+      }
+    };
+
+    fetchInquiries();
+  }, [currentPage, itemsPerPage]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -37,7 +57,7 @@ export default function InquiryList({ inquiries }: Props) {
 
   return (
     <div className="space-y-2">
-      {paginatedInquiries.map((inquiry) => {
+      {inquiries.map((inquiry) => {
         const isExpanded = expandedInquiryId === inquiry.id.toString();
         const status = STATUS_MAP[inquiry.status];
 

@@ -17,3 +17,11 @@ export interface IInquiry extends IInquiryFormValues {
 }
 
 export type IInquiryWithoutPassword = Omit<IInquiry, "password">;
+
+export interface IPaginatedInquiriesResponse {
+  items: IInquiry[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
