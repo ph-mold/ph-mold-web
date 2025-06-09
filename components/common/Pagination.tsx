@@ -1,4 +1,10 @@
 import { Button } from "@ph-mold/ph-ui";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight
+} from "lucide-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -33,20 +39,22 @@ export function Pagination({
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
-        variant="outlined"
+        variant="text"
         size="small"
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
+        className="!p-1"
       >
-        처음
+        <ChevronsLeft />
       </Button>
       <Button
-        variant="outlined"
+        variant="text"
         size="small"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        className="!p-1"
       >
-        이전
+        <ChevronLeft />
       </Button>
       {getPageNumbers().map((pageNumber) => (
         <Button
@@ -59,20 +67,22 @@ export function Pagination({
         </Button>
       ))}
       <Button
-        variant="outlined"
+        variant="text"
         size="small"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        className="!p-1"
       >
-        다음
+        <ChevronRight />
       </Button>
       <Button
-        variant="outlined"
+        variant="text"
         size="small"
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
+        className="!p-1"
       >
-        마지막
+        <ChevronsRight />
       </Button>
     </div>
   );
