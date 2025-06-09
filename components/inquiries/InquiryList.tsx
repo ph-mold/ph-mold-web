@@ -5,6 +5,8 @@ import { getInquiries, postInquiryDetail } from "@/lib/api/inquiry";
 import { PasswordModal } from "./PasswordModal";
 import { Pagination } from "../common/Pagination";
 import { InquiryItem } from "./InquiryItem";
+import { WithSkeleton } from "@ph-mold/ph-ui";
+import { InquiryListSkeleton } from "./InquiryList.skeleton";
 
 export default function InquiryList() {
   const router = useRouter();
@@ -21,6 +23,7 @@ export default function InquiryList() {
   const [detailData, setDetailData] = useState<IInquiryWithoutPassword | null>(
     null
   );
+  const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function InquiryList() {
 
   useEffect(() => {
     const fetchInquiries = async () => {
+      setIsLoading(true);
       try {
         const data = await getInquiries(currentPage, itemsPerPage);
         setInquiries(data?.items ?? []);
@@ -43,6 +47,8 @@ export default function InquiryList() {
         router.push(`/inquiries?${params.toString()}`);
       } catch (error) {
         console.error("Failed to fetch inquiries:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -74,32 +80,36 @@ export default function InquiryList() {
 
   return (
     <div className="space-y-2">
-      {inquiries.map((inquiry) => {
-        const isExpanded = expandedInquiryId === inquiry.id.toString();
+      <WithSkeleton isLoading={isLoading} skeleton={<InquiryListSkeleton />}>
+        <div className="space-y-2">
+          {inquiries.map((inquiry) => {
+            const isExpanded = expandedInquiryId === inquiry.id.toString();
 
-        return (
-          <InquiryItem
-            key={inquiry.id}
-            inquiry={inquiry}
-            isExpanded={isExpanded}
-            detailData={detailData}
-            onToggle={() => {
-              if (isExpanded) {
-                setExpandedInquiryId(null);
-                setDetailData(null);
-              } else {
-                setSelectedInquiryId(inquiry.id);
-              }
-            }}
+            return (
+              <InquiryItem
+                key={inquiry.id}
+                inquiry={inquiry}
+                isExpanded={isExpanded}
+                detailData={detailData}
+                onToggle={() => {
+                  if (isExpanded) {
+                    setExpandedInquiryId(null);
+                    setDetailData(null);
+                  } else {
+                    setSelectedInquiryId(inquiry.id);
+                  }
+                }}
+              />
+            );
+          })}
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
           />
-        );
-      })}
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+        </div>
+      </WithSkeleton>
 
       <PasswordModal
         open={selectedInquiryId !== null}

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Button } from "@ph-mold/ph-ui";
-import InquiryForm from "../../components/inquiries/InquiryForm";
-import InquiryList from "../../components/inquiries/InquiryList";
+import InquiryForm from "@/components/inquiries/InquiryForm";
+import InquiryList from "@/components/inquiries/InquiryList";
 
 export default function InquiriesPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -31,7 +31,9 @@ export default function InquiriesPage() {
 
       <div className="mt-12">
         <h2 className="mb-4 text-2xl font-bold md:text-3xl">문의 내역</h2>
-        <InquiryList />
+        <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
+          <InquiryList />
+        </Suspense>
       </div>
     </div>
   );
