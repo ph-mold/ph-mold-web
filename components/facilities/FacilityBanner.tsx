@@ -9,7 +9,7 @@ interface Props {
 
 export function FacilityBanner({ facility }: Props) {
   return (
-    <div className="relative hidden overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-lg md:block">
+    <div className="relative hidden overflow-hidden rounded-2xl shadow-lg md:block">
       <div className="relative w-full">
         <motion.div
           key={facility.id}
@@ -28,15 +28,19 @@ export function FacilityBanner({ facility }: Props) {
           />
         </motion.div>
       </div>
-      <div className="relative bg-white p-8">
+      <div className="bg-background relative p-8">
         <motion.div
           key={facility.id}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900">{facility.title}</h2>
-          <p className="mt-4 text-xl text-gray-600">{facility.description}</p>
+          <h2 className="text-foreground text-3xl font-bold">
+            {facility.title}
+          </h2>
+          <p className="text-foreground2 mt-4 text-xl">
+            {facility.description}
+          </p>
         </motion.div>
       </div>
     </div>

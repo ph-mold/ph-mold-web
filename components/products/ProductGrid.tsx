@@ -47,11 +47,13 @@ export default function ProductGrid({ categoryKey }: Props) {
               whileHover={{ y: -4 }}
               className="group relative flex flex-col gap-3"
             >
-              <div className="absolute top-2 left-2 z-5 rounded-md bg-white/80 px-2 py-1 text-xs font-medium backdrop-blur-sm">
-                <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
-                  {item.material}
-                </span>
-              </div>
+              {item.material && (
+                <div className="bg-gradient-primary absolute top-2 left-2 z-5 rounded-md bg-gradient-to-r px-2 py-1 text-xs font-medium">
+                  <span className="text-reverseForeground">
+                    {item.material}
+                  </span>
+                </div>
+              )}
               <div className="bg-background2 relative flex aspect-square items-center justify-center overflow-hidden rounded-lg">
                 {item.thumbnailImageUrl ? (
                   <div className="relative size-full transition-transform duration-200 group-hover:scale-105">

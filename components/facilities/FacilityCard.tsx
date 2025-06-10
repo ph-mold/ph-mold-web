@@ -13,7 +13,7 @@ export function FacilityCard({ facility, isSelected, onSelect }: Props) {
     <div
       onClick={() => onSelect(facility)}
       className={`group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-sm transition-all duration-200 hover:shadow-md ${
-        isSelected ? "ring-2 ring-blue-500" : ""
+        isSelected ? "ring-signature ring-2" : ""
       }`}
     >
       <div className="relative h-[240px] w-full">
@@ -27,10 +27,10 @@ export function FacilityCard({ facility, isSelected, onSelect }: Props) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-bold tracking-tight text-gray-900 transition-colors duration-200 group-hover:text-blue-600">
+        <h3 className="text-foreground group-hover:text-interactive-link text-lg font-bold tracking-tight transition-colors duration-200">
           {facility.title}
         </h3>
-        <p className="mt-2 line-clamp-2 text-sm text-gray-600">
+        <p className="text-foreground2 mt-2 line-clamp-2 text-sm">
           {facility.description}
         </p>
       </div>

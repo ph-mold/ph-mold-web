@@ -39,8 +39,8 @@ export default function About() {
           className="relative h-[500px] overflow-hidden md:h-[600px]"
         >
           <div className="pointer-events-none absolute inset-0">
-            <div className="animate-mist absolute h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E0F7FA] opacity-30" />
-            <div className="animate-mist absolute h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#BBDEFB] opacity-25" />
+            <div className="animate-mist bg-mist-primary absolute h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30" />
+            <div className="animate-mist bg-mist-secondary absolute h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25" />
           </div>
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
             <motion.h1
@@ -71,7 +71,7 @@ export default function About() {
                 subtitle="혁신적인 기술로 미래를 선도합니다"
               />
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <div className="border-background2 h-fit rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-border-strong bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   {COMPANY_INFO.slice(0, 3).map((info, index) => (
                     <IconCard
                       key={index}
@@ -84,7 +84,7 @@ export default function About() {
                     />
                   ))}
                 </div>
-                <div className="border-background2 h-fit rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-border-strong bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   {COMPANY_INFO.slice(3).map((info, index) => (
                     <IconCard
                       key={index}
@@ -115,7 +115,7 @@ export default function About() {
               <SectionTitle title="연혁" subtitle="우리의 발자취입니다" />
               <div className="relative">
                 {/* 타임라인 라인 */}
-                <div className="to-signature absolute left-4 h-full w-0.5 bg-gradient-to-b from-blue-600 md:left-1/2 md:-translate-x-1/2" />
+                <div className="to-signature from-signature absolute left-4 h-full w-0.5 bg-gradient-to-b md:left-1/2 md:-translate-x-1/2" />
 
                 {COMPANY_HISTORY.map((item, index) => (
                   <div
@@ -127,7 +127,7 @@ export default function About() {
                       <div
                         className={`absolute h-12 w-12 rounded-full bg-gradient-to-r ${item.gradient} opacity-20`}
                       />
-                      <div className="absolute h-8 w-8 rounded-full bg-white shadow-md" />
+                      <div className="bg-background absolute h-8 w-8 rounded-full shadow-md" />
                       <div
                         className={`absolute h-4 w-4 rounded-full bg-gradient-to-r ${item.gradient}`}
                       />
@@ -138,7 +138,7 @@ export default function About() {
                       <div
                         className={`absolute h-12 w-12 rounded-full bg-gradient-to-r ${item.gradient} opacity-20`}
                       />
-                      <div className="absolute h-8 w-8 rounded-full bg-white shadow-md" />
+                      <div className="bg-background absolute h-8 w-8 rounded-full shadow-md" />
                       <div
                         className={`absolute h-4 w-4 rounded-full bg-gradient-to-r ${item.gradient}`}
                       />
@@ -152,9 +152,9 @@ export default function About() {
                           : "md:ml-auto md:pl-16 md:text-left"
                       }`}
                     >
-                      <div className="border-background2 w-full overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
+                      <div className="border-border-strong bg-background w-full overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
                         <div
-                          className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${item.gradient} p-3 text-white`}
+                          className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${item.gradient} text-reverseForeground p-3`}
                         >
                           {item.icon}
                         </div>

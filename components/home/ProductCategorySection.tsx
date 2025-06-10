@@ -36,7 +36,7 @@ export default function ProductCategorySection() {
             transition={{ duration: 0.2, delay: i * 0.1 }}
           >
             <Link href={product.link}>
-              <div className="group border-background2 relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 hover:shadow-xl sm:flex-row">
+              <div className="group border-border-strong bg-background relative flex h-full cursor-pointer flex-col items-center gap-6 overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-200 hover:shadow-xl sm:flex-row">
                 <div className="bg-background2 w-full flex-none rounded-lg sm:h-40 sm:w-40">
                   <Image
                     loader={imageLoader}

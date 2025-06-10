@@ -18,11 +18,11 @@ export const CoreValueCard = ({ value, index }: CoreValueCardProps) => (
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.2, delay: index * 0.1 }}
-    className="group border-background2 relative overflow-hidden rounded-2xl border bg-white p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
+    className="group border-border-strong bg-background relative overflow-hidden rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
   >
     <div className="relative z-10">
       <div
-        className={`mb-6 inline-flex rounded-xl bg-gradient-to-r ${value.gradient} p-3 text-white`}
+        className={`mb-6 inline-flex rounded-xl bg-gradient-to-r ${value.gradient} text-reverseForeground p-3`}
       >
         {value.icon}
       </div>

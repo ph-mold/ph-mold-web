@@ -14,26 +14,87 @@
 
 @layer base {
   :root {
+    /* Font */
     --font-sans: "Noto Sans KR", sans-serif;
-    --pm-background: #ffffff;
-    --pm-background2: #f3f8fc;
-    --pm-foreground: #171717;
-    --pm-foreground2: #6d6d6d;
-    --pm-reverseForground: #ffffff;
-    --pm-signature: #0f9bff;
-    --pm-error: #ff3f2d;
+
+    /* Base Colors */
+    --color-base-white: #ffffff;
+    --color-base-light: #f3f8fc;
+    --color-base-dark: #171717;
+    --color-base-muted: #6d6d6d;
+
+    /* Border Colors */
+    --color-border-default: #e5e7eb;
+    --color-border-strong: #d1d5db;
+    --color-border-light: #f3f4f6;
+    --color-border-focus: #0f9bff;
+
+    /* Brand Colors */
+    --color-brand-primary: #0f9bff;
+    --color-brand-error: #ff3f2d;
+
+    /* Gradient Base Colors */
+    --color-gradient-blue: from-sky-300 to-blue-400;
+    --color-gradient-purple: from-violet-300 to-purple-400;
+    --color-gradient-pink: from-rose-300 to-pink-400;
+    --color-gradient-teal: from-emerald-300 to-teal-400;
+    --color-gradient-orange: from-amber-300 to-orange-400;
+
+    /* Background Effects */
+    --color-mist-primary: #e0f7fa;
+    --color-mist-secondary: #bbdefb;
+
+    /* Status Colors */
+    --color-status-pending-bg: #fef9c3;
+    --color-status-pending-text: #ca8a04;
+    --color-status-complete-bg: #dcfce7;
+    --color-status-complete-text: #16a34a;
+
+    /* Interactive Colors */
+    --color-hover-link: #2563eb;
   }
 }
 
 @theme {
+  /* Font */
   --font-family: var(--font-sans);
-  --color-background: var(--pm-background);
-  --color-background2: var(--pm-background2);
-  --color-foreground: var(--pm-foreground);
-  --color-foreground2: var(--pm-foreground2);
-  --color-reverseForground: var(--pm-reverseForground);
-  --color-signature: var(--pm-signature);
-  --color-error: var(--pm-error);
+
+  /* Base Theme Colors */
+  --color-background: var(--color-base-white);
+  --color-background2: var(--color-base-light);
+  --color-foreground: var(--color-base-dark);
+  --color-foreground2: var(--color-base-muted);
+  --color-reverseForeground: var(--color-base-white);
+
+  /* Border Theme Colors */
+  --color-border: var(--color-border-default);
+  --color-border-strong: var(--color-border-strong);
+  --color-border-light: var(--color-border-light);
+  --color-border-focus: var(--color-border-focus);
+
+  /* Brand Theme Colors */
+  --color-signature: var(--color-brand-primary);
+  --color-error: var(--color-brand-error);
+
+  /* Gradient Theme Colors */
+  --color-gradient-primary: var(--color-gradient-blue);
+  --color-gradient-secondary: var(--color-gradient-purple);
+  --color-gradient-tertiary: var(--color-gradient-pink);
+  --color-gradient-quaternary: var(--color-gradient-teal);
+  --color-gradient-quinary: var(--color-gradient-orange);
+
+  /* Status Theme Colors */
+  --color-status-pending-bg: var(--color-status-pending-bg);
+  --color-status-pending-text: var(--color-status-pending-text);
+  --color-status-complete-bg: var(--color-status-complete-bg);
+  --color-status-complete-text: var(--color-status-complete-text);
+
+  /* Interactive Theme Colors */
+  --color-hover-link: var(--color-hover-link);
+
+  /* Background Effects Theme Colors */
+  --color-mist-primary: var(--color-mist-primary);
+  --color-mist-secondary: var(--color-mist-secondary);
 }
 
 html {
@@ -109,4 +170,22 @@ a {
 
 .animate-fade-out {
   animation: fadeOut 1s ease-in-out both;
+}
+
+@layer components {
+  .bg-gradient-primary {
+    @apply from-sky-300 to-blue-400;
+  }
+  .bg-gradient-secondary {
+    @apply from-violet-300 to-purple-400;
+  }
+  .bg-gradient-tertiary {
+    @apply from-rose-300 to-pink-400;
+  }
+  .bg-gradient-quaternary {
+    @apply from-emerald-300 to-teal-400;
+  }
+  .bg-gradient-quinary {
+    @apply from-amber-300 to-orange-400;
+  }
 }

@@ -36,28 +36,28 @@ export const COMPANY_HISTORY: HistoryItem[] = [
     title: "P&M Mold 설립",
     description: "화장품 용기 제조 사업 시작",
     icon: <Rocket />,
-    gradient: "from-sky-300 to-blue-400"
+    gradient: "bg-gradient-primary"
   },
   {
     year: "2024",
     title: "생산 시설 구축",
     description: "최신 설비 도입 및 생산라인 구축",
     icon: <Building2 />,
-    gradient: "from-violet-300 to-purple-400"
+    gradient: "bg-gradient-secondary"
   },
   {
     year: "2023",
     title: "사업 계획 수립",
     description: "시장 조사 및 연구",
     icon: <Target />,
-    gradient: "from-rose-300 to-pink-400"
+    gradient: "bg-gradient-tertiary"
   },
   {
     year: "2023",
     title: "기술 연구소 설립",
     description: "연구개발 인프라 구축",
     icon: <Lightbulb />,
-    gradient: "from-emerald-300 to-teal-400"
+    gradient: "bg-gradient-quaternary"
   }
 ];
 
@@ -66,19 +66,19 @@ export const CORE_VALUES: CoreValue[] = [
     icon: <Lightbulb className="h-8 w-8" />,
     title: "혁신",
     description: "끊임없는 연구개발을 통한 혁신적인 제품 개발",
-    gradient: "from-amber-300 to-orange-400"
+    gradient: "bg-gradient-quinary"
   },
   {
     icon: <HandshakeIcon className="h-8 w-8" />,
     title: "신뢰",
     description: "고객과의 신뢰를 바탕으로 한 장기적인 파트너십",
-    gradient: "from-sky-300 to-blue-400"
+    gradient: "bg-gradient-primary"
   },
   {
     icon: <Gem className="h-8 w-8" />,
     title: "품질",
     description: "최고의 품질을 위한 철저한 품질 관리",
-    gradient: "from-violet-300 to-purple-400"
+    gradient: "bg-gradient-secondary"
   }
 ];
 

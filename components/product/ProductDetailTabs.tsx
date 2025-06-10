@@ -19,7 +19,7 @@ export default function ProductDetailTabs({ activeTab }: Props) {
     router.push(`#${id}`);
   };
   return (
-    <div className="scrollbar-hide border-background2 mx-auto w-full overflow-x-scroll border-y">
+    <div className="scrollbar-hide border-border-light mx-auto w-full overflow-x-scroll border-y">
       <Tab
         className="w-fit"
         activeTab={activeTab}

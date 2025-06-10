@@ -14,5 +14,10 @@ export const API = {
   },
   SAMPLE_REQUESTS: {
     CREATE: `${API_BASE}/sample-requests`
+  },
+  INQUIRIES: {
+    CREATE: `${API_BASE}/inquiries`,
+    GET: `${API_BASE}/inquiries`,
+    GET_DETAIL: (inquiryId: number) => `${API_BASE}/inquiries/${inquiryId}`
   }
-};
+} as const;

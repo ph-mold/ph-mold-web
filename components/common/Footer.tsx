@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="border-background2 min-h-50 w-full border-t-2 py-6 text-center text-sm">
+    <footer className="border-border-light min-h-50 w-full border-t-2 py-6 text-center text-sm">
       <div className="mx-auto max-w-[1080px] px-6">
         {/* 회사 정보 */}
         <p className="font-semibold">(주)팜앤몰드</p>
