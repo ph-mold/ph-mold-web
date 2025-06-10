@@ -4,6 +4,7 @@ import { useState, Suspense } from "react";
 import { Button } from "@ph-mold/ph-ui";
 import InquiryForm from "@/components/inquiries/InquiryForm";
 import InquiryList from "@/components/inquiries/InquiryList";
+import { InquiryListSkeleton } from "@/components/inquiries/InquiryList.skeleton";
 
 export default function InquiriesPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function InquiriesPage() {
 
       <div className="mt-12">
         <h2 className="mb-4 text-2xl font-bold md:text-3xl">문의 내역</h2>
-        <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
+        <Suspense fallback={<InquiryListSkeleton />}>
           <InquiryList />
         </Suspense>
       </div>
