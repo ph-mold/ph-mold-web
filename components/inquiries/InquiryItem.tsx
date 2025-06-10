@@ -23,7 +23,7 @@ export function InquiryItem({
       className={`bg- rounded-lg border-[1.5px] p-4 ${
         isExpanded
           ? "border-l-signature border-signature/30 bg-primary/5 border-l-4"
-          : "border-background2"
+          : "border-border"
       }`}
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
@@ -77,7 +77,7 @@ export function InquiryItem({
         </div>
       </div>
       {isExpanded && detailData && detailData.id === inquiry.id && (
-        <div className="border-background2 mt-3 space-y-1 border-t pt-3">
+        <div className="border-border-strong mt-3 space-y-1 border-t pt-3">
           <p className="text-foreground2 text-sm">주소: {detailData.address}</p>
           {detailData.detailedAddress && (
             <p className="text-foreground2 text-sm">

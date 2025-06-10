@@ -25,7 +25,7 @@ export default function InquiriesPage() {
             : "my-0 max-h-0 opacity-0"
         }`}
       >
-        <div className="border-background2 bg-background w-full rounded-xl border-[1.5px] p-4 md:p-8">
+        <div className="border-border bg-background w-full rounded-xl border-[1.5px] p-4 md:p-8">
           <InquiryForm onClose={() => setIsFormOpen(false)} />
         </div>
       </div>

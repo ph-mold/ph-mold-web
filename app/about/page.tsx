@@ -71,7 +71,7 @@ export default function About() {
                 subtitle="혁신적인 기술로 미래를 선도합니다"
               />
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <div className="border-background2 bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-border-strong bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   {COMPANY_INFO.slice(0, 3).map((info, index) => (
                     <IconCard
                       key={index}
@@ -84,7 +84,7 @@ export default function About() {
                     />
                   ))}
                 </div>
-                <div className="border-background2 bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
+                <div className="border-border-strong bg-background h-fit rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl">
                   {COMPANY_INFO.slice(3).map((info, index) => (
                     <IconCard
                       key={index}
@@ -152,7 +152,7 @@ export default function About() {
                           : "md:ml-auto md:pl-16 md:text-left"
                       }`}
                     >
-                      <div className="border-background2 bg-background w-full overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
+                      <div className="border-border-strong bg-background w-full overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-200 hover:shadow-xl md:inline-block md:max-w-fit md:min-w-[320px]">
                         <div
                           className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${item.gradient} text-reverseForeground p-3`}
                         >

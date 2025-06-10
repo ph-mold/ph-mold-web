@@ -4,7 +4,7 @@ export function InquiryListSkeleton() {
       {[...Array(5)].map((_, index) => (
         <div
           key={index}
-          className="border-background2 rounded-lg border-[1.5px] p-4"
+          className="border-border rounded-lg border-[1.5px] p-4"
         >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex-1">

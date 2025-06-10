@@ -53,7 +53,7 @@ export default function SubCategoryTabs({ currentTab, subTabs }: Props) {
   });
 
   return (
-    <div className="border-background2 w-full overflow-x-scroll overflow-y-hidden border-b-2">
+    <div className="border-border-light w-full overflow-x-scroll overflow-y-hidden border-b-2">
       <Tab
         className="pt-2 pb-3"
         activeTab={activeTab}

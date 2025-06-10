@@ -26,7 +26,7 @@ export default function WhyPMSection() {
   return (
     <section
       id="P&M"
-      className="border-background2 flex h-fit flex-col gap-8 border-t-2 py-20"
+      className="border-border-light flex h-fit flex-col gap-8 border-t-2 py-20"
     >
       <div className="mb-16 text-center">
         <motion.h2
@@ -53,7 +53,7 @@ export default function WhyPMSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, delay: i * 0.1 }}
-            className="group border-background2 bg-background relative overflow-hidden rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
+            className="group border-border-strong bg-background relative overflow-hidden rounded-2xl border p-8 shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             <div className="relative z-10">
               <div

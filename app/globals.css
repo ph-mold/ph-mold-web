@@ -23,6 +23,12 @@
     --color-base-dark: #171717;
     --color-base-muted: #6d6d6d;
 
+    /* Border Colors */
+    --color-border-default: #e5e7eb;
+    --color-border-strong: #d1d5db;
+    --color-border-light: #f3f4f6;
+    --color-border-focus: #0f9bff;
+
     /* Brand Colors */
     --color-brand-primary: #0f9bff;
     --color-brand-error: #ff3f2d;
@@ -59,6 +65,12 @@
   --color-foreground: var(--color-base-dark);
   --color-foreground2: var(--color-base-muted);
   --color-reverseForeground: var(--color-base-white);
+
+  /* Border Theme Colors */
+  --color-border: var(--color-border-default);
+  --color-border-strong: var(--color-border-strong);
+  --color-border-light: var(--color-border-light);
+  --color-border-focus: var(--color-border-focus);
 
   /* Brand Theme Colors */
   --color-signature: var(--color-brand-primary);

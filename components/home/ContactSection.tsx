@@ -7,7 +7,7 @@ export default function ContactSection() {
   return (
     <section
       id="문의"
-      className="border-background2 flex h-fit flex-col gap-8 border-t-2 py-20"
+      className="border-border-light flex h-fit flex-col gap-8 border-t-2 py-20"
     >
       <div className="mb-4 text-center">
         <h2 className="mb-4 text-4xl font-bold md:text-5xl">문의</h2>
