@@ -71,27 +71,33 @@ export default function InquiryList() {
   return (
     <div className="space-y-2">
       <WithSkeleton isLoading={isLoading} skeleton={<InquiryListSkeleton />}>
-        <div className="space-y-2">
+        <div className="grid grid-rows-[repeat(5,minmax(0,1fr))] gap-2">
           {(data?.items ?? []).map((inquiry) => {
             const isExpanded = expandedInquiryId === inquiry.id.toString();
 
             return (
-              <InquiryItem
-                key={inquiry.id}
-                inquiry={inquiry}
-                isExpanded={isExpanded}
-                detailData={detailData}
-                onToggle={() => {
-                  if (isExpanded) {
-                    setExpandedInquiryId(null);
-                    setDetailData(null);
-                  } else {
-                    setSelectedInquiryId(inquiry.id);
-                  }
-                }}
-              />
+              <div key={inquiry.id} className="relative">
+                <InquiryItem
+                  inquiry={inquiry}
+                  isExpanded={isExpanded}
+                  detailData={detailData}
+                  onToggle={() => {
+                    if (isExpanded) {
+                      setExpandedInquiryId(null);
+                      setDetailData(null);
+                    } else {
+                      setSelectedInquiryId(inquiry.id);
+                    }
+                  }}
+                />
+              </div>
             );
           })}
+          {Array(Math.max(0, itemsPerPage - (data?.items?.length || 0)))
+            .fill(0)
+            .map((_, index) => (
+              <div key={`empty-${index}`} aria-hidden="true" />
+            ))}
 
           <Pagination
             currentPage={currentPage}
