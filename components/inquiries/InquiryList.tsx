@@ -7,9 +7,8 @@ import {
   GET_INQUIRIES
 } from "@/lib/api/inquiry";
 import { PasswordModal } from "./PasswordModal";
-import { Pagination } from "../common/Pagination";
 import { InquiryItem } from "./InquiryItem";
-import { WithSkeleton } from "@ph-mold/ph-ui";
+import { Pagination, WithSkeleton } from "@ph-mold/ph-ui";
 import { InquiryListSkeleton } from "./InquiryList.skeleton";
 import useSWR from "swr";
 

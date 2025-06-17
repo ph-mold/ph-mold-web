@@ -10,8 +10,7 @@ import {
   validatePhoneNumber
 } from "@/lib/validators/input";
 import { createSampleRequest } from "@/lib/api/products";
-import { Button, Input, Modal, TextArea } from "@ph-mold/ph-ui";
-import Alert from "../common/Alert";
+import { Alert, Button, Input, Modal, TextArea } from "@ph-mold/ph-ui";
 import { useState } from "react";
 
 interface Props {
