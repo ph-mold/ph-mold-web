@@ -1,59 +1,5 @@
+@import "../node_modules/@ph-mold/ph-ui/dist/ph-ui.css";
 @import "tailwindcss";
-@source "../node_modules/@ph-mold/ph-ui";
-
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none; /* IE, Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-}
-
-@layer base {
-  :root {
-    /* Font */
-    --font-sans: "Noto Sans KR", sans-serif;
-
-    /* Base Colors */
-    --color-base-white: #ffffff;
-    --color-base-light: #f3f8fc;
-    --color-base-dark: #171717;
-    --color-base-muted: #6d6d6d;
-
-    /* Border Colors */
-    --color-border-default: #e5e7eb;
-    --color-border-strong: #d1d5db;
-    --color-border-light: #f3f4f6;
-    --color-border-focus: #0f9bff;
-
-    /* Brand Colors */
-    --color-brand-primary: #0f9bff;
-    --color-brand-error: #ff3f2d;
-
-    /* Gradient Base Colors */
-    --color-gradient-blue: from-sky-300 to-blue-400;
-    --color-gradient-purple: from-violet-300 to-purple-400;
-    --color-gradient-pink: from-rose-300 to-pink-400;
-    --color-gradient-teal: from-emerald-300 to-teal-400;
-    --color-gradient-orange: from-amber-300 to-orange-400;
-
-    /* Background Effects */
-    --color-mist-primary: #e0f7fa;
-    --color-mist-secondary: #bbdefb;
-
-    /* Status Colors */
-    --color-status-pending-bg: #fef9c3;
-    --color-status-pending-text: #ca8a04;
-    --color-status-complete-bg: #dcfce7;
-    --color-status-complete-text: #16a34a;
-
-    /* Interactive Colors */
-    --color-hover-link: #2563eb;
-  }
-}
 
 @theme {
   /* Font */
@@ -76,13 +22,6 @@
   --color-signature: var(--color-brand-primary);
   --color-error: var(--color-brand-error);
 
-  /* Gradient Theme Colors */
-  --color-gradient-primary: var(--color-gradient-blue);
-  --color-gradient-secondary: var(--color-gradient-purple);
-  --color-gradient-tertiary: var(--color-gradient-pink);
-  --color-gradient-quaternary: var(--color-gradient-teal);
-  --color-gradient-quinary: var(--color-gradient-orange);
-
   /* Status Theme Colors */
   --color-status-pending-bg: var(--color-status-pending-bg);
   --color-status-pending-text: var(--color-status-pending-text);
@@ -95,23 +34,6 @@
   /* Background Effects Theme Colors */
   --color-mist-primary: var(--color-mist-primary);
   --color-mist-secondary: var(--color-mist-secondary);
-}
-
-html {
-  @apply text-foreground bg-background;
-}
-
-body,
-main {
-  @apply max-w-full font-sans antialiased;
-}
-
-* {
-  @apply box-border;
-}
-
-a {
-  @apply no-underline;
 }
 
 @keyframes mist {
