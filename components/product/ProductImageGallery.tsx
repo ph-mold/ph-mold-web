@@ -98,20 +98,18 @@ export default function ProductImageGallery({ productKey }: Props) {
               key={idx}
               onClick={() => swiperRef.current?.slideToLoop(idx)}
               variant="text"
-              className={`!bg-background2 aspect-square border-2 !p-0 ${
+              className={`!bg-background2 relative aspect-square !h-full !w-full border-2 !p-0 ${
                 idx === currentIndex ? "border-signature" : "border-transparent"
               }`}
             >
-              <div className="relative h-full w-full">
-                <Image
-                  loader={imageLoader}
-                  src={image.url}
-                  alt={`thumb-${image.id}`}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  loading="eager"
-                />
-              </div>
+              <Image
+                loader={imageLoader}
+                src={image.url}
+                alt={`thumb-${image.id}`}
+                fill
+                style={{ objectFit: "contain" }}
+                loading="eager"
+              />
             </Button>
           ))}
         </div>
