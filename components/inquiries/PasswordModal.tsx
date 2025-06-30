@@ -1,79 +1,100 @@
-import { useEffect, useState } from "react";
 import { Button, Input, Modal } from "@ph-mold/ph-ui";
+import { Form, Formik, FormikHelpers } from "formik";
+import { IPasswordModalFormValues } from "@/types/api/inquiry";
+import * as Yup from "yup";
 
-interface PasswordModalProps {
+const validationSchema = Yup.object({
+  password: Yup.string()
+    .min(4, "비밀번호는 4자리여야 합니다.")
+    .max(4, "비밀번호는 4자리여야 합니다.")
+});
+
+const initFormValues: IPasswordModalFormValues = {
+  password: ""
+};
+
+interface Props {
   open: boolean;
   onClose: () => void;
   onVerify: (password: string) => Promise<boolean>;
 }
 
-export function PasswordModal({ open, onClose, onVerify }: PasswordModalProps) {
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      setPassword("");
-      setError(false);
-      setIsLoading(false);
-    }
-  }, [open]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
+export function PasswordModal({ open, onClose, onVerify }: Props) {
+  const handleSubmit = async (
+    values: IPasswordModalFormValues,
+    {
+      setSubmitting,
+      resetForm,
+      setFieldError
+    }: FormikHelpers<IPasswordModalFormValues>
+  ) => {
     try {
-      const isValid = await onVerify(password);
+      setSubmitting(true);
+      const isValid = await onVerify(values.password);
       if (!isValid) {
-        setError(true);
+        setFieldError("password", "비밀번호가 올바르지 않습니다.");
+      } else {
+        resetForm();
+        onClose();
       }
     } catch {
-      setError(true);
+      setFieldError("password", "비밀번호 확인 중 오류가 발생했습니다.");
     } finally {
-      setIsLoading(false);
+      setSubmitting(false);
     }
-  };
-
-  const handleClose = () => {
-    setPassword("");
-    setError(false);
-    setIsLoading(false);
-    onClose();
   };
 
   return (
-    <Modal open={open} onClose={handleClose} title="비밀번호 확인">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setError(false);
-          }}
-          placeholder="비밀번호를 입력해주세요"
-          error={error}
-          helperText={error ? "비밀번호가 일치하지 않습니다" : undefined}
-          maxLength={4}
-          required
-          disabled={isLoading}
-        />
-        <div className="flex justify-end gap-2">
-          <Button
-            variant="outlined"
-            onClick={handleClose}
-            type="button"
-            disabled={isLoading}
-          >
-            취소
-          </Button>
-          <Button type="submit" loading={isLoading}>
-            확인
-          </Button>
-        </div>
-      </form>
+    <Modal open={open} onClose={onClose} title="비밀번호 확인">
+      <Formik<IPasswordModalFormValues>
+        initialValues={initFormValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+        validateOnBlur={true}
+        validateOnChange={true}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          isSubmitting,
+          handleChange,
+          handleBlur
+        }) => (
+          <Form className="space-y-4">
+            <Input
+              required
+              label="비밀번호"
+              name="password"
+              type="password"
+              placeholder="비밀번호 4자리"
+              maxLength={4}
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!(errors.password && touched.password)}
+              helperText={
+                errors.password && touched.password
+                  ? errors.password
+                  : undefined
+              }
+            />
+            <div className="flex justify-end gap-2">
+              <Button
+                variant="outlined"
+                onClick={onClose}
+                type="button"
+                disabled={isSubmitting}
+              >
+                취소
+              </Button>
+              <Button type="submit" loading={isSubmitting}>
+                확인
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </Modal>
   );
 }
