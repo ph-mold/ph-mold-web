@@ -59,7 +59,9 @@ export function PasswordModal({ open, onClose, onVerify }: Props) {
           touched,
           isSubmitting,
           handleChange,
-          handleBlur
+          handleBlur,
+          setTouched,
+          submitForm
         }) => (
           <Form className="space-y-4">
             <Input
@@ -88,7 +90,16 @@ export function PasswordModal({ open, onClose, onVerify }: Props) {
               >
                 취소
               </Button>
-              <Button type="submit" loading={isSubmitting}>
+              <Button
+                type="button"
+                loading={isSubmitting}
+                onClick={() => {
+                  setTouched({
+                    password: true
+                  });
+                  submitForm();
+                }}
+              >
                 확인
               </Button>
             </div>

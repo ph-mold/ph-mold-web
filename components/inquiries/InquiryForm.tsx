@@ -82,8 +82,9 @@ export default function InquiryForm({ onClose }: Props) {
       initialValues={initialFormValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      validateOnBlur={true}
+      validateOnMount={false}
       validateOnChange={true}
+      validateOnBlur={true}
     >
       {({
         setFieldValue,
@@ -92,7 +93,9 @@ export default function InquiryForm({ onClose }: Props) {
         touched,
         isSubmitting,
         handleBlur,
-        handleChange
+        handleChange,
+        setTouched,
+        submitForm
       }) => (
         <Form className="space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -225,7 +228,23 @@ export default function InquiryForm({ onClose }: Props) {
               <p className="text-error ml-1 text-sm">{errors.agree}</p>
             )}
           </div>
-          <Button fullWidth type="submit" disabled={isSubmitting}>
+          <Button
+            fullWidth
+            type="button"
+            loading={isSubmitting}
+            onClick={() => {
+              setTouched({
+                name: true,
+                company: true,
+                email: true,
+                phone: true,
+                address: true,
+                password: true,
+                agree: true
+              });
+              submitForm();
+            }}
+          >
             {isSubmitting ? "처리중..." : "문의하기"}
           </Button>
           <div>
