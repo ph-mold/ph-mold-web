@@ -82,8 +82,18 @@ export default function InquiryForm({ onClose }: Props) {
       initialValues={initialFormValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      validateOnBlur={true}
+      validateOnChange={true}
     >
-      {({ setFieldValue, values, errors, touched, isSubmitting }) => (
+      {({
+        setFieldValue,
+        values,
+        errors,
+        touched,
+        isSubmitting,
+        handleBlur,
+        handleChange
+      }) => (
         <Form className="space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Input
@@ -92,7 +102,8 @@ export default function InquiryForm({ onClose }: Props) {
               name="name"
               placeholder="예) 홍길동"
               value={values.name}
-              onChange={(e) => setFieldValue("name", e.target.value)}
+              onChange={handleChange}
+              onBlur={handleBlur}
               error={!!(errors.name && touched.name)}
               helperText={errors.name && touched.name ? errors.name : undefined}
             />
@@ -102,7 +113,8 @@ export default function InquiryForm({ onClose }: Props) {
               name="company"
               placeholder="예) (주) 팜앤몰드"
               value={values.company}
-              onChange={(e) => setFieldValue("company", e.target.value)}
+              onChange={handleChange}
+              onBlur={handleBlur}
               error={!!(errors.company && touched.company)}
               helperText={
                 errors.company && touched.company ? errors.company : undefined
@@ -117,7 +129,8 @@ export default function InquiryForm({ onClose }: Props) {
               type="email"
               placeholder="예) ph-mold@hanmail.com"
               value={values.email}
-              onChange={(e) => setFieldValue("email", e.target.value)}
+              onChange={handleChange}
+              onBlur={handleBlur}
               error={!!(errors.email && touched.email)}
               helperText={
                 errors.email && touched.email ? errors.email : undefined
@@ -133,6 +146,7 @@ export default function InquiryForm({ onClose }: Props) {
                 const formatted = formatPhoneNumber(e.target.value);
                 setFieldValue("phone", formatted);
               }}
+              onBlur={handleBlur}
               error={!!(errors.phone && touched.phone)}
               helperText={
                 errors.phone && touched.phone ? errors.phone : undefined
@@ -166,14 +180,16 @@ export default function InquiryForm({ onClose }: Props) {
             name="detailedAddress"
             placeholder="건물, 층수 등"
             value={values.detailedAddress}
-            onChange={(e) => setFieldValue("detailedAddress", e.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <TextArea
             label="문의 내용"
             name="remarks"
             placeholder="문의하실 내용을 입력해주세요."
             value={values.remarks}
-            onChange={(e) => setFieldValue("remarks", e.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
             rows={5}
             maxLength={300}
           />
@@ -185,7 +201,8 @@ export default function InquiryForm({ onClose }: Props) {
             placeholder="비밀번호 4자리"
             maxLength={4}
             value={values.password}
-            onChange={(e) => setFieldValue("password", e.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
             error={!!(errors.password && touched.password)}
             helperText={
               errors.password && touched.password ? errors.password : undefined
@@ -197,7 +214,7 @@ export default function InquiryForm({ onClose }: Props) {
                 type="checkbox"
                 name="agree"
                 checked={values.agree}
-                onChange={(e) => setFieldValue("agree", e.target.checked)}
+                onChange={handleChange}
                 className="mt-1"
               />
               <span className="text-foreground text-sm font-medium">
