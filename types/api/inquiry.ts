@@ -25,3 +25,7 @@ export interface IPaginatedInquiriesResponse {
   limit: number;
   totalPages: number;
 }
+
+export interface IPasswordModalFormValues {
+  password: string;
+}
