@@ -6,11 +6,20 @@ import {
 } from "@/lib/api/sample-request";
 import { ISampleRequest } from "@/types/api/sample-request";
 import useSWR from "swr";
+import { SampleRequestTimeline } from "./SampleRequestTimeLine";
 
 export function SampleRequest({ trackingCode }: { trackingCode: string }) {
   const { data, isLoading, error } = useSWR<ISampleRequest | undefined>(
     [GET_SAMPLE_REQUEST_BY_TRACKING_CODE, trackingCode],
     () => getSampleRequestByTrackingCode(trackingCode)
   );
-  return <div>{JSON.stringify(data, null, 2)}</div>;
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  return (
+    <div className="space-y-4">
+      <SampleRequestTimeline sampleRequest={data!} />
+    </div>
+  );
 }
