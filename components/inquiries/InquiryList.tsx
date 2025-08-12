@@ -53,16 +53,12 @@ export default function InquiryList() {
   const handlePasswordVerify = async (password: string) => {
     if (!selectedInquiryId) return false;
 
-    try {
-      const data = await postInquiryDetail(selectedInquiryId, password);
-      if (data) {
-        setDetailData(data);
-        setExpandedInquiryId(String(selectedInquiryId));
-        setSelectedInquiryId(null);
-        return true;
-      }
-    } catch (error) {
-      console.error("Failed to verify password:", error);
+    const data = await postInquiryDetail(selectedInquiryId, password);
+    if (data) {
+      setDetailData(data);
+      setExpandedInquiryId(String(selectedInquiryId));
+      setSelectedInquiryId(null);
+      return true;
     }
     return false;
   };
