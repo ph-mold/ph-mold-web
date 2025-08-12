@@ -10,10 +10,18 @@ import { SampleRequestTimeline } from "./SampleRequestTimeLine";
 import { notFound } from "next/navigation";
 import { SampleRequestInfo } from "./SampleRequestInfo";
 import { SampleRequestTracking } from "./SampleRequestTracking";
-import { useState } from "react";
+import { useTabNavigation } from "@/hooks/useTabNavigation";
 
 export function SampleRequest({ trackingCode }: { trackingCode: string }) {
-  const [activeTab, setActiveTab] = useState<"info" | "tracking">("info");
+  const { activeTab, handleTabClick } = useTabNavigation({
+    tabs: [
+      { label: "샘플 요청 정보", value: "info" },
+      { label: "배송 추적", value: "tracking" }
+    ],
+    mode: "query",
+    basePath: `/sample-request/${trackingCode}`
+  });
+
   const { data, isLoading, error } = useSWR<ISampleRequest | undefined>(
     [GET_SAMPLE_REQUEST_BY_TRACKING_CODE, trackingCode],
     () => getSampleRequestByTrackingCode(trackingCode)
@@ -33,10 +41,10 @@ export function SampleRequest({ trackingCode }: { trackingCode: string }) {
       <div className="border-border-strong bg-background rounded-lg border shadow-sm">
         <div className="border-border-strong flex border-b">
           <button
-            onClick={() => setActiveTab("info")}
-            className={`채 transition-color flex-1 cursor-pointer px-8 py-4 text-base font-medium ${
+            onClick={() => handleTabClick("info")}
+            className={`flex-1 cursor-pointer px-8 py-4 text-base font-medium transition-colors ${
               activeTab === "info"
-                ? "border-b-2 border-blue-500 text-blue-600"
+                ? "border-signature text-signature border-b-2"
                 : "text-foreground2 hover:text-foreground"
             }`}
           >
@@ -44,10 +52,10 @@ export function SampleRequest({ trackingCode }: { trackingCode: string }) {
           </button>
           {showTrackingTab && (
             <button
-              onClick={() => setActiveTab("tracking")}
+              onClick={() => handleTabClick("tracking")}
               className={`flex-1 cursor-pointer px-8 py-4 text-base font-medium transition-colors ${
                 activeTab === "tracking"
-                  ? "border-b-2 border-blue-500 text-blue-600"
+                  ? "border-signature text-signature border-b-2"
                   : "text-foreground2 hover:text-foreground"
               }`}
             >
