@@ -13,6 +13,25 @@ export function formatKoreanDateTime(dateInput: string): string {
   return `${date} ${hours}:${minutes}`;
 }
 
+// 날짜 포맷팅 함수
+export function formatDateTime(dateString: string) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  const ampm = hours < 12 ? "오전" : "오후";
+  const displayHours = hours < 12 ? hours : hours - 12;
+  const displayMinutes = minutes.toString().padStart(2, "0");
+
+  return {
+    date: `${year}년 ${month}월 ${day}일`,
+    time: `${ampm} ${displayHours}:${displayMinutes}`
+  };
+}
+
 export const formatCount = (() => {
   const formatter = new Intl.NumberFormat("ko-KR");
 
