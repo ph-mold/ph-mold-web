@@ -11,6 +11,8 @@ import { notFound } from "next/navigation";
 import { SampleRequestInfo } from "./SampleRequestInfo";
 import { SampleRequestTracking } from "./SampleRequestTracking";
 import { useTabNavigation } from "@/hooks/useTabNavigation";
+import { WithSkeleton } from "@ph-mold/ph-ui";
+import SampleRequestSkeleton from "./SampleRequest.skeleton";
 
 export function SampleRequest({ trackingCode }: { trackingCode: string }) {
   const { activeTab, handleTabClick } = useTabNavigation({
@@ -27,51 +29,54 @@ export function SampleRequest({ trackingCode }: { trackingCode: string }) {
     () => getSampleRequestByTrackingCode(trackingCode)
   );
 
-  if (isLoading) return <div>Loading...</div>;
   if (error?.status === 404) notFound();
   if (error) return <div>Error: {error.message}</div>;
 
   const showTrackingTab = data && isStatusCompleted(data.status, "shipped");
 
   return (
-    <div className="space-y-4">
-      <SampleRequestTimeline sampleRequest={data!} />
+    <WithSkeleton isLoading={isLoading} skeleton={<SampleRequestSkeleton />}>
+      <div className="space-y-4">
+        {data && <SampleRequestTimeline sampleRequest={data} />}
 
-      {/* 탭 네비게이션 */}
-      <div className="border-border-strong bg-background rounded-lg border shadow-sm">
-        <div className="border-border-strong flex border-b">
-          <button
-            onClick={() => handleTabClick("info")}
-            className={`flex-1 cursor-pointer px-8 py-4 text-base font-medium transition-colors ${
-              activeTab === "info"
-                ? "border-signature text-signature border-b-2"
-                : "text-foreground2 hover:text-foreground"
-            }`}
-          >
-            샘플 요청 정보
-          </button>
-          {showTrackingTab && (
+        {/* 탭 네비게이션 */}
+        <div className="border-border-strong bg-background rounded-lg border shadow-sm">
+          <div className="border-border-strong flex border-b">
             <button
-              onClick={() => handleTabClick("tracking")}
+              onClick={() => handleTabClick("info")}
               className={`flex-1 cursor-pointer px-8 py-4 text-base font-medium transition-colors ${
-                activeTab === "tracking"
+                activeTab === "info"
                   ? "border-signature text-signature border-b-2"
                   : "text-foreground2 hover:text-foreground"
               }`}
             >
-              배송 추적
+              샘플 요청 정보
             </button>
-          )}
-        </div>
+            {showTrackingTab && (
+              <button
+                onClick={() => handleTabClick("tracking")}
+                className={`flex-1 cursor-pointer px-8 py-4 text-base font-medium transition-colors ${
+                  activeTab === "tracking"
+                    ? "border-signature text-signature border-b-2"
+                    : "text-foreground2 hover:text-foreground"
+                }`}
+              >
+                배송 추적
+              </button>
+            )}
+          </div>
 
-        {/* 탭 콘텐츠 */}
-        <>
-          {activeTab === "info" && <SampleRequestInfo sampleRequest={data!} />}
-          {activeTab === "tracking" && showTrackingTab && (
-            <SampleRequestTracking sampleRequest={data!} />
-          )}
-        </>
+          {/* 탭 콘텐츠 */}
+          <>
+            {activeTab === "info" && data && (
+              <SampleRequestInfo sampleRequest={data} />
+            )}
+            {activeTab === "tracking" && showTrackingTab && data && (
+              <SampleRequestTracking sampleRequest={data} />
+            )}
+          </>
+        </div>
       </div>
-    </div>
+    </WithSkeleton>
   );
 }
