@@ -13,11 +13,16 @@ export const API = {
     GET_DETAIL_BY_KEY: (key: string) => `${API_BASE}/products/${key}/detail`
   },
   SAMPLE_REQUESTS: {
-    CREATE: `${API_BASE}/sample-requests`
+    CREATE: `${API_BASE}/sample-requests`,
+    GET_ONE_BY_TRACKING_CODE: (trackingCode: string) =>
+      `${API_BASE}/sample-requests/${trackingCode}`
   },
   INQUIRIES: {
     CREATE: `${API_BASE}/inquiries`,
     GET: `${API_BASE}/inquiries`,
     GET_DETAIL: (inquiryId: number) => `${API_BASE}/inquiries/${inquiryId}`
+  },
+  TRACKER: {
+    TRACK: "https://apis.tracker.delivery/graphql"
   }
 } as const;

@@ -24,6 +24,8 @@ jobs:
           docker build \
             --build-arg NEXT_PUBLIC_FILE_SERVER_BASE_URL=${{ secrets.NEXT_PUBLIC_FILE_SERVER_BASE_URL }} \
             --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
+            --build-arg NEXT_PUBLIC_TRACKER_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TRACKER_CLIENT_ID }} \
+            --build-arg NEXT_PUBLIC_TRACKER_CLIENT_SECRET=${{ secrets.NEXT_PUBLIC_TRACKER_CLIENT_SECRET }} \
             -t ghcr.io/ph-mold/ph-mold-web:${{ env.IMAGE_TAG }} .
           docker push ghcr.io/ph-mold/ph-mold-web:${{ env.IMAGE_TAG }}
       - name: Deploy to server with commit SHA

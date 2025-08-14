@@ -10,9 +10,10 @@ export default async function ProductsTabLayout({
   params: Promise<{ tab: string }>;
 }>) {
   const { tab } = await params;
-  const subTabs = await getCategoryByParentKey(tab);
-
-  if (!subTabs) {
+  let subTabs;
+  try {
+    subTabs = await getCategoryByParentKey(tab);
+  } catch {
     notFound();
   }
 

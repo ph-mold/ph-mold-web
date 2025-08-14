@@ -1,6 +1,7 @@
 import ProductStickyBar from "@/components/product/ProductStickyBar";
 import { StickyButtonProvider } from "@/context/StickyButtonContext";
 import { getProductSummaryByKey } from "@/lib/api/products";
+import { notFound } from "next/navigation";
 
 export default async function ProductsLayout({
   children,
@@ -10,11 +11,19 @@ export default async function ProductsLayout({
   params: Promise<{ key: string }>;
 }>) {
   const { key } = await params;
-  const summary = await getProductSummaryByKey(key);
+  let summary;
+
+  try {
+    summary = await getProductSummaryByKey(key);
+    if (!summary) notFound();
+  } catch {
+    notFound();
+  }
+
   return (
     <>
       <StickyButtonProvider>
-        {summary && <ProductStickyBar summary={summary} />}
+        <ProductStickyBar summary={summary} />
         {children}
       </StickyButtonProvider>
     </>
