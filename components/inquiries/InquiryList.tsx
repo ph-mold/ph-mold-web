@@ -65,24 +65,18 @@ export default function InquiryList() {
   return (
     <div className="space-y-2">
       <WithSkeleton isLoading={isLoading} skeleton={<InquiryListSkeleton />}>
-        <div className="grid grid-rows-[repeat(5,minmax(0,1fr))] gap-2">
+        <div className="flex flex-col gap-2">
           {(data?.items ?? []).map((inquiry) => {
             return (
-              <div key={inquiry.id} className="relative">
-                <InquiryItem
-                  inquiry={inquiry}
-                  onToggle={() => {
-                    setSelectedInquiryId(inquiry.id);
-                  }}
-                />
-              </div>
+              <InquiryItem
+                key={inquiry.id}
+                inquiry={inquiry}
+                onToggle={() => {
+                  setSelectedInquiryId(inquiry.id);
+                }}
+              />
             );
           })}
-          {Array(Math.max(0, itemsPerPage - (data?.items?.length || 0)))
-            .fill(0)
-            .map((_, index) => (
-              <div key={`empty-${index}`} aria-hidden="true" />
-            ))}
 
           <Pagination
             currentPage={currentPage}

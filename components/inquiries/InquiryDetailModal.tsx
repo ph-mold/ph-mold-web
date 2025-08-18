@@ -24,7 +24,7 @@ export function InquiryDetailModal({ open, onClose, detailData }: Props) {
                 처리 상태
               </span>
               <span
-                className={`rounded-full px-3 py-1 text-sm font-medium ${status.color}`}
+                className={`rounded-full px-3 py-1 text-sm font-medium ${status.color} ${status.borderColor} border`}
               >
                 {status.label}
               </span>
