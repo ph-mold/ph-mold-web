@@ -11,13 +11,12 @@ import { InquiryItem } from "./InquiryItem";
 import { Pagination, WithSkeleton } from "@ph-mold/ph-ui";
 import { InquiryListSkeleton } from "./InquiryList.skeleton";
 import useSWR from "swr";
+import { InquiryDetailModal } from "./InquiryDetailModal";
 
 export default function InquiryList() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [expandedInquiryId, setExpandedInquiryId] = useState<string | null>(
-    null
-  );
+  const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
   const [selectedInquiryId, setSelectedInquiryId] = useState<number | null>(
     null
   );
@@ -41,7 +40,7 @@ export default function InquiryList() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    setExpandedInquiryId(null);
+    setIsOpenDetail(false);
     setSelectedInquiryId(null);
 
     // URL 업데이트
@@ -56,7 +55,7 @@ export default function InquiryList() {
     const data = await postInquiryDetail(selectedInquiryId, password);
     if (data) {
       setDetailData(data);
-      setExpandedInquiryId(String(selectedInquiryId));
+      setIsOpenDetail(true);
       setSelectedInquiryId(null);
       return true;
     }
@@ -68,21 +67,12 @@ export default function InquiryList() {
       <WithSkeleton isLoading={isLoading} skeleton={<InquiryListSkeleton />}>
         <div className="grid grid-rows-[repeat(5,minmax(0,1fr))] gap-2">
           {(data?.items ?? []).map((inquiry) => {
-            const isExpanded = expandedInquiryId === inquiry.id.toString();
-
             return (
               <div key={inquiry.id} className="relative">
                 <InquiryItem
                   inquiry={inquiry}
-                  isExpanded={isExpanded}
-                  detailData={detailData}
                   onToggle={() => {
-                    if (isExpanded) {
-                      setExpandedInquiryId(null);
-                      setDetailData(null);
-                    } else {
-                      setSelectedInquiryId(inquiry.id);
-                    }
+                    setSelectedInquiryId(inquiry.id);
                   }}
                 />
               </div>
@@ -106,6 +96,11 @@ export default function InquiryList() {
         open={selectedInquiryId !== null}
         onClose={() => setSelectedInquiryId(null)}
         onVerify={handlePasswordVerify}
+      />
+      <InquiryDetailModal
+        open={isOpenDetail}
+        onClose={() => setIsOpenDetail(false)}
+        detailData={detailData}
       />
     </div>
   );
