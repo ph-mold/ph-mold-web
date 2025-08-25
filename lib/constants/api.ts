@@ -20,7 +20,9 @@ export const API = {
   INQUIRIES: {
     CREATE: `${API_BASE}/inquiries`,
     GET: `${API_BASE}/inquiries`,
-    GET_DETAIL: (inquiryId: number) => `${API_BASE}/inquiries/${inquiryId}`
+    GET_DETAIL: (inquiryId: number) => `${API_BASE}/inquiries/${inquiryId}`,
+    POST_REPLY: (inquiryId: number) =>
+      `${API_BASE}/inquiries/${inquiryId}/reply`
   },
   TRACKER: {
     TRACK: "https://apis.tracker.delivery/graphql"
