@@ -1,4 +1,4 @@
-import { IInquiryWithoutPassword } from "@/types/api/inquiry";
+import { IInquiry } from "@/types/api/inquiry";
 import { Button, Modal, TextArea } from "@ph-mold/ph-ui";
 import {
   MapPin,
@@ -11,20 +11,42 @@ import {
 } from "lucide-react";
 import { STATUS_MAP } from "./constants";
 import { IReply } from "@/types/api/inquiry";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { postInquiryReply } from "@/lib/api/inquiry";
 
 interface Props {
   open: boolean;
   onClose: () => void;
-  detailData: IInquiryWithoutPassword | null;
+  detailData: IInquiry | null;
 }
 
 export function InquiryDetailModal({ open, onClose, detailData }: Props) {
   const [isApplicantInfoOpen, setIsApplicantInfoOpen] = useState(false);
   const [isAddressInfoOpen, setIsAddressInfoOpen] = useState(false);
+  const [replyText, setReplyText] = useState("");
+  const [replies, setReplies] = useState<IReply[]>([]);
+  useEffect(() => {
+    setReplies(detailData?.replies ?? []);
+  }, [detailData]);
 
   if (!detailData) return null;
   const status = STATUS_MAP[detailData.status];
+
+  const handleReplySubmit = async (content: string) => {
+    await postInquiryReply(detailData.id, content, detailData.password);
+    setReplyText("");
+    setReplies([
+      ...replies,
+      {
+        id: Math.floor(Math.random() * 900000) + 100000,
+        content,
+        replyType: "USER",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        inquiryId: detailData.id
+      }
+    ]);
+  };
 
   return (
     <Modal open={open} onClose={onClose} title="문의" bodyClassName="!p-0">
@@ -70,12 +92,12 @@ export function InquiryDetailModal({ open, onClose, detailData }: Props) {
             {/* 답변 섹션 */}
             <div>
               {/* 기존 답변들 표시 */}
-              {detailData.replies && detailData.replies.length > 0 ? (
+              {replies.length > 0 ? (
                 <div className="mb-4 space-y-3">
                   <h6 className="text-foreground text-sm font-medium">
                     답변 목록
                   </h6>
-                  {detailData.replies.map((reply: IReply, index: number) => (
+                  {replies.map((reply: IReply, index: number) => (
                     <div
                       key={reply.id || index}
                       className={`flex ${
@@ -134,6 +156,8 @@ export function InquiryDetailModal({ open, onClose, detailData }: Props) {
                     placeholder="답변을 입력해주세요..."
                     rows={4}
                     className="w-full"
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
                   />
 
                   <Button
@@ -141,6 +165,7 @@ export function InquiryDetailModal({ open, onClose, detailData }: Props) {
                     size="small"
                     endIcon={<Send size={16} />}
                     className="ml-auto"
+                    onClick={() => handleReplySubmit(replyText)}
                   >
                     답변
                   </Button>
