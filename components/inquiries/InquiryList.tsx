@@ -1,6 +1,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { IInquiryWithoutPassword } from "@/types/api/inquiry";
+import { IInquiry } from "@/types/api/inquiry";
 import {
   getInquiries,
   postInquiryDetail,
@@ -21,9 +21,7 @@ export default function InquiryList() {
     null
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const [detailData, setDetailData] = useState<IInquiryWithoutPassword | null>(
-    null
-  );
+  const [detailData, setDetailData] = useState<IInquiry | null>(null);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -54,7 +52,7 @@ export default function InquiryList() {
 
     const data = await postInquiryDetail(selectedInquiryId, password);
     if (data) {
-      setDetailData(data);
+      setDetailData({ ...data, password: password });
       setIsOpenDetail(true);
       setSelectedInquiryId(null);
       return true;

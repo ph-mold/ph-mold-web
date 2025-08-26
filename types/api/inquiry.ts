@@ -10,10 +10,21 @@ export interface IInquiryFormValues {
   password: string;
 }
 
+export interface IReply {
+  id: number;
+  inquiryId: number;
+  assignedUserId?: number;
+  replyType: "COMPANY" | "USER";
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface IInquiry extends IInquiryFormValues {
   id: number;
   createdAt: string;
   status: "PENDING" | "IN_PROGRESS" | "COMPLETED";
+  replies?: IReply[];
 }
 
 export type IInquiryWithoutPassword = Omit<IInquiry, "password">;

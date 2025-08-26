@@ -45,3 +45,18 @@ export const postInquiryDetail = async (
   );
   return data;
 };
+
+export const POST_INQUIRY_REPLY = "postInquiryReply";
+export const postInquiryReply = async (
+  inquiryId: number,
+  content: string,
+  password: string
+) => {
+  await fetcher(API.INQUIRIES.POST_REPLY(inquiryId), {
+    method: "POST",
+    body: JSON.stringify({ content, password }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};
